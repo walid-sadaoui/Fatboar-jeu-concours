@@ -1,0 +1,23 @@
+FROM node:carbon
+
+# install dependencies
+WORKDIR /usr/src/app
+
+# Install nodemon for hot reload
+RUN npm install -g nodemon
+
+COPY package*.json ./
+
+# RUN npm install
+RUN npm cache clean --force && npm install
+
+COPY . /usr/src/app
+
+ENV PORT 3000
+
+EXPOSE 3000
+
+#CMD ../scripts/start.sh
+
+CMD [ "nodemon", "index.js" ]
+# CMD [ "npm", "run", "start" ]
