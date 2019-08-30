@@ -1,5 +1,8 @@
 FROM node:carbon
 
+# Set user
+# USER node
+
 # install dependencies
 WORKDIR /usr/src/app
 
@@ -9,6 +12,11 @@ RUN npm install -g nodemon
 COPY package*.json ./
 
 # RUN npm install
+
+# RUN if [ "$NODE_ENV" = "development" ]; \
+# 	then npm install;  \
+# 	else npm install --only=production; \
+# 	fi
 RUN npm cache clean --force && npm install
 
 COPY . /usr/src/app

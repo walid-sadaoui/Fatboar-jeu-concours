@@ -12,6 +12,10 @@ services:
       - '9229:9229'
     depends_on:
       - postgres-db
+    # command:
+    #   - npm
+    #   - run
+    #   - prod
     # environment:
     #   DB_HOST: db
   postgres-db:

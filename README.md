@@ -8,9 +8,19 @@ Je fais e code en local, ensuite je dois le mettre sur le serveur
 Le docker-compose va contenir les infos pour l'environnement de dev
 Le Dockerfile contient les informations pour le serveur de production
 
+## Config GIT
+
+- créer dossier du projet
+- git init
+- git checkout / git remote add
+- ajoute ton code react dans le dossier client/
+
 ## How To Work in Dev Environment
 
-docker-compose up -d
+Créer un script pour lancer docker-compose en fonction :
+  docker-compose -f docker-compose -f docker-compose.dev up -d
+  docker-compose -f docker-compose -f docker-compose.prod up -d
+  docker stack deploy
 
 pg-admin : localhost:8080
 
@@ -25,6 +35,9 @@ CTRL+P CTRL+Q pour se détacher du container sans l'arrêter
 
 Il doit correspondre au code présent sur master
 Lors du build il faut copier le code de master dans un container lancé sur le serveur.
+
+- git remote add deploy --> docker stack deploy?
+- pousser sur origin master --> lancer build jenkins qui s'occupe du deploy sur le server en fonction du nom de la branche
 
 Il y aura un aussi un code pour la PREPROD
 
