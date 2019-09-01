@@ -18,7 +18,7 @@ Le Dockerfile contient les informations pour le serveur de production
 ## How To Work in Dev Environment
 
 Créer un script pour lancer docker-compose en fonction :
-  docker-compose -f docker-compose -f docker-compose.dev up -d
+  docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
   docker-compose -f docker-compose -f docker-compose.prod up -d
   docker stack deploy
 
@@ -32,6 +32,14 @@ npm install
 CTRL+P CTRL+Q pour se détacher du container sans l'arrêter
 
 ## Pour l'environnement de PRODUCTION
+
+On ne doit pas avoir un volume qui relie le code local au code dans le container
+exposer un port différent
+
+$ docker-compose build web
+$ docker-compose up --no-deps -d web
+
+npm install --production
 
 Il doit correspondre au code présent sur master
 Lors du build il faut copier le code de master dans un container lancé sur le serveur.

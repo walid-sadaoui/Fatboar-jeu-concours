@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Git') {
-            steps {
-                echo '> Checking out the Git version control ...'
-                checkout scm
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Building..'
@@ -20,6 +14,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                branch master
+            }
             steps {
                 echo 'Deploying....'
                 echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'

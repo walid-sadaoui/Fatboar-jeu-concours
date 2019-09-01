@@ -1,0 +1,30 @@
+version: '3'
+services:
+  api:
+    volumes:
+      - 'reserved:/usr/src/app/node_modules'
+      - './api:/usr/src/app'
+    ports:
+      - '3000:3000'
+      - '9229:9229'
+  postgres-db:
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    # volumes:
+    #   - /var/lib/postgresql:/var/lib/postgresql
+  db_gui:
+    ports:
+      - "8080:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=walidsadaoui@hotmail.fr
+      - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+  # client:
+  #   container_name: react
+  #   build: ./client
+  #   image:
+    # ports:
+    #   - '27017:27017'
