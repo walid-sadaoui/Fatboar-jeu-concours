@@ -6,7 +6,7 @@
 Je fais le code en local, ensuite je dois le mettre sur le serveur
 
 Le docker-compose va contenir les infos pour l'environnement de dev
-Le Dockerfile contient les informations pour le serveur de production
+Le Dockerfile contient les informations pour le serveur de production test
 
 ## How To Work in Dev Environment
 
