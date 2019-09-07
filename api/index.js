@@ -13,7 +13,7 @@ app.use(
 )
 
 app.get('/', (request, response) => {
-    response.json({ info: 'Node.js, Express, and Postgres API pour FATBOAR' })
+    response.json({ info: 'Node.js, Express, and Postgres API pour FATBOAR JEU CONCOURS' })
 })
 
 app.listen(port, () => {
