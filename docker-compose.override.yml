@@ -6,7 +6,7 @@ services:
       - './api:/usr/src/app'
       - 'node_modules:/usr/src/app/node_modules'
     ports:
-      - '3000:3000'
+      - '5000:3000'
       - '9229:9229'
     working_dir: /usr/src/app
     command: npm start
@@ -19,17 +19,28 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    # volumes:
-    #   - /var/lib/postgresql:/var/lib/postgresql
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql
   db_gui:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres-db
+    networks:
+      - web
     ports:
       - "8080:80"
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
-  # client:
-  #   container_name: react
-  #   build: ./client
-  #   image:
-    # ports:
-    #   - '27017:27017'
+  client:
+    image: node:10.16.3-alpine
+    working_dir: /usr/src/app
+    # command: npm start
+    environment:
+      - NPM_CONFIG_PREFIX=/home/node/.npm-global
+    volumes:
+      - './client:/usr/src/app'
+      - 'node_modules:/usr/src/app/node_modules'
+    ports:
+      - '27017:27017'

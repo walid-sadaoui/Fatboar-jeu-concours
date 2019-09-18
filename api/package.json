@@ -10,11 +10,15 @@
     "pm2": "^3.5.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "husky": "^3.0.5",
     "nodemon": "^1.19.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install && nodemon -L index.js"
+    "start": "npm install && nodemon -L index.js",
+    "commit": "commit"
   },
   "keywords": [],
   "author": "Walid SADAOUI, Charles ATANGUI, Sonia METCHUM, Mamadou MBEGUERE",

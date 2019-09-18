@@ -77,3 +77,14 @@ Si tu travailles sur la même branche que quelqu'un d'autre, avant de commencer 
 git add .
 git commit -m "message"
 git push origin <nom_de_la_branche>
+
+## Nouvelle organisation
+
+Dev :
+    -  docker-compose -f docker-compose.yml -f docker-compose.dev.yml build
+    -  docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+CI :
+    - docker-compose build --> il faut le Dockerfile
+    - docker-compose up -d
+
+En CI on va build avec les Dockerfile, donc on garde la config de prod/stage mais on n'a pas besoin de traefik

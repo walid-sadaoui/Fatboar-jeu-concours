@@ -1,33 +1,15 @@
 version: '3'
 services:
   api:
-    container_name: docker-node-postgres
-    # restart: always
-    # build: ./api
+    container_name: fatboar-back
     depends_on:
       - postgres-db
   postgres-db:
-    container_name: postgres
+    container_name: fatboar-db
     hostname: postgres
-    image: postgres:alpine
-    # volumes:
-    #   - /var/lib/postgresql:/var/lib/postgresql
-  db_gui:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    depends_on:
-      - postgres-db
-    networks:
-      - web
-    # pgadmin.fatboar.site
-  # client:
-  #   container_name: react
-  #   build: ./client
-  #   image:
-      # networks:
-      # - web
-    # ports:
-    #   - '27017:27017'
+    image: postgres:11.5-alpine
+  client:
+    container_name: fatboar-front
 networks:
   web:
     external:

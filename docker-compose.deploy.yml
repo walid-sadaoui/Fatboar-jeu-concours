@@ -1,0 +1,11 @@
+# il faut ajouter la configuration de traefik
+# Et voir s'il y a d'autres éléments exclusifs à la prod/stage
+version: '3'
+services:
+  client:
+    labels:
+    - "traefik.enable=true"
+    - "traefik.backend=traefik"
+    - "traefik.frontend.rule=Host:${DOMAIN_NAME}"
+    - "traefik.port=${PORT_REACT}"
+    - "traefik.docker.network=web"

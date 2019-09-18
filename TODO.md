@@ -36,4 +36,4 @@ Mettre en place le Jenkinsfile
 
 ## Documentation
 
-- Rédiger la documentation détailler de l'utilisation du workflow et du projet
+- Rédiger la documentation détaillée de l'utilisation du workflow et du projet
