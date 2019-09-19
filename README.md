@@ -29,6 +29,8 @@ La premiere fois :
 - Aller dans Pull Request --> New Pull Request
 - Base: develop, compare: <nom_nouvelle_branche>
 - Assigner la Pull Request à un développeur
+- Create Pull Request
+- Ensuite le développeur assigné va vérifier le code et valider ou non le merge (en corrigeant les conflits)
 
 Créer un fichier .env à remplir avec les informations d'identification (voir .env-sample)
 
