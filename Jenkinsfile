@@ -1,16 +1,14 @@
 pipeline {
-    agent docker
+    agent any
 
     environment {
         CI='true'
         NODE_ENV='CI'
         PORT=3000
-        VERSION=0.0.1
+        VERSION='0.0.1'
         POSTGRES_PASSWORD='postgres'
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
-        // variables d'environnemet pour traefik?
-        //checkout git
         // 1 - il faut lancer les containers docker (lesquels?)
         // 2 - lancer les tests 
         // 3 - taguer les images docker
@@ -22,7 +20,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'docker network create web'
                 sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml up --build -d'
             }
         }
@@ -32,11 +29,13 @@ pipeline {
             }
         }
         stage('Push to registry') {
-            echo 'Push images to Docker Registry'
-            docker tag node registry.fatboar.site/node:latest
-            docker tag node registry.fatboar.site/node:${VERSION}
-            // docker push node registry.fatboar.site/node:${VERSION}
-            // docker push node registry.fatboar.site/node:latest
+            steps {
+                echo 'Push images to Docker Registry'
+                sh 'docker tag fatboar-back registry.fatboar.site/fatboar-back:latest'
+                sh 'docker tag fatboar-back registry.fatboar.site/fatboar-back:${VERSION}'
+                // docker push node registry.fatboar.site/node:${VERSION}
+                // docker push node registry.fatboar.site/node:latest
+            }
         }
         stage('Deploy to Stage') {
             when {

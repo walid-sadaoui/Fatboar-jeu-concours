@@ -1,20 +1,38 @@
 # Fatboar-jeu-concours
 
-- Pouvoir lancer le projet dans un container
-- initialiser l'api en créeant la BDD POSTGRES avec NODE
+## Prérequis
 
-Je fais le code en local, ensuite je dois le mettre sur le serveur
-
-Le docker-compose va contenir les infos pour l'environnement de dev
-Le Dockerfile contient les informations pour le serveur de production test
+- installer docker
+- installer docker-compose
+- installer git
+- cloner le projet fatbor
 
 ## How To Work in Dev Environment
 
 La premiere fois :
 
-- docker network create web
+- Faire 'docker network create web' dans le dossier du projet en local
 
-fichier .env à remplir avec les informations d'identification
+## Repartir à partir de la branche develop
+
+- git fetch
+- Si il y a des modifications en cours sur la branche actuelle, il soit faire le commit soit faire git stash si on ne veut pas garder les modifications en cours
+- git checkout develop
+- git pull origin develop
+- git checkout -b <nom_nouvelle_branche>
+- faire le developpement
+- git add, git commit, git push origin <nom_nouvelle_branche>
+
+## Mettre à jour la branche develop quand le developpement de la feature est terminé
+
+- Aller sur gogs, sur le projet Fatboar
+- Aller dans Pull Request --> New Pull Request
+- Base: develop, compare: <nom_nouvelle_branche>
+- Assigner la Pull Request à un développeur
+- Create Pull Request
+- Ensuite le développeur assigné va vérifier le code et valider ou non le merge (en corrigeant les conflits)
+
+Créer un fichier .env à remplir avec les informations d'identification (voir .env-sample)
 
 docker-compose up #prend en compte le fichier override
 site web localhost:3000
@@ -27,7 +45,11 @@ Si vous vous installer des modules :
 
 Arrêter les containers :
 
-- dcoker-compose down
+- docker-compose stop
+
+Si on veut tout recommencer (supprimer les containers et les images) :
+
+- docker-compose down
 
 ### Installer dépendances Node
 
@@ -81,8 +103,8 @@ git push origin <nom_de_la_branche>
 ## Nouvelle organisation
 
 Dev :
-    -  docker-compose -f docker-compose.yml -f docker-compose.dev.yml build
-    -  docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+    -  docker-compose build
+    -  docker-compose up -d
 CI :
     - docker-compose build --> il faut le Dockerfile
     - docker-compose up -d
