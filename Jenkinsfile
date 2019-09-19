@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker
-    }
+    agent any
 
     environment {
         CI='true'
