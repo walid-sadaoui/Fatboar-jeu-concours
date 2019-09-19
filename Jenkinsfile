@@ -20,7 +20,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'docker network create web'
                 sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml up --build -d'
             }
         }
