@@ -30,11 +30,13 @@ pipeline {
             }
         }
         stage('Push to registry') {
-            echo 'Push images to Docker Registry'
-            sh 'docker tag node registry.fatboar.site/node:latest'
-            sh 'docker tag node registry.fatboar.site/node:${VERSION}'
-            // docker push node registry.fatboar.site/node:${VERSION}
-            // docker push node registry.fatboar.site/node:latest
+            steps {
+                echo 'Push images to Docker Registry'
+                sh 'docker tag node registry.fatboar.site/node:latest'
+                sh 'docker tag node registry.fatboar.site/node:${VERSION}'
+                // docker push node registry.fatboar.site/node:${VERSION}
+                // docker push node registry.fatboar.site/node:latest
+            }
         }
         stage('Deploy to Stage') {
             when {
