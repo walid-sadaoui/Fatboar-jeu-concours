@@ -5,12 +5,10 @@ pipeline {
         CI='true'
         NODE_ENV='CI'
         PORT=3000
-        VERSION=0.0.1
+        VERSION='0.0.1'
         POSTGRES_PASSWORD='postgres'
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
-        // variables d'environnemet pour traefik?
-        //checkout git
         // 1 - il faut lancer les containers docker (lesquels?)
         // 2 - lancer les tests 
         // 3 - taguer les images docker
