@@ -31,8 +31,8 @@ pipeline {
         stage('Push to registry') {
             steps {
                 echo 'Push images to Docker Registry'
-                sh 'docker tag node registry.fatboar.site/node:latest'
-                sh 'docker tag node registry.fatboar.site/node:${VERSION}'
+                sh 'docker tag fatboar-back registry.fatboar.site/fatboar-back:latest'
+                sh 'docker tag fatboar-back registry.fatboar.site/fatboar-back:${VERSION}'
                 // docker push node registry.fatboar.site/node:${VERSION}
                 // docker push node registry.fatboar.site/node:latest
             }
