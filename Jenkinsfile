@@ -1,5 +1,5 @@
 pipeline {
-    agent docker
+    agent any
 
     environment {
         CI='true'
@@ -9,8 +9,6 @@ pipeline {
         POSTGRES_PASSWORD='postgres'
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
-        // variables d'environnemet pour traefik?
-        //checkout git
         // 1 - il faut lancer les containers docker (lesquels?)
         // 2 - lancer les tests 
         // 3 - taguer les images docker
