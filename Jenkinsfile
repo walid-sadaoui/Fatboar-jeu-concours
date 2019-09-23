@@ -5,7 +5,7 @@ pipeline {
         CI='true'
         NODE_ENV='CI'
         PORT=3000
-        VERSION=0.0.1
+        VERSION='0.0.1'
         POSTGRES_PASSWORD='postgres'
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
@@ -22,7 +22,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'docker network create web'
+                // sh 'docker network create web'
                 sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml up --build -d'
             }
         }
@@ -33,8 +33,15 @@ pipeline {
         }
         stage('Push to registry') {
             echo 'Push images to Docker Registry'
-            docker tag node registry.fatboar.site/node:latest
-            docker tag node registry.fatboar.site/node:${VERSION}
+            // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
+
+            if (env.BRANCH_NAME == 'develop') {
+               docker tag node registry.fatboar.site/node:stage
+            } else if (env.BRANCH_NAME == 'master') {
+                docker tag node registry.fatboar.site/node:latest
+                docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}
+            }
+            
             // docker push node registry.fatboar.site/node:${VERSION}
             // docker push node registry.fatboar.site/node:latest
         }
@@ -47,6 +54,7 @@ pipeline {
                 echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
                 echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
                 echo 'Si branch master : si test pass --> deploy fatboar.site'
+                echo 'docker pull registry.fatboar.site/node:stage'
             }
         }
         stage('Deploy to Production') {
