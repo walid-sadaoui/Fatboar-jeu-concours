@@ -110,3 +110,9 @@ CI :
     - docker-compose up -d
 
 En CI on va build avec les Dockerfile, donc on garde la config de prod/stage mais on n'a pas besoin de traefik
+
+table USER
+champ role
+adresse null quand c'est un responsable
+id pays table pays
+changelog
