@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     echo 'Push images to Docker Registry'
-                    echo 'BRANCHE ${env.BRANCH_NAME}'
+                    echo "BRANCHE ${env.BRANCH_NAME}"
                     // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
 
                     if (env.BRANCH_NAME == 'develop') {
