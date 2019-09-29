@@ -5,7 +5,7 @@ pipeline {
         CI='true'
         NODE_ENV='CI'
         PORT=3000
-        VERSION=0.0.1
+        VERSION='0.0.1'
         POSTGRES_PASSWORD='postgres'
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
@@ -32,11 +32,17 @@ pipeline {
             }
         }
         stage('Push to registry') {
-            echo 'Push images to Docker Registry'
-            docker tag node registry.fatboar.site/node:latest
-            docker tag node registry.fatboar.site/node:${VERSION}
-            // docker push node registry.fatboar.site/node:${VERSION}
-            // docker push node registry.fatboar.site/node:latest
+            steps {
+                if (env.BRANCH_NAME == 'develop') {
+                    echo 'Push images to Docker Registry'
+                    sh 'docker tag node registry.fatboar.site/node:latest'
+                    sh 'docker tag node registry.fatboar.site/node:${VERSION}'
+                    // docker push node registry.fatboar.site/node:${VERSION}
+                    // docker push node registry.fatboar.site/node:latest
+                }
+                
+            }
+            
         }
         stage('Deploy to Stage') {
             when {
