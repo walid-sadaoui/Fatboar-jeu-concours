@@ -31,18 +31,20 @@ pipeline {
         }
         stage('Push to registry') {
             steps {
-                echo 'Push images to Docker Registry'
-                // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
+                script {
+                    echo 'Push images to Docker Registry'
+                    // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
 
-                if (env.BRANCH_NAME == 'develop') {
-                sh 'docker tag node registry.fatboar.site/node:stage'
-                } else if (env.BRANCH_NAME == 'master') {
-                    sh 'docker tag node registry.fatboar.site/node:latest'
-                    sh 'docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}'
+                    if (env.BRANCH_NAME == 'develop') {
+                    sh 'docker tag node registry.fatboar.site/node:stage'
+                    } else if (env.BRANCH_NAME == 'master') {
+                        sh 'docker tag node registry.fatboar.site/node:latest'
+                        sh 'docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}'
+                    }
+                    
+                    // docker push node registry.fatboar.site/node:${VERSION}
+                    // docker push node registry.fatboar.site/node:latest
                 }
-                
-                // docker push node registry.fatboar.site/node:${VERSION}
-                // docker push node registry.fatboar.site/node:latest
             }
         }
         stage('Deploy to Stage') {
