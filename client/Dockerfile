@@ -1,10 +1,11 @@
 # base image
 
-FROM alpine:3.9
+FROM node:10.16.3-alpine 
 
 ENV NODE_VERSION 10.16.3
 # ENV YARN_VERSION 1.17.3
-
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:${NPM_CONFIG_PREFIX}/bin
 # set working directory
 WORKDIR /app
 

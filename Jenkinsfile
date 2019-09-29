@@ -1,5 +1,5 @@
 pipeline {
-    agent docker
+    agent any
 
     environment {
         CI='true'
@@ -9,8 +9,6 @@ pipeline {
         POSTGRES_PASSWORD='postgres'
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
-        // variables d'environnemet pour traefik?
-        //checkout git
         // 1 - il faut lancer les containers docker (lesquels?)
         // 2 - lancer les tests 
         // 3 - taguer les images docker
@@ -22,7 +20,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'docker network create web'
+                // sh 'docker network create web'
                 sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml up --build -d'
             }
         }
@@ -33,16 +31,19 @@ pipeline {
         }
         stage('Push to registry') {
             steps {
+                echo 'Push images to Docker Registry'
+                // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
+
                 if (env.BRANCH_NAME == 'develop') {
-                    echo 'Push images to Docker Registry'
+                sh 'docker tag node registry.fatboar.site/node:stage'
+                } else if (env.BRANCH_NAME == 'master') {
                     sh 'docker tag node registry.fatboar.site/node:latest'
-                    sh 'docker tag node registry.fatboar.site/node:${VERSION}'
-                    // docker push node registry.fatboar.site/node:${VERSION}
-                    // docker push node registry.fatboar.site/node:latest
+                    sh 'docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}'
                 }
                 
+                // docker push node registry.fatboar.site/node:${VERSION}
+                // docker push node registry.fatboar.site/node:latest
             }
-            
         }
         stage('Deploy to Stage') {
             when {
@@ -53,6 +54,7 @@ pipeline {
                 echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
                 echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
                 echo 'Si branch master : si test pass --> deploy fatboar.site'
+                echo 'docker pull registry.fatboar.site/node:stage'
             }
         }
         stage('Deploy to Production') {
