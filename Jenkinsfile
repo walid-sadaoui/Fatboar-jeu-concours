@@ -36,7 +36,8 @@ pipeline {
                     // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
 
                     if (env.BRANCH_NAME == 'develop') {
-                    sh 'docker tag node registry.fatboar.site/node:stage'
+                        echo 'BRANCHE ${env.BRANCH_NAME}'
+                        sh 'docker tag node registry.fatboar.site/node:stage'
                     } else if (env.BRANCH_NAME == 'master') {
                         sh 'docker tag node registry.fatboar.site/node:latest'
                         sh 'docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}'
