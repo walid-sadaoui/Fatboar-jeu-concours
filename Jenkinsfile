@@ -32,7 +32,7 @@ pipeline {
         stage('Push to registry') {
             steps {
                 script {
-                    echo 'Push images to Docker Registry'
+                    echo 'Push images to private Docker Registry'
                     echo "BRANCHE ${env.BRANCH_NAME}"
                     // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
 
