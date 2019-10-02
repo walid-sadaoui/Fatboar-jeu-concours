@@ -60,6 +60,8 @@ pipeline {
                 echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
                 echo 'Si branch master : si test pass --> deploy fatboar.site'
                 echo 'docker pull registry.fatboar.site/node:stage'
+                echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours-stage'
+                echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-stage-db'
             }
         }
         stage('Deploy to Production') {
@@ -71,6 +73,8 @@ pipeline {
                 echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
                 echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
                 echo 'Si branch master : si test pass --> deploy fatboar.site'
+                echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours'
+                echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-db'
             }
         }
     }
