@@ -36,11 +36,11 @@ services:
   client:
     image: node:10.16.3-alpine
     working_dir: /usr/src/app
-    # command: npm start
+    command: npm start
     environment:
       - NPM_CONFIG_PREFIX=/home/node/.npm-global
     volumes:
       - './client:/usr/src/app'
-      - 'node_modules:/usr/src/app/node_modules'
+      - 'node_modules_front:/usr/src/app/node_modules'
     ports:
-      - '27017:27017'
+      - '3000:3000'

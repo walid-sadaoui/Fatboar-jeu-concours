@@ -7,12 +7,12 @@ services:
     - "traefik.enable=true"
     - "traefik.backend=traefik"
     - "traefik.frontend.rule=Host:${DOMAIN_NAME}" #fatboar.site
-    - "traefik.port=${PORT_REACT}"
+    - "traefik.port=${PORT_API}"
     - "traefik.docker.network=web"
   api:
     labels:
     - "traefik.enable=true"
     - "traefik.backend=traefik"
     - "traefik.frontend.rule=Host:${DOMAIN_NAME}" #fatboar.site/api
-    - "traefik.port=${PORT_REACT}"
+    - "traefik.port=${PORT_CLIENT}"
     - "traefik.docker.network=web"
