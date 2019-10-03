@@ -17,6 +17,12 @@ pipeline {
         // 6 - nettoyer l'environnement
     }
     stages {
+        stage('Informations') {
+            steps {
+                echo 'Hostname'
+                sh 'hostname'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'
