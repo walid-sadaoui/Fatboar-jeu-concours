@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('Informations') {
             steps {
-                echo 'Hostname'
+                echo 'Hostname of the jenkins container'
                 sh 'hostname'
             }
         }
