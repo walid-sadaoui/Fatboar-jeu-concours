@@ -19,20 +19,20 @@ La premiere fois :
 - Si il y a des modifications en cours sur la branche actuelle, il soit faire le commit soit faire git stash si on ne veut pas garder les modifications en cours
 - git checkout develop
 - git pull origin develop
-- git checkout -b <nom_nouvelle_branche>
+- git checkout -b "<nom_nouvelle_branche>"
 - faire le developpement
-- git add, git commit, git push origin <nom_nouvelle_branche>
+- git add, git commit, git push origin "<nom_nouvelle_branche>"
 
 ## Mettre à jour la branche develop quand le developpement de la feature est terminé
 
-- Aller sur gogs, sur le projet Fatboar
-- Aller dans Pull Request --> New Pull Request
-- Base: develop, compare: <nom_nouvelle_branche>
-- Assigner la Pull Request à un développeur
-- Create Pull Request
-- Ensuite le développeur assigné va vérifier le code et valider ou non le merge (en corrigeant les conflits)
+    - Aller sur gogs, sur le projet Fatboar
+    - Aller dans Pull Request --> New Pull Request
+    - Base: develop, compare: "<nom_nouvelle_branche>"
+    - Assigner la Pull Request à un développeur
+    - Create Pull Request
+    - Ensuite le développeur assigné va vérifier le code et valider ou non le merge (en corrigeant les conflits)
 
-Créer un fichier .env à remplir avec les informations d'identification (voir .env-sample)
+- Créer un fichier .env à remplir avec les informations d'identification (voir .env-sample)
 
 docker-compose up #prend en compte le fichier override
 site web localhost:3000
@@ -40,8 +40,7 @@ pg-admin : localhost:8080
 
 Si vous vous installer des modules :
 
-- docker exec -it <nom_du_container> sh
-- npm install <nom_du_module>
+- npm install "<nom_du_module>"
 
 Arrêter les containers :
 
@@ -84,12 +83,6 @@ Il y aura un aussi un code pour la PREPROD
 - CTRL+P CTRL+Q
 - Git Hook post-receive
 - Jenkinsfile lance build sur ma branche
-
-## Fichiers à envoyer sur le serveur
-
-- /api
-- /client
-Voir tuto git deploy
 
 ## Procédure GIT
 
