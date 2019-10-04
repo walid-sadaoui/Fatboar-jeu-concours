@@ -17,6 +17,12 @@ pipeline {
         // 6 - nettoyer l'environnement
     }
     stages {
+        stage('Informations') {
+            steps {
+                echo 'Hostname of the jenkins container'
+                sh 'hostname'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'
@@ -31,18 +37,23 @@ pipeline {
         }
         stage('Push to registry') {
             steps {
-                echo 'Push images to Docker Registry'
-                // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
+                script {
+                    echo 'Push images to private Docker Registry'
+                    echo "BRANCHE ${env.BRANCH_NAME}"
+                    // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
 
-                if (env.BRANCH_NAME == 'develop') {
-                sh 'docker tag node registry.fatboar.site/node:stage'
-                } else if (env.BRANCH_NAME == 'master') {
-                    sh 'docker tag node registry.fatboar.site/node:latest'
-                    sh 'docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}'
+                    if (env.BRANCH_NAME == 'develop') {
+                        echo 'BRANCHE ${env.BRANCH_NAME}'
+                        sh 'docker container ls'
+                        sh 'docker tag node registry.fatboar.site/node:stage'
+                    } else if (env.BRANCH_NAME == 'master') {
+                        sh 'docker tag node registry.fatboar.site/node:latest'
+                        sh 'docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}'
+                    }
+                    
+                    // docker push node registry.fatboar.site/node:${VERSION}
+                    // docker push node registry.fatboar.site/node:latest
                 }
-                
-                // docker push node registry.fatboar.site/node:${VERSION}
-                // docker push node registry.fatboar.site/node:latest
             }
         }
         stage('Deploy to Stage') {
@@ -55,6 +66,8 @@ pipeline {
                 echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
                 echo 'Si branch master : si test pass --> deploy fatboar.site'
                 echo 'docker pull registry.fatboar.site/node:stage'
+                echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours-stage'
+                echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-stage-db'
             }
         }
         stage('Deploy to Production') {
@@ -66,6 +79,8 @@ pipeline {
                 echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
                 echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
                 echo 'Si branch master : si test pass --> deploy fatboar.site'
+                echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours'
+                echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-db'
             }
         }
     }
