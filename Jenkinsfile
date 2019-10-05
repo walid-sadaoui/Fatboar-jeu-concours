@@ -27,7 +27,8 @@ pipeline {
             steps {
                 echo 'Building..'
                 // sh 'docker network create web'
-                sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml up --build -d'
+                sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml build --no-cache'
+                sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d'
             }
         }
         stage('Test') {
@@ -87,7 +88,11 @@ pipeline {
 
     post {
         always {
+            sh "docker container ls"
+            sh "docker image ls"
             sh "docker-compose down -v"
+            sh "docker container ls"
+            sh "docker image ls"
         }
     }
 }

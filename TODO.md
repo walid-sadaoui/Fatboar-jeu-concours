@@ -37,11 +37,3 @@ Mettre en place le Jenkinsfile
 ## Documentation
 
 - Rédiger la documentation détaillée de l'utilisation du workflow et du projet
-
-### Programme du jour : 
-
-- Pratique pour lancer un build lors d'un merge d'une Pull Request
-- Sécuriser la config Docker de base
-- Tester la mise en place des bonne pratiques Node.js
-- Mettre en place la base de l'api
-- Préparer le cours sur le workflow
