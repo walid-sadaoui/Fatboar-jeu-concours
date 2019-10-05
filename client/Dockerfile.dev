@@ -14,7 +14,7 @@ USER node
 WORKDIR /usr/src/app
 
 # install dependencies
-RUN npm install --global npm@6.9.0 nodemon
+RUN npm install --global npm@6.9.0
 
 COPY package*.json ./
 

@@ -1,17 +1,17 @@
 version: '3'
 services:
   api:
-    image: node:10.16.3-alpine
+    image: fatboar-back-dev
+    build: 
+      context: ./api
+      dockerfile: Dockerfile.dev
     volumes:
       - './api:/usr/src/app'
-      - 'node_modules:/usr/src/app/node_modules'
+      - 'node_modules_back:/usr/src/app/node_modules'
     ports:
       - '5000:3000'
       - '9229:9229'
-    working_dir: /usr/src/app
-    command: npm start
-    environment:
-      - NPM_CONFIG_PREFIX=/home/node/.npm-global
+    command: nodemon -L index.js
   postgres-db:
     ports:
       - "5432:5432"
@@ -34,11 +34,11 @@ services:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
   client:
-    image: node:10.16.3-alpine
-    working_dir: /usr/src/app
+    image: fatboar-front-dev
+    build: 
+      context: ./client
+      dockerfile: Dockerfile.dev
     command: npm start
-    environment:
-      - NPM_CONFIG_PREFIX=/home/node/.npm-global
     volumes:
       - './client:/usr/src/app'
       - 'node_modules_front:/usr/src/app/node_modules'

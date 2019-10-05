@@ -15,5 +15,5 @@ networks:
     external:
       name: web
 volumes:
-  node_modules:
+  node_modules_back:
   node_modules_front:
