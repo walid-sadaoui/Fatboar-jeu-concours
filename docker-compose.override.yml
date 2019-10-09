@@ -1,6 +1,7 @@
 version: '3'
 services:
   api:
+    container_name: fatboar-back-dev
     image: fatboar-back-dev
     build: 
       context: ./api
@@ -13,6 +14,7 @@ services:
       - '9229:9229'
     command: nodemon -L index.js
   postgres-db:
+    container_name: fatboar-db-dev
     ports:
       - "5432:5432"
     environment:
@@ -27,13 +29,14 @@ services:
     depends_on:
       - postgres-db
     networks:
-      - web
+      - fatboar
     ports:
       - "8080:80"
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
   client:
+    container_name: fatboar-front-dev
     image: fatboar-front-dev
     build: 
       context: ./client

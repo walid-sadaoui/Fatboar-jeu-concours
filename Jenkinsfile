@@ -46,10 +46,10 @@ pipeline {
                     if (env.BRANCH_NAME == 'develop') {
                         echo 'BRANCHE ${env.BRANCH_NAME}'
                         sh 'docker container ls'
-                        sh 'docker tag node registry.fatboar.site/node:stage'
+                        sh 'docker tag fatboar-back registry.fatboar.site/fatboar-back:latest'
                     } else if (env.BRANCH_NAME == 'master') {
-                        sh 'docker tag node registry.fatboar.site/node:latest'
-                        sh 'docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}'
+                        sh 'docker tag fatboar-back registry.fatboar.site/node:prod'
+                        // sh 'docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}'
                     }
                     
                     // docker push node registry.fatboar.site/node:${VERSION}
@@ -82,6 +82,11 @@ pipeline {
                 echo 'Si branch master : si test pass --> deploy fatboar.site'
                 echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours'
                 echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-db'
+                // ssh dans le dossier Fatboar-jeu-concours, créer .env-stage, .env-prod
+                // sur master deploy.sh, sur develop deliver-for-stage.sh
+                // .env-stage/prod --> .env (doit contenir COMPOSE_PROJECT_NAME)
+                // docker-compose down -v
+                // docker-compose build --no-cache et docker-compose -f docker-compose.yml -f docker-compose.deploy.yml up -d
             }
         }
     }
