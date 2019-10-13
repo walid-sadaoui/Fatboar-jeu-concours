@@ -177,7 +177,10 @@ h6 {
   display: table;
   width: 100%;
   height: 100vh;
-  background: #000;
+  background: url("../img/bg.png") center top no-repeat fixed;
+  background-size: cover;
+  padding: 60px 0 40px 0;
+  position: relative;
 }
 
 #intro .carousel-item {
@@ -1111,6 +1114,43 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 @media (max-width: 768px) {
+  * {
+    overflow-x: hidden;
+  }
+
+  #intro .carousel-background img {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+  }
+
+  #intro .carousel-background {
+    color:#5A222F;
+  }
+
+  .jeu-concours-col {
+   width: 50%;
+   margin-left:80px!important;
+   margin-right: 80px!important;
+  }
+/***** Formulaire inscription ******/
+  .LogoConnexion {
+    width: 30%;
+  }
+  .formulaire {
+    width: 80%;
+    margin: auto!important;
+  }
+
+  .formulaire label {
+    font-size: 0.8em;
+  }
+
+  .formulaire button {
+    font-size: 0.8em;
+  }
+/***** Find - Formulaire inscription ******/
+  
   .back-to-top {
     bottom: 15px;
   }

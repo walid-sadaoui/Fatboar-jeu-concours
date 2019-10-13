@@ -1,5 +1,5 @@
 import React from 'react';
-import TitreContact from '../../public/img/titres/contact.png'
+import TitreContact from '../../public/img/titres/contact.png';
 
 class Contact extends React.Component {
     render(){
@@ -8,11 +8,11 @@ class Contact extends React.Component {
             <div class="container">
       
               <div class="section-header">
-              <img src={TitreContact} alt="" width="350px" class="img-fluid"/>
+              <img src={TitreContact} alt="" width="350px" class="img-fluid wow fadeInUp" data-wow-delay="0.1s"/>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
               </div>
       
-              <div class="form">
+              <div class="form wow fadeInUp" data-wow-delay="0.1s">
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 <form action="" method="post" role="form" class="contactForm">
