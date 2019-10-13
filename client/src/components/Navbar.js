@@ -11,7 +11,7 @@ class Navbar extends React.Component{
         <header id="header">
           <div className="container-fluid">
             <div id="logo" className="pull-left">
-              <NavLink to="/"><img src={logo} alt="logo" title="Fatboar logo" width="200" /></NavLink> | <img src={logoinsta} alt="logo" title="Fatboar logo" width="40" /> <img src={logofb} alt="logo" title="Fatboar logo" width="40" />
+              <NavLink to="/"><img className="NavLogo hvr-grow" src={logo} alt="logo" title="Fatboar logo" /></NavLink> | <a href="#"><img className="hvr-grow" src={logoinsta} alt="logo" title="Fatboar logo" width="40" /></a> <a href="#"><img className="hvr-grow" src={logofb} alt="logo" title="Fatboar logo" width="40" /></a>
             </div>
             <nav id="nav-menu-container">
               <ul className="nav-menu">
