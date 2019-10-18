@@ -23,13 +23,7 @@ module.exports = db.sequelize.define(
         created: {
             type: Sequelize.STRING
         },
-        created: {
-            type: Sequelize.STRING
-        },
-        created: {
-            type: Sequelize.DATE,
-            defaultValue: Sequelize.Now
-        }
+
     }, {
         timestamps: false
     }
