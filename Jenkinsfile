@@ -4,7 +4,6 @@ pipeline {
     environment {
         CI='true'
         NODE_ENV='test'
-        PORT=3000
         POSTGRES_PASSWORD='postgres'
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
@@ -100,7 +99,8 @@ pipeline {
         always {
             sh "docker container ls"
             sh "docker image ls"
-            sh "docker-compose -p {PROJECT_NAME} down -v"
+            sh "docker-compose -p ${PROJECT_NAME} down"
+            sh "docker image prune -f"
             sh "docker container ls"
             sh "docker image ls"
             // Supprimer uniquement les images liées au build 
