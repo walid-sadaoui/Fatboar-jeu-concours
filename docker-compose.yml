@@ -15,7 +15,6 @@ networks:
   web:
     external:
       name: web
-  fatboar:
 volumes:
   node_modules_back:
   node_modules_front:

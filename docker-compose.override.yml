@@ -15,7 +15,7 @@ services:
     depends_on:
       - postgres-db
     networks:
-      - fatboar
+      - fatboar-dev
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres-db:5432/${POSTGRES_DB}
     command: nodemon -L ./bin/www
@@ -24,7 +24,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - fatboar
+      - fatboar-dev
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
@@ -37,7 +37,7 @@ services:
     depends_on:
       - postgres-db
     networks:
-      - fatboar
+      - fatboar-dev
     ports:
       - "8080:80"
     volumes:
@@ -57,3 +57,5 @@ services:
       - 'node_modules_front:/usr/src/app/node_modules'
     ports:
       - '3000:3000'
+networks:
+  fatboar-dev:
