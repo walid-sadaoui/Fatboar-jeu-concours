@@ -36,7 +36,7 @@ pipeline {
                     withDockerRegistry([ credentialsId: "furious-registry", url: "https://registry.fatboar.site" ]) {
                         // following commands will be executed within logged docker registry
                         echo 'Je suis dans le Docker REGISTRY'
-                        if (env.BRANCH_NAME == 'setProjectBase') {
+                        if (env.BRANCH_NAME == 'develop') {
                             echo "BRANCHE ${env.BRANCH_NAME}"
                             sh 'docker container ls'
                             sh 'docker tag fatboar-back registry.fatboar.site/fatboar-back:latest'
