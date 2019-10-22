@@ -4,7 +4,7 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
-const User = require('../models/Users')
+const User = require('../db/models/user')
 users.use(cors())
 
 process.env.SECRET_KEY = 'secret'

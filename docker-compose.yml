@@ -1,15 +1,16 @@
 version: '3'
 services:
   api:
-    container_name: fatboar-back
     depends_on:
       - postgres-db
+    networks:
+      - web
   postgres-db:
-    container_name: fatboar-db
     hostname: postgres
     image: postgres:11.5-alpine
   client:
-    container_name: fatboar-front
+    networks:
+      - web
 networks:
   web:
     external:

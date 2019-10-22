@@ -1,22 +1,32 @@
 version: '3'
 services:
   api:
+    container_name: fatboar-back-build
     build: ./api
-    image: fatboar-back
+    image: fatboar-back_build
+    depends_on:
+      - postgres-db
     ports:
       - '3001:3000'
-      - '9229:9229'
+      - '9230:9229'
+    networks: 
+      - fatboar-build
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres-db:5432/${POSTGRES_DB}
+      - NODE_ENV=${NODE_ENV}
   postgres-db:
+    container_name: fatboar-db-build
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./data/postgresql:/var/lib/postgresql
+    networks: 
+      - fatboar-build
   client:
+    container_name: fatboar-front-build
     build: ./client
-    image: fatboar-front
+    image: fatboar-front_build
     ports:
-      - '3000:3000'
+      - '3002:3000'
+networks: 
+  fatboar-build:

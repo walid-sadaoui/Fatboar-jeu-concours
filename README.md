@@ -109,3 +109,16 @@ champ role
 adresse null quand c'est un responsable
 id pays table pays
 changelog
+
+## Lancer le projet sans DOCKER
+
+client :
+    cd /client
+    npm install
+    npm start
+api:
+    cd /api
+    npm install
+    npm start:dev
+    config.json --> NODE_ENV=dev-local, il faut avoir installé postgres sur son pc
+
