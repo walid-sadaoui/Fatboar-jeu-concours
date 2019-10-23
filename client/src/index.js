@@ -16,6 +16,5 @@ import '../public/lib/animate/animate.min.css';
 import App from '../src/components/App';
 
 
-
 ReactDOM.render(<App />, document.getElementById('root'));
 

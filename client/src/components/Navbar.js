@@ -9,6 +9,25 @@ class Navbar extends React.Component{
       return(
         <section>
         <header id="header">
+        {/* <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+    <NavLink to="/"><img className="NavLogo hvr-grow" src={logo} alt="logo" title="Fatboar logo" /></NavLink> | <a href="#"><img className="hvr-grow" src={logoinsta} alt="logo" title="Fatboar logo" width="40" /></a> <a href="#"><img className="hvr-grow" src={logofb} alt="logo" title="Fatboar logo" width="40" /></a>
+        </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item active"><NavLink activeClassName="menu-active" to="/jeu-concours">Le jeu-concours</NavLink></li>
+                <li className="nav-item"><NavLink activeClassName="menu-active" to="/modalites">Les modalités</NavLink></li>
+                <li className="nav-item"><NavLink activeClassName="menu-active" to="/jeu-concours#contact">Contact</NavLink></li>
+                <li className="nav-item" id="BtnInscription"><i className="fa fa-pencil"></i><NavLink activeClassName="menu-active" to="/inscription">Je m'inscris</NavLink></li>
+                <li className="nav-item" id="BtnConnexion"><i className="fa fa-user"></i><NavLink activeClassName="menu-active" to="/connexion">Je me connecte</NavLink></li>
+            </ul>
+    </div>
+  </div>
+</nav> */}
           <div className="container-fluid">
             <div id="logo" className="pull-left">
               <NavLink to="/"><img className="NavLogo hvr-grow" src={logo} alt="logo" title="Fatboar logo" /></NavLink> | <a href="#"><img className="hvr-grow" src={logoinsta} alt="logo" title="Fatboar logo" width="40" /></a> <a href="#"><img className="hvr-grow" src={logofb} alt="logo" title="Fatboar logo" width="40" /></a>
