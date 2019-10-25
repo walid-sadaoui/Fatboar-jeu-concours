@@ -28,5 +28,7 @@ services:
     image: fatboar-front_build
     ports:
       - '3002:3000'
+    networks: 
+      - fatboar-build
 networks: 
   fatboar-build:

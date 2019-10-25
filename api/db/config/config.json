@@ -10,12 +10,12 @@
     "dialect": "postgres"
   },
   "test": {
-    "use_env_variable": "DATABASE_URL_TEST"
+    "use_env_variable": "DATABASE_URL"
   },
   "stage": {
-    "use_env_variable": "DATABASE_URL_STAGE"
+    "use_env_variable": "DATABASE_URL"
   },
   "production": {
-    "use_env_variable": "DATABASE_URL_PROD"
+    "use_env_variable": "DATABASE_URL"
   }
 }

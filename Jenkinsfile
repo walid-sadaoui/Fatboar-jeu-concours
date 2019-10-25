@@ -37,15 +37,15 @@ pipeline {
                         echo 'Je suis dans le Docker REGISTRY'
                         if (env.BRANCH_NAME == 'develop') {
                             echo "BRANCHE ${env.BRANCH_NAME}"
-                            sh 'docker container ls'
-                            sh 'docker tag fatboar-back registry.fatboar.site/fatboar-back:latest'
+                            sh 'docker container ls -a'
+                            sh 'docker tag fatboar-back_build registry.fatboar.site/fatboar-back:latest'
                             sh 'docker push registry.fatboar.site/fatboar-back:latest'
-                            sh 'docker tag fatboar-front registry.fatboar.site/fatboar-front:latest'
+                            sh 'docker tag fatboar-front_build registry.fatboar.site/fatboar-front:latest'
                             sh 'docker push registry.fatboar.site/fatboar-front:latest'
                         } else if (env.BRANCH_NAME == 'master') {
-                            sh 'docker tag fatboar-back registry.fatboar.site/fatboar-back:prod'
+                            sh 'docker tag fatboar-back_build registry.fatboar.site/fatboar-back:prod'
                             sh 'docker push registry.fatboar.site/fatboar-back:prod'
-                            sh 'docker tag fatboar-front registry.fatboar.site/fatboar-front:prod'
+                            sh 'docker tag fatboar-front_build registry.fatboar.site/fatboar-front:prod'
                             sh 'docker push registry.fatboar.site/fatboar-front:prod'
                         }
                     }
@@ -99,7 +99,7 @@ pipeline {
         always {
             sh "docker container ls"
             sh "docker image ls"
-            sh "docker-compose -p ${PROJECT_NAME} down"
+            sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} down"
             sh "docker image prune -f"
             sh "docker container ls"
             sh "docker image ls"
