@@ -2,28 +2,28 @@
 
 ## Prérequis
 
-- installer docker
-- installer docker-compose
-- installer git
-- cloner le projet fatbor
+    - installer docker
+    - installer docker-compose
+    - installer git
+    - cloner le projet fatboar
 
-## How To Work in Dev Environment
+## Mettre en place son environnement de développement
 
 La premiere fois :
 
-- Faire 'docker network create web' dans le dossier du projet en local
+    - Faire 'docker network create web' dans le dossier du projet en local
 
-## Repartir à partir de la branche develop
+### Repartir à partir de la branche develop
 
-- git fetch
-- Si il y a des modifications en cours sur la branche actuelle, il soit faire le commit soit faire git stash si on ne veut pas garder les modifications en cours
-- git checkout develop
-- git pull origin develop
-- git checkout -b "<nom_nouvelle_branche>"
-- faire le developpement
-- git add, git commit, git push origin "<nom_nouvelle_branche>"
+    - git fetch
+    - Si il y a des modifications en cours sur la branche actuelle, il soit faire le commit soit faire git stash si on ne veut pas garder les modifications en cours
+    - git checkout develop
+    - git pull origin develop
+    - git checkout -b "<nom_nouvelle_branche>"
+    - faire le developpement
+    - git add, git commit, git push origin "<nom_nouvelle_branche>"
 
-## Mettre à jour la branche develop quand le developpement de la feature est terminé
+### Mettre à jour la branche develop quand le developpement de la feature est terminé
 
     - Aller sur gogs, sur le projet Fatboar
     - Aller dans Pull Request --> New Pull Request
@@ -32,93 +32,49 @@ La premiere fois :
     - Create Pull Request
     - Ensuite le développeur assigné va vérifier le code et valider ou non le merge (en corrigeant les conflits)
 
-- Créer un fichier .env à remplir avec les informations d'identification (voir .env-sample)
+    - Créer un fichier .env à remplir avec les informations d'identification (voir .env-sample)
 
-docker-compose up #prend en compte le fichier override
-site web localhost:3000
-pg-admin : localhost:8080
+    docker-compose up #prend en compte le fichier override
+    site web localhost:3000
+    pg-admin : localhost:8080
 
-Si vous vous installer des modules :
+Si vous voulez installer des modules :
 
-- npm install "<nom_du_module>"
+    - cd api/ ou cd client/
+    - npm install --save(-dev) "<nom_du_module>"
 
 Arrêter les containers :
 
-- docker-compose stop
+    - docker-compose stop
 
-Si on veut tout recommencer (supprimer les containers et les images) :
+Si on veut tout recommencer (supprimer les containers) :
 
-- docker-compose down
-
-### Installer dépendances Node
-
-docker-compose exec api sh
-npm install : quand je le fais dans le container le package.json est MAJ dans le container ET sur le host
-Par contre on ne veut pas le /node_modules qui se remplisse sur le host, pour cela on va utiliser un named volume
-
-CTRL+P CTRL+Q pour se détacher du container sans l'arrêter
-
-## Pour l'environnement de PRODUCTION
-
-On ne doit pas avoir un volume qui relie le code local au code dans le container
-exposer un port différent
-
-$ docker-compose build web
-$ docker-compose up --no-deps -d web
-
-npm install --production
-
-Il doit correspondre au code présent sur master
-Lors du build il faut copier le code de master dans un container lancé sur le serveur.
-
-- git remote add deploy --> docker stack deploy?
-- pousser sur origin master --> lancer build jenkins qui s'occupe du deploy sur le server en fonction du nom de la branche
-
-Il y aura un aussi un code pour la PREPROD
-
-- code en local
-- Dockerizer l'environnement de dev
-- docker-compose exec api sh
-- npm install
-- CTRL+P CTRL+Q
-- Git Hook post-receive
-- Jenkinsfile lance build sur ma branche
+    - docker-compose down (-v pour supprimer les volumes également)
 
 ## Procédure GIT
 
-git checkout <nom_de_la_branche> (-b si c'est une nouvelle branche)
-Si tu travailles sur la même branche que quelqu'un d'autre, avant de commencer à développer fais un git pull
+Récupérer la branche de travail :
 
-git add .
-git commit -m "message"
-git push origin <nom_de_la_branche>
+    - git checkout <nom_de_la_branche> (-b si c'est une nouvelle branche)
+    - git pull
 
-## Nouvelle organisation
+Envoyer ses modifications :
 
-Dev :
-    -  docker-compose build
-    -  docker-compose up -d
-CI :
-    - docker-compose build --> il faut le Dockerfile
-    - docker-compose up -d
-
-En CI on va build avec les Dockerfile, donc on garde la config de prod/stage mais on n'a pas besoin de traefik
-
-table USER
-champ role
-adresse null quand c'est un responsable
-id pays table pays
-changelog
+    - git add .
+    - git commit -m "message" ou npx git-cz
+    - git push origin <nom_de_la_branche>
 
 ## Lancer le projet sans DOCKER
 
-client :
-    cd /client
-    npm install
-    npm start
-api:
-    cd /api
-    npm install
-    npm start:dev
-    config.json --> NODE_ENV=dev-local, il faut avoir installé postgres sur son pc
+Client :
 
+    - cd /client
+    - npm install
+    - npm start
+
+Api :
+
+    - cd /api
+    - npm install
+    - export NODE_ENV=dev-local
+    - npm start:dev
