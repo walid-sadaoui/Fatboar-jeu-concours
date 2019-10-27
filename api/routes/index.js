@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const models = require('../db/models/index')
 
 router.use(cors())
+
 process.env.SECRET_KEY = 'secret'
 
 router.get('/', function(req, res) {
