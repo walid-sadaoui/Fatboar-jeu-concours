@@ -2,6 +2,7 @@ const express = require('express')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const Users = require('./routes/users')
 const app = express()
 
 const indexRouter = require('./routes/index');
@@ -15,7 +16,7 @@ app.use(
         extended: false,
     })
 )
-var Users = require('./routes/Users')
+
 app.use('/users', Users)
 
 app.use('/', indexRouter)
