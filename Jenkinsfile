@@ -106,7 +106,8 @@ pipeline {
             sh "docker container ls"
             sh "docker image ls"
             sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} down"
-            sh "docker image prune -f"
+            sh "docker container prune"
+            sh "docker image prune -a -f"
             sh "docker container ls"
             sh "docker image ls"
         }
