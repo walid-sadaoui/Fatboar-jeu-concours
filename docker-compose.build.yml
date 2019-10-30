@@ -4,8 +4,6 @@ services:
     container_name: fatboar-back-build
     build: ./api
     image: fatboar-back_build
-    depends_on:
-      - postgres-db
     ports:
       - '3001:3000'
       - '9230:9229'
