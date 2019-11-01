@@ -1,0 +1,27 @@
+###
+http://localhost:5000
+
+###
+POST http://localhost:5000/register
+content-type: application/json
+
+{
+    "first_name": "sample",
+    "last_name": "test",
+    "email": "sample@mail.com",
+    "password": "test"
+}
+
+###
+https://api.stage.fatboar.site
+
+###
+POST https://api.stage.fatboar.site/register
+content-type: application/json
+
+{
+    "first_name": "sample",
+    "last_name": "test",
+    "email": "sample@mail.com",
+    "password": "test"
+}
