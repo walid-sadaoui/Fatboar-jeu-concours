@@ -6,7 +6,7 @@ import menu4 from '../../public/img/04.png'
 import menu5 from '../../public/img/05.png'
 import RangeRover from '../../public/img/RangeRover.png'
 import TitreJeuConcours from '../../public/img/titres/jeu-concours.png'
-
+import {NavLink} from 'react-router-dom';
 
 class HomeConcours extends React.Component {
     render() {
@@ -72,7 +72,7 @@ class HomeConcours extends React.Component {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <button class="button-inscrip">S'inscrire</button>
+                    <NavLink to="/inscription"><button class="button-inscrip">S'inscrire</button></NavLink>
                 </div>
                 <div class="col-md-4">
                     <img class="img-fluid box wow fadeInUp" data-wow-delay="0.2s" src={RangeRover} alt=""/>

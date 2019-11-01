@@ -1,7 +1,114 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@import 'https://fonts.googleapis.com/css?family=Montserrat|Open+Sans';
+.navbar-brand {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase
+}
 
+.navbar .nav {
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1.2rem
+}
+
+.navbar-inverse {
+  background-color: #003300
+}
+
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus {
+  background-color: #002200
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .navbar-nav>.open>a:focus {
+  background-color: #003300
+}
+
+.dropdown-menu {
+  background-color: #006B00
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus {
+  background-color: #002200
+}
+
+.navbar-inverse {
+  background-image: none;
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus {
+  background-image: none;
+}
+
+.navbar-inverse {
+  border-color: #003300
+}
+
+.navbar-inverse .navbar-brand {
+  color: #FFFFFF
+}
+
+.navbar-inverse .navbar-brand:hover {
+  color: #FFCC00
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #FFFFFF
+}
+
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus {
+  color: #FFCC00
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .navbar-nav>.open>a:focus {
+  color: #FFCC00
+}
+
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus {
+  color: #FFCC00
+}
+
+.dropdown-menu>li>a {
+  color: #FFFFFF
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus {
+  color: #FFCC00
+}
+
+.navbar-inverse .navbar-nav>.dropdown>a .caret {
+  border-top-color: #FFFFFF
+}
+
+.navbar-inverse .navbar-nav>.dropdown>a:hover .caret {
+  border-top-color: #FFFFFF
+}
+
+.navbar-inverse .navbar-nav>.dropdown>a .caret {
+  border-bottom-color: #FFFFFF
+}
+
+.navbar-inverse .navbar-nav>.dropdown>a:hover .caret {
+  border-bottom-color: #FFFFFF
+}
 body {
   background: #fff;
   color: #666666;
@@ -118,6 +225,10 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 
+.NavLogo {
+  width: 200px;
+}
+
 #header {
   padding: 30px 0;
   height: 92px;
@@ -177,7 +288,10 @@ h6 {
   display: table;
   width: 100%;
   height: 100vh;
-  background: #000;
+  background: url("../img/confetti.jpg") center top no-repeat fixed;
+  background-size: cover;
+  padding: 60px 0 40px 0;
+  position: relative;
 }
 
 #intro .carousel-item {
@@ -186,18 +300,6 @@ h6 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-#intro .carousel-item::before {
-  content: '';
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
 }
 
 #intro .carousel-container {
@@ -303,7 +405,7 @@ h6 {
   transition: 0.5s;
   margin: 10px;
   color: #fff;
-  background: #333333;
+  background: #ca3631;
 }
 
 #intro .btn-get-started:hover {
@@ -664,7 +766,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------*/
 
 #jeu-concours {
-  background: url("../img/bg-food.jpeg") center top no-repeat fixed;
+  background: url("../img/hey2.png") center top no-repeat fixed;
   background-size: cover;
   padding: 60px 0 40px 0;
   position: relative;
@@ -677,7 +779,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.7);
   z-index: 9;
 }
 
@@ -784,7 +886,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------*/
 
 #contact {
-  background: url("../img/bg-contact.png") center top no-repeat fixed;
+  background: url("../img/bg-modalites.png") center top no-repeat fixed;
   background-size: cover;
   padding: 60px 0; 
 }
@@ -910,7 +1012,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------------------------------------*/
 
 #footer {
-  background: #000;
+  background: #353b48;
   padding: 0 0 30px 0;
   color: #eee;
   font-size: 14px;
@@ -1059,7 +1161,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #footer .copyright {
   text-align: center;
-  padding-top: 30px;
+  padding-top: 20px;
 }
 
 #footer .credits {
@@ -1111,6 +1213,47 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 @media (max-width: 768px) {
+  * {
+    overflow-x: hidden;
+  }
+
+  #intro .carousel-background img {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+  }
+
+  #intro .carousel-background {
+    color:#5A222F;
+  }
+
+  .jeu-concours-col {
+   width: 50%;
+   margin-left:80px!important;
+   margin-right: 80px!important;
+  }
+/***** Formulaire inscription ******/
+  .NavLogo {
+    width: 150px;
+  }
+
+  .LogoConnexion {
+    width: 30%;
+  }
+  .formulaire {
+    width: 80%;
+    margin: auto!important;
+  }
+
+  .formulaire label {
+    font-size: 0.8em;
+  }
+
+  .formulaire button {
+    font-size: 0.8em;
+  }
+/***** Find - Formulaire inscription ******/
+  
   .back-to-top {
     bottom: 15px;
   }

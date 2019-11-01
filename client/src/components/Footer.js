@@ -7,7 +7,13 @@ class Footer extends React.Component{
             <footer id="footer">
             <div class="container">
               <div class="copyright">
-                 <strong>&copy; Copyright 2019 FATBOAR</strong> - Tous droits réservés
+                <ul>
+                  <li><a href="#">MENTIONS LÉGALES</a> |</li>
+                  <li><a href="#">DONNÉES PERSONNELLES</a> |</li>
+                  <li><a href="#">MODALITÉS</a> |</li>
+                  <li><a href="#">FAQ</a></li>
+                </ul>
+                RESTAURANT FATBOAR™ & © 2011 - 2020. Tous droits réservés.
               </div>
               <div class="credits">
               </div>
