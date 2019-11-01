@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../../public/img/logofatboar.png';
 import TitreConnexion from '../../public/img/titres/connexion.png'
+import {NavLink} from 'react-router-dom';
 
 class Connexion extends React.Component{
     render(){
@@ -13,23 +14,23 @@ class Connexion extends React.Component{
             <form className="formulaire wow fadeInUp" data-wow-delay="0.1s">
             <img src={TitreConnexion} alt="" width="400px" class="img-fluid"/>
             <br/>       
-                <div className="form-row">
-                  <div className="form-group col-md-12">
+                <div className="form-row widthForm">
+                  <div id="label-connexion" className="form-group col-md-12">
                   <label for="inputEmail3">VOTRE ADRESSE E-MAIL</label>
                     <input type="email" className="form-control" id="inputEmail3" placeholder="Adresse e-mail"/>
                   </div>
                 </div>
-                <div className="form-row">
+                <div className="form-row widthForm">
                 <div className="form-group col-md-12">
                   <label for="inputPassword3">MOT DE PASSE</label>
                     <input type="password" className="form-control" id="inputPassword3" placeholder="Mot de passe"/>
                 </div>
-                </div>
+                </div>  
                 <br/>                             
-              <div className="centre"><button type="submit" className="btn btn-primary">Se connecter</button></div>
+              <div className="centre"><NavLink to="/client"><button type="submit" className="btn facebook hvr-grow">Se connecter</button></NavLink></div>
                <p className="centre">ou</p> 
-               <div className="centre"><button type="button" className="btn btn-primary">f | Se connecter avec Facebook</button></div><p></p>
-              <div className="centre"><button type="button" className="btn btn-primary">G | Se connecter avec Google</button></div> 
+               <div className="centre"><button type="button" className="btn facebook hvr-grow">f | Se connecter avec Facebook</button></div><p></p>
+              <div className="centre"><button type="button" className="btn google hvr-grow">G | Se connecter avec Google</button></div> 
             </form>
         </div>   
        </div>

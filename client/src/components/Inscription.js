@@ -12,13 +12,13 @@ render() {
           <img className="LogoConnexion wow fadeInUp" src={logo} alt="" width="15%"/>    
               <form className="formulaire wow fadeInUp" data-wow-delay="0.1s">
               <img src={TitreInscription} alt="" width="400px" class="img-fluid"/>
-              <div className="form-row" >
+              <div className="form-row widthForm">
                 <div className="form-group col-md-12">
                     <label htmlFor="inputAddress">ENTREZ LE N° À 10 CHIFFRES </label>
                     <input type="text" className="form-control" id="inputAddress4"  placeholder="Entrez le numéro à 10 chiffres" />
                 </div>
                 </div>
-                  <div className="form-row">
+                  <div className="form-row widthForm">
                     <div className="form-group col-md-6">
                       <label htmlFor="inputEmail4">NOM</label>
                       <input type="nom" className="form-control" id="inputNom4"  placeholder="Nom"/>
@@ -37,10 +37,10 @@ render() {
                     </div>
                   </div>
                   <br/>
-                  <div className="centre"><button type="button" className="btn btn-primary">S'inscrire</button></div>
+                  <div className="centre"><button type="button" className="btn facebook hvr-grow">S'inscrire</button></div>
                   <p className="centre">ou</p>
-                  <div className="centre"><button type="button" className="btn btn-primary">f | S'inscrire avec Facebook</button></div><p></p>
-                  <div className="centre"><button type="button" className="btn btn-primary">G | S'inscrire avec Google</button></div>
+                  <div className="centre"><button type="button" className="btn facebook hvr-grow">f | S'inscrire avec Facebook</button></div><p></p>
+                  <div className="centre"><button type="button" className="btn google hvr-grow">G | S'inscrire avec Google</button></div>
                 </form>
               </div>           
               </div>

@@ -3,8 +3,22 @@
 	position: relative;
 }
 
+.facebook {
+	background-color: #3C5896;
+	color: #fff;
+}
+
+.google {
+	background-color: #ca3631;
+	color: #fff;
+}
+
+.google:hover, .facebook:hover {
+	color: #fff;
+}
+
 .FormBody {
-	background: url("../img/bg-inscrip2.png") center top no-repeat fixed;
+	background: url("../img/confetti.jpg") center top no-repeat fixed;
 	background-size: cover;
 	padding: 60px 0 40px 0;
 	position: relative;	  
@@ -88,6 +102,17 @@ h3, label, .centre button {
 	border-right:none;
 
 	}
+
+/* #inputPassword3, #inputEmail3 {
+	width: 90%;
+	margin: auto;
+} */
+
+.widthForm {
+	margin: auto;
+	width: 90%;
+}
+
 #inputPassword4
 	{
 
@@ -125,3 +150,21 @@ h3, label, .centre button {
 .hvr-grow:active {
     transform: scale(1.1);
 }
+
+.copyright ul li {
+	display: inline;
+	padding: 0px 5px;
+}
+
+.copyright ul li a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: 800;
+}
+
+.copyright ul li a:hover {
+	color:#ca3631;
+}
+
+
+
