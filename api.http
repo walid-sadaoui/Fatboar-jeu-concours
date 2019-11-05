@@ -2,12 +2,29 @@
 http://localhost:5000
 
 ###
-POST http://localhost:5000/register
+http://localhost:5000/tickets/all
+
+###
+http://localhost:5000/tickets/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXNlciI6MSwiZmlyc3ROYW1lIjoic2FtcGxlIiwibGFzdE5hbWUiOiJ0ZXN0IiwidXNlck5hbWUiOiJ0ZXN0IiwicGFzc3dvcmQiOiIkMmIkMTAkRk1EUUlZby5iZFJxYjBjVVNmaXdlT0N3MGxPMHAzVHZZYnY1d0czMGlxclFlby9xZmpqbUMiLCJlbWFpbCI6InNhbXBsZUBtYWlsLmNvbSIsImlzQ29ubmVjdGVkIjpudWxsLCJyb2xlIjpudWxsLCJzdGF0ZSI6bnVsbH0sImlhdCI6MTU3Mjk4OTMyM30.4cQTmVA9WG--anFRoaXvnyzbTKs31TXgpDTlON2tG7c
+
+###
+POST http://localhost:5000/auth/register
 content-type: application/json
 
 {
-    "first_name": "sample",
-    "last_name": "test",
+    "firstName": "sample",
+    "lastName": "test",
+    "userName": "test",
+    "password": "test",
+    "email": "sample@mail.com"
+}
+
+###
+POST http://localhost:5000/auth/login
+content-type: application/json
+
+{
     "email": "sample@mail.com",
     "password": "test"
 }

@@ -1,7 +1,7 @@
 'use strict';
 const bcrypt = require('bcrypt');
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define('user', {
     idUser: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   User.associate = function (models) {
     // associations can be defined here
-    User.hasMany(models.Ticket, {
+    User.hasMany(models.ticket, {
       as: 'tickets'
     })
   };
