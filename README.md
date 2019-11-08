@@ -5,23 +5,30 @@
     - installer docker
     - installer docker-compose
     - installer git
-    - cloner le projet fatboar
+    - cloner le projet fatboar en local
 
 ## Mettre en place son environnement de développement
 
-La premiere fois :
+    - Créer un fichier .env à remplir avec les variables d'environnement présentes dans le fichier .env-sample
 
-    - Faire 'docker network create web' dans le dossier du projet en local
-
-### Repartir à partir de la branche develop
+### Commencer une nouvelle feature
 
     - git fetch
-    - Si il y a des modifications en cours sur la branche actuelle, il soit faire le commit soit faire git stash si on ne veut pas garder les modifications en cours
     - git checkout develop
     - git pull origin develop
+    - Si il y a des modifications en cours sur la branche actuelle, il soit faire le commit soit faire git stash si on ne veut pas garder les modifications en cours
     - git checkout -b "<nom_nouvelle_branche>"
     - faire le developpement
     - git add, git commit, git push origin "<nom_nouvelle_branche>"
+
+### Travailler sur une autre branche
+
+    - Si il y a des modifications en cours sur la branche actuelle, il faut soit faire un commit pour conserver ses modifications soit faire git stash si on ne veut pas garder les modifications en cours
+    - git fetch
+    - git checkout <autre_branche>
+    - git pull origin <autre_branche>
+    - faire le developpement
+    - git add, git commit, git push origin "<autre_branche>"
 
 ### Mettre à jour la branche develop quand le developpement de la feature est terminé
 
@@ -32,9 +39,12 @@ La premiere fois :
     - Create Pull Request
     - Ensuite le développeur assigné va vérifier le code et valider ou non le merge (en corrigeant les conflits)
 
-    - Créer un fichier .env à remplir avec les informations d'identification (voir .env-sample)
+### Lancer l'application en local
 
-    docker-compose up #prend en compte le fichier override
+    - Remplir le fichier .env
+    - Si un Dockerfile a été modifié --> docker-compose build --no-cache
+    - docker-compose up (-d)
+
     site web localhost:3000
     pg-admin : localhost:8080
 
@@ -51,19 +61,6 @@ Si on veut tout recommencer (supprimer les containers) :
 
     - docker-compose down (-v pour supprimer les volumes également)
 
-## Procédure GIT
-
-Récupérer la branche de travail :
-
-    - git checkout <nom_de_la_branche> (-b si c'est une nouvelle branche)
-    - git pull
-
-Envoyer ses modifications :
-
-    - git add .
-    - git commit -m "message" ou npx git-cz
-    - git push origin <nom_de_la_branche>
-
 ## Lancer le projet sans DOCKER
 
 Client :
@@ -75,6 +72,8 @@ Client :
 Api :
 
     - cd /api
+    - avoir postgresql installé sur son pc
+    - créer la base de données
     - npm install
     - export NODE_ENV=dev-local
     - npm start:dev
