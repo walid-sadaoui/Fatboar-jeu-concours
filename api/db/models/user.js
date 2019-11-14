@@ -8,33 +8,44 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     firstName: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     lastName: {
-      type: DataTypes.STRING
-    },
-    userName: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     password: {
-      type: DataTypes.STRING // 1 chiffre, 1 minusule, 1 majuscule, 8 caractères
+      type: DataTypes.STRING,
+      allowNull: false // 1 chiffre, 1 minusule, 1 majuscule, 8 caractères
     },
     email: {
-      type: DataTypes.STRING, // check format mail
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false, // check format mail
       validate: {
         isEmail: true,
       },
     },
-    isConnected: {
-      type: DataTypes.BOOLEAN // default: false
+    phone: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isNumeric: true
+      }
     },
     role: {
       type: DataTypes.ENUM,
-      values: ['CLIENT', 'EMPLOYE', 'RESPONSABLE']
+      values: ['CLIENT', 'EMPLOYEE', 'ADMIN'],
+      defaultValue: 'CLIENT',
+      allowNull: false
     },
     state: {
       type: DataTypes.ENUM,
-      values: ['EN LIGNE', 'HORS LIGNE']
+      values: ['ONLINE', 'OFFLINE'],
+      defaultValue: 'OFFLINE',
+      allowNull: false
     },
   }, {
     timestamps: false
@@ -42,7 +53,8 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function (models) {
     // associations can be defined here
     User.hasMany(models.ticket, {
-      as: 'tickets'
+      as: 'tickets',
+      foreignKey: 'idUser'
     })
   };
 

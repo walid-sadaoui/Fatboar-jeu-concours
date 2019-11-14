@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const models = require('../db/models/index');
-const { jwtSecret } = require('../config');
+const { jwtSecret } = require('../config/config');
 
 
 router.post('/register', async(req, res) => {
-    let { firstName, lastName, userName, password, email } = req.body;
+    let { firstName, lastName, password, email, phone } = req.body;
 
     // console.log(User);
     // Checking if email exists in db
@@ -22,16 +22,16 @@ router.post('/register', async(req, res) => {
     const userData = {
         firstName: firstName,
         lastName: lastName,
-        userName: userName,
         password: hashedPassword,
-        email: email
+        email: email,
+        phone: phone
     };
 
     try {
         const userSaved = await models.user.create(userData);
         res.send(userSaved);
-    } catch (error) {
-        res.sendStatus(400).send(err);
+    } catch (err) {
+        return res.status(400).send(err);
     }
 })
 
@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ user: user }, jwtSecret);
 
     // Send a header
-    res.header('auth-token', token);
+    res.header('Authorization', 'Bearer ' + token);
 
     // Send a json 
     res.status(201).json({
@@ -63,6 +63,22 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', async (req, res) => {
+
+});
+
+router.post('register-facebook', async (req, res) => {
+    
+})
+
+router.post('register-google', async (req, res) => {
+
+})
+
+router.post('login-facebook', async (req, res) => {
+    
+})
+
+router.post('login-google', async (req, res) => {
 
 })
 

@@ -7,20 +7,48 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     ticketNumber: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false
     },
     state: {
       type: DataTypes.ENUM,
-      values: ['ASSOCIATED', 'UNATTRIBUTED', 'ATTRIBUTED', 'USED']
+      values: ['AVAILABLE', 'UNATTRIBUTED', 'ATTRIBUTED', 'USED'],
+      defaultValue: 'AVAILABLE'
+    },
+    idGain: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    useDate: {
+      type: DataTypes.DATE,
+      defaultValue: null
+    },
+    winningTicket: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   }, {
     timestamps: false
   });
   Ticket.associate = function(models) {
-    // associations can be defined here
-    // Ticket.hasMany(models.User, {
-    //   as: 'users'
+    //associations can be defined here
+    // Ticket.belongsTo(models.user, {
+    //   foreignKey: {
+    //     fieldName: 'idUser',
+    //     allowNull: true
+    //   },
+    //   // targetKey: 'idUser'
     // })
+    
+    Ticket.belongsTo(models.gain, {
+      foreignKey: {
+        fieldName: 'idGain',
+        allowNull: false
+      },
+      targetKey: 'idGain'
+    })
 
   };
   return Ticket;

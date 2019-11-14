@@ -18,7 +18,7 @@ app.use(
     })
 )
 
-app.use('/users', Users)
+app.use('/users', verifyToken, Users)
 
 app.use('/', indexRouter)
 app.use('/auth', require('./routes/auth'));
