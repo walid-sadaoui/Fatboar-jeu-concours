@@ -36,7 +36,6 @@ router.post('/register', (req, res) => {
                         .catch(err => {
                             res.send('error:' + err)
                         })
-
                 })
             } else {
                 res.json({ error: 'Utilisateur existe déjà' })

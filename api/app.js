@@ -3,6 +3,7 @@ const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const Users = require('./routes/users')
+const verifyToken = require('./verifyToken.js');
 const app = express()
 
 const indexRouter = require('./routes/index');
@@ -17,8 +18,11 @@ app.use(
     })
 )
 
-app.use('/users', Users)
+app.use('/users', verifyToken, Users)
 
 app.use('/', indexRouter)
+app.use('/auth', require('./routes/auth'));
+app.use('/tickets', verifyToken, require('./routes/tickets'));
+
 
 module.exports = app;
