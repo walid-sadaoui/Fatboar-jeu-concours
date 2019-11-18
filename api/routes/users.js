@@ -17,7 +17,7 @@ users.get("/", async (req, res) => {
     }
 })
 
-users.get("/:id/tickets", async (req, res) => {
+users.get("/:idUser/tickets", async (req, res) => {
     // try {
     //     const userList = await models.User.findAll();
     //     res.status(200).json({
@@ -29,7 +29,7 @@ users.get("/:id/tickets", async (req, res) => {
     // }
 })
 
-users.put("/:id/tickets/:ticketNumber", async (req, res) => {
+users.get("/:idUser/tickets/:ticketNumber", async (req, res) => {
     const { user } = req.user;
     const { ticketNumber } = req.params;
     try {
@@ -57,7 +57,7 @@ users.put("/:id/tickets/:ticketNumber", async (req, res) => {
 })
 
 
-users.put("/:id", async (req, res) => {
+users.put("/:idUser", async (req, res) => {
     // Get the url param (id)
     const { id } = req.params;
     let { firstname, email, lastname, role } = req.body;
@@ -82,7 +82,7 @@ users.put("/:id", async (req, res) => {
     }
 })
 
-users.patch("/:id", async (req, res) => {
+users.patch("/:idUser", async (req, res) => {
     // Get the url param (id)
     const { id } = req.params;
 
@@ -101,7 +101,7 @@ users.patch("/:id", async (req, res) => {
     }
 })
 
-users.delete("/:id", async (req, res) => {
+users.delete("/:idUser", async (req, res) => {
     const { id } = req.params;
 
     try{

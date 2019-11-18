@@ -56,8 +56,7 @@ router.post('/login', async (req, res) => {
     // Send a json 
     res.status(201).json({
         msg: 'User is logged',
-        email: email,
-        password: user.password,
+        user,
         token
     });
 });

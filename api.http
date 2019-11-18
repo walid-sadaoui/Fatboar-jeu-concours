@@ -2,7 +2,8 @@
 http://localhost:5000
 
 ###
-http://localhost:5000/tickets/all
+PATCH http://localhost:5000/users/3/tickets/8775626917
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXNlciI6MywiZmlyc3ROYW1lIjoic2FtcGxlIiwibGFzdE5hbWUiOiJ0ZXN0IiwicGFzc3dvcmQiOiIkMmIkMTAkemlGTWZpZHFJT2dMMnQyQmNhUGFqT3pkNnczVTU3VDR3NDFwaVVSNzNPeU9sTjZ2L09qWGkiLCJlbWFpbCI6InNhbXBsZUBmYXRib2FyLnNpdGUiLCJwaG9uZSI6IjA2MTIzNDU2NzkiLCJyb2xlIjoiQ0xJRU5UIiwic3RhdGUiOiJPRkZMSU5FIn0sImlhdCI6MTU3NDAwOTMzNn0.1RduZqriieXCOPGMgutBrgnePiKgVhMb1uhJFjamm_M
 
 ###
 http://localhost:5000/tickets/all
@@ -16,7 +17,8 @@ content-type: application/json
     "firstName": "sample",
     "lastName": "test",
     "password": "fatroot",
-    "email": "admin@fatboar.site"
+    "email": "sample@fatboar.site",
+    "phone": "0612345679"
 }
 
 ###
@@ -24,7 +26,7 @@ POST http://localhost:5000/auth/login
 content-type: application/json
 
 {
-    "email": "admin@fatboar.site",
+    "email": "sample@fatboar.site",
     "password": "fatroot"
 }
 

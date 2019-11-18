@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.put("/:ticketNumber", async (req, res) => {
+router.patch("/:ticketNumber", async (req, res) => {
     const { user } = req.user;
     const { ticketNumber } = req.params;
     try {
@@ -49,27 +49,17 @@ router.put("/:ticketNumber", async (req, res) => {
 
 });
 
-router.get("/:code", async (req, res) => {
 
+router.get('/:ticketNumber', async (req, res) => {
+    
 });
 
+router.delete('/:ticketNumber', async (req, res) => {
+    
+});
 
-router.post('/add', async (req, res) => {
-    let { code } = req.body;
-    let { user } = req.user;
-
-    try {
-            const ticket = await models.Ticket.create({
-                    code: code,
-                    userId: user.id,
-                    gainId: 1,
-                    useDate: Date.now()
-                });
-            if(!ticket) return res.status(400).send('Ticket not created');
-            res.status(200).json(ticket);
-    } catch (error) {
-        res.status(500).send('Internal Server Error');
-    }
+router.get('/:ticketNumber/gain', async (req, res) => {
+    
 });
 
 
