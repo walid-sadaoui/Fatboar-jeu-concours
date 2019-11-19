@@ -1,0 +1,21 @@
+{
+  "development": {
+    "use_env_variable": "DATABASE_URL"
+  },
+  "dev-local": {
+    "username": "fatboar",
+    "password": "fatroot",
+    "database": "fatboar-local",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "use_env_variable": "DATABASE_URL"
+  },
+  "stage": {
+    "use_env_variable": "DATABASE_URL"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}

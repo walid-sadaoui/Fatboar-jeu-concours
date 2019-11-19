@@ -3,37 +3,25 @@ pipeline {
 
     environment {
         CI='true'
-        NODE_ENV='CI'
-        PORT=3000
-        VERSION='0.0.1'
+        NODE_ENV='test'
         POSTGRES_PASSWORD='postgres'
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
-        // 1 - il faut lancer les containers docker (lesquels?)
-        // 2 - lancer les tests 
-        // 3 - taguer les images docker
-        // 4 - pousser les images dans le regstry
-        // 5 - déployer sur le bon environnement
-        // 6 - nettoyer l'environnement
+        PROJECT_NAME='fatboar-ci'
     }
     stages {
-        stage('Informations') {
-            steps {
-                echo 'Hostname of the jenkins container'
-                sh 'hostname'
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Building..'
-                // sh 'docker network create web'
-                sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml build --no-cache'
-                sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d'
+                sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} build --no-cache"
+                sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} up -d"
+                // Faire un multistage build pour ne conserver que les fichiers necessaires dans l'image docker
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                echo 'Run tests with Docker'
             }
         }
         stage('Push to registry') {
@@ -41,19 +29,22 @@ pipeline {
                 script {
                     echo 'Push images to private Docker Registry'
                     echo "BRANCHE ${env.BRANCH_NAME}"
-                    // echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USERNAME}' --password-stdin registry.fatboar.site
-
-                    if (env.BRANCH_NAME == 'develop') {
-                        echo 'BRANCHE ${env.BRANCH_NAME}'
-                        sh 'docker container ls'
-                        sh 'docker tag node registry.fatboar.site/node:stage'
-                    } else if (env.BRANCH_NAME == 'master') {
-                        sh 'docker tag node registry.fatboar.site/node:latest'
-                        sh 'docker tag registry.fatboar.site/node:latest registry.fatboar.site/node:${VERSION}'
+                    withDockerRegistry([ credentialsId: "furious-registry", url: "https://registry.fatboar.site" ]) {
+                        echo 'Je suis dans le Docker REGISTRY'
+                        if (env.BRANCH_NAME == 'develop') {
+                            echo "BRANCHE ${env.BRANCH_NAME}"
+                            sh 'docker container ls -a'
+                            sh 'docker tag fatboar-back_build registry.fatboar.site/fatboar-back:latest'
+                            sh 'docker push registry.fatboar.site/fatboar-back:latest'
+                            sh 'docker tag fatboar-front_build registry.fatboar.site/fatboar-front:latest'
+                            sh 'docker push registry.fatboar.site/fatboar-front:latest'
+                        } else if (env.BRANCH_NAME == 'master') {
+                            sh 'docker tag fatboar-back_build registry.fatboar.site/fatboar-back:prod'
+                            sh 'docker push registry.fatboar.site/fatboar-back:prod'
+                            sh 'docker tag fatboar-front_build registry.fatboar.site/fatboar-front:prod'
+                            sh 'docker push registry.fatboar.site/fatboar-front:prod'
+                        }
                     }
-                    
-                    // docker push node registry.fatboar.site/node:${VERSION}
-                    // docker push node registry.fatboar.site/node:latest
                 }
             }
         }
@@ -65,10 +56,22 @@ pipeline {
                 echo 'Deploying....'
                 echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
                 echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
-                echo 'Si branch master : si test pass --> deploy fatboar.site'
                 echo 'docker pull registry.fatboar.site/node:stage'
                 echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours-stage'
                 echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-stage-db'
+                sshPublisher(
+                   continueOnError: false, failOnError: true,
+                   publishers: [
+                    sshPublisherDesc(
+                     configName: 'fatboar-server',
+                     verbose: true,
+                     transfers: [
+                      sshTransfer(
+                        remoteDirectory: "/fatboar",
+                        execCommand: "cd /srv/fatboar && ./run-stage.sh"
+                        ),
+                    ])
+                ])
             }
         }
         stage('Deploy to Production') {
@@ -78,10 +81,22 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
-                echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
                 echo 'Si branch master : si test pass --> deploy fatboar.site'
                 echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours'
                 echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-db'
+                sshPublisher(
+                   continueOnError: false, failOnError: true,
+                   publishers: [
+                    sshPublisherDesc(
+                     configName: 'fatboar-server',
+                     verbose: true,
+                     transfers: [
+                      sshTransfer(
+                        remoteDirectory: "/fatboar",
+                        execCommand: "cd /srv/fatboar && ./run-prod.sh"
+                        ),
+                    ])
+                ])
             }
         }
     }
@@ -90,7 +105,9 @@ pipeline {
         always {
             sh "docker container ls"
             sh "docker image ls"
-            sh "docker-compose down -v"
+            sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} down"
+            sh "docker container prune"
+            sh "docker image prune -a -f"
             sh "docker container ls"
             sh "docker image ls"
         }
