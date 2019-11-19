@@ -3,7 +3,7 @@ import React from 'react';
 class GainsClient extends React.Component {
     render() {
         return (
-            <table class="table table-hover table-light wow fadeInUp">
+            <table className="table table-hover table-light wow fadeInUp">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -13,7 +13,7 @@ class GainsClient extends React.Component {
               </tr>
             </thead>
             <tbody>
-              <tr class="table-primary">
+              <tr className="table-primary">
                 <th scope="row">1</th>
                 <td>Une entrée au choix</td>
                 <td>18/11/2019</td>
@@ -25,7 +25,7 @@ class GainsClient extends React.Component {
                 <td>18/11/2019</td>
                 <td>17h55</td>
               </tr>
-              <tr class="table-primary">
+              <tr className="table-primary">
                 <th scope="row">3</th>
                 <td>Un burger au choix</td>
                 <td>18/11/2019</td>

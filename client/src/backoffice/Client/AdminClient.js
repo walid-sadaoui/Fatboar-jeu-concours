@@ -1,11 +1,11 @@
 import React from 'react';
-import NavClient from './NavClient'
-import GainsClient from './GainsClient'
+import NavClient from './NavClient';
+import GainsClient from './GainsClient';
 
 class Client extends React.Component {
     render() {
         return (
-          <div>    
+          <div>
             <NavClient/>
             <GainsClient/>
           </div>

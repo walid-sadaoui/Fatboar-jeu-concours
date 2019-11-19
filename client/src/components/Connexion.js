@@ -16,13 +16,13 @@ class Connexion extends React.Component{
             <br/>       
                 <div className="form-row widthForm">
                   <div id="label-connexion" className="form-group col-md-12">
-                  <label for="inputEmail3">VOTRE ADRESSE E-MAIL</label>
+                  <label htmlFor="inputEmail3">VOTRE ADRESSE E-MAIL</label>
                     <input type="email" className="form-control" id="inputEmail3" placeholder="Adresse e-mail"/>
                   </div>
                 </div>
                 <div className="form-row widthForm">
                 <div className="form-group col-md-12">
-                  <label for="inputPassword3">MOT DE PASSE</label>
+                  <label htmlFor="inputPassword3">MOT DE PASSE</label>
                     <input type="password" className="form-control" id="inputPassword3" placeholder="Mot de passe"/>
                 </div>
                 </div>  

@@ -5,8 +5,8 @@ class Footer extends React.Component{
         return(
           <section>
             <footer id="footer">
-            <div class="container">
-              <div class="copyright">
+            <div className="container">
+              <div className="copyright">
                 <ul>
                   <li><a href="#">MENTIONS LÉGALES</a> |</li>
                   <li><a href="#">DONNÉES PERSONNELLES</a> |</li>
@@ -15,11 +15,11 @@ class Footer extends React.Component{
                 </ul>
                 RESTAURANT FATBOAR™ & © 2011 - 2020. Tous droits réservés.
               </div>
-              <div class="credits">
+              <div className="credits">
               </div>
             </div>
           </footer>
-          <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+          <a href="#" className="back-to-top"><i className="fa fa-chevron-up"></i></a>
           </section>
         )
     }
