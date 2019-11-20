@@ -12,14 +12,14 @@ class NavClient extends React.Component {
             </button>
             <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
               <ul className="navbar-nav">
-                <li className="nav-item active">
-                  <NavLink className="nav-link" to="/ajout-ticket"><b>Ajouter un ticket <span className="sr-only">(current)</span></b></NavLink>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/ajout-ticket"><b>Ajouter un ticket</b></NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/client">Afficher mes gains</NavLink>
+                  <NavLink className="nav-link" to="/client"><b>Afficher mes gains</b></NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/connexion">Déconnexion</NavLink>
+                  <NavLink className="nav-link" to="/connexion"><b>Déconnexion</b></NavLink>
                 </li>
                 {/* <li className="nav-item">
                   <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

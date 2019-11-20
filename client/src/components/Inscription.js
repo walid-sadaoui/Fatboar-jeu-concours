@@ -1,11 +1,13 @@
 import React from 'react';
 import logo from '../../public/img/logofatboar.png';
 import TitreInscription from '../../public/img/titres/inscription.png';
-
+import Navbar from './Navbar';
 
 class Inscription extends React.Component{
 render() {
       return(
+        <React.Fragment>
+        <Navbar/>
         <div className="FormBody">
         <br/>
         <div className="container">
@@ -44,6 +46,7 @@ render() {
                 </form>
               </div>           
               </div>
+              </React.Fragment>
               );
 }
 

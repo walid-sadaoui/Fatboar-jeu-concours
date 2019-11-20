@@ -2,10 +2,13 @@ import React from 'react';
 import logo from '../../public/img/logofatboar.png';
 import TitreConnexion from '../../public/img/titres/connexion.png'
 import {NavLink} from 'react-router-dom';
+import Navbar from './Navbar';
 
 class Connexion extends React.Component{
     render(){
     	return(
+        <React.Fragment>
+        <Navbar/>
 		    <div className="FormBody">
           <div className="container">
             <div className="App">
@@ -27,7 +30,7 @@ class Connexion extends React.Component{
                 </div>
                 </div>  
                 <br/>                             
-              <div className="centre"><NavLink to="/client"><button type="submit" className="btn facebook hvr-grow">Se connecter</button></NavLink></div>
+              <div className="centre"><NavLink to="/ajout-ticket"><button type="submit" className="btn facebook hvr-grow">Se connecter</button></NavLink></div>
                <p className="centre">ou</p> 
                <div className="centre"><button type="button" className="btn facebook hvr-grow">f | Se connecter avec Facebook</button></div><p></p>
               <div className="centre"><button type="button" className="btn google hvr-grow">G | Se connecter avec Google</button></div> 
@@ -35,7 +38,7 @@ class Connexion extends React.Component{
         </div>   
        </div>
     </div>
-
+    </React.Fragment>
 
 		);
 }

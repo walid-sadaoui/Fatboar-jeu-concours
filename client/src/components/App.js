@@ -17,15 +17,14 @@ class App extends React.Component{
             <BrowserRouter>
             
             <Switch>
-                
                 <Route path="/client" component={Client}/>
                 <Route path="/ajout-ticket" component={AddTicket}/>
+                <Route path="/connexion" component={Connexion}/>
+                <Route path="/inscription" component={Inscription}/>
                 <div>
                     <Navbar/>
                     <Route path="/modalites" component={Modalites}/>
                     <Route path="/#contact" component={Contact}/>
-                    <Route path="/connexion" component={Connexion}/>
-                    <Route path="/inscription" component={Inscription}/>
                     <Route path="/" component={Home}/>
                 </div>
             </Switch>
