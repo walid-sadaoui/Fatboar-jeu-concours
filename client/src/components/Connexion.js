@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../public/img/logofatboar.png';
-import TitreConnexion from '../../public/img/titres/connexion.png'
+import TitreConnexion from '../../public/img/titres/connexion.png';
 import {NavLink} from 'react-router-dom';
 import Navbar from './Navbar';
 

@@ -18,5 +18,20 @@
       "last_name": "Smith",
       "email": "ann@codingthesmartway.com"
     }
+  ],
+  "compagnies": [],
+  "gains": [
+    {
+      "id": 1,
+      "gain": "Une entrée au choix",
+      "date": "18/11/2019",
+      "heure": "17h30"
+    },
+    {
+      "id": 2,
+      "gain": "Un dessert au choix",
+      "date": "18/11/2019",
+      "heure": "17h55"
+    }
   ]
 }

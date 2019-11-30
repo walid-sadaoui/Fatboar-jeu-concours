@@ -7,7 +7,7 @@ import {NavLink} from 'react-router-dom';
 class Navbar extends React.Component{
     render() {
       return(
-        <section>
+        // <section>
         <header id="header">
           <div className="container-fluid">
             <div id="logo" className="pull-left">
@@ -16,8 +16,8 @@ class Navbar extends React.Component{
             <nav id="nav-menu-container">
               <ul className="nav-menu">
                 <li><NavLink activeClassName="menu-active" to="/jeu-concours">Le jeu-concours</NavLink></li>
+                <li><NavLink activeClassName="menu-active" to="/cadeaux">Les cadeaux</NavLink></li>
                 <li><NavLink activeClassName="menu-active" to="/modalites">Les modalités</NavLink></li>
-                <li><NavLink activeClassName="menu-active" to="/jeu-concours#contact">Contact</NavLink></li>
                 <li id="BtnInscription"><i className="fa fa-pencil"></i><NavLink activeClassName="menu-active" to="/inscription">Je m'inscris</NavLink></li>
                 <li id="BtnConnexion"><i className="fa fa-user"></i><NavLink activeClassName="menu-active" to="/connexion">Je me connecte</NavLink></li>
               </ul>
@@ -25,7 +25,7 @@ class Navbar extends React.Component{
 
           </div>
         </header>
-        </section>
+        // </section>
        
       )
     }

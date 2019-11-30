@@ -1,15 +1,14 @@
 import React from 'react';
 import Banner from './Banner';
-import HomeConcours from './HomeConcours';
-import Contact from './Contact';
+import Navbar from './Navbar';
+// import HomeConcours from './HomeConcours';
 
 class Home extends React.Component{
     render(){
         return(
             <div>
-            <Banner/>
-            <HomeConcours/>
-            <Contact/>
+                <Navbar/>
+                <Banner/>
             </div>
         )
     }

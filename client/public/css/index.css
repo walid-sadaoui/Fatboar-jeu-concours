@@ -21,13 +21,13 @@
 	background: url("../img/confetti.jpg") center top no-repeat fixed;
 	background-size: cover;
 	padding: 60px 0 40px 0;
-	position: relative;	  
+	position: relative;
 }
 
 .AddTicketBody {
 	background:#A0CCFB;
 	padding: 60px 0 40px 0;
-	position: relative;	
+	position: relative;
 }
 
 .formulaire {
