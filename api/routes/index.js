@@ -83,7 +83,7 @@ router.get('/', function(req, res) {
     ### Compte admin : attribuer ticket token(ADMIN || EMPLOYEE) \n
     
     PATCH /tickets/:ticketNumber --> (idUser, state: USED)`;
-    res.send(routeList);
+    res.status(200).send(routeList);
 });
 
 module.exports = router;

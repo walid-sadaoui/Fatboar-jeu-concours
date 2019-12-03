@@ -25,15 +25,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false, // check format mail
       validate: {
         isEmail: true,
-      },
+      }
     },
     phone: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
-      validate: {
-        isNumeric: true
-      }
     },
     role: {
       type: DataTypes.ENUM,
@@ -82,3 +79,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return User;
 };
+  

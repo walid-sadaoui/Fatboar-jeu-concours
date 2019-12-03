@@ -12,7 +12,7 @@ router.post('/register', async(req, res) => {
     // console.log(User);
     // Checking if email exists in db
     const emailExist = await models.user.findOne({ where: { email: email }});
-    if (emailExist) return res.status(400).send('Email already exists');
+    if (emailExist) return res.status(409).send('Email already exists');
 
     // Hash password
     const salt = await bcrypt.genSalt(10);
@@ -29,9 +29,9 @@ router.post('/register', async(req, res) => {
 
     try {
         const userSaved = await models.user.create(userData);
-        res.send(userSaved);
+        return res.status(200).send(userSaved);
     } catch (err) {
-        return res.status(400).send(err);
+        return res.status(500).send(err);
     }
 })
 
@@ -41,20 +41,23 @@ router.post('/login', async (req, res) => {
 
     // Checking if user exists in db
     const user = await models.user.findOne({ where: { email: email }});
-    if (!user) return res.status(400).send('Email is wrong');
+    if (!user) return res.status(422).send('Email is wrong');
 
     // Checking if password is correct
     const validPass = await bcrypt.compare(password, user.password);
-    if (!validPass) return res.status(400).send('Password is wrong');
+    if (!validPass) return res.status(422).send('Password is wrong');
 
     // Set token for user
-    const token = jwt.sign({ user: user }, jwtSecret);
+    const token = jwt.sign({ 
+        user: user,
+        exp: parseInt(Date.now() / 1000 + 60 * 60)
+     }, jwtSecret);
 
     // Send a header
     res.header('Authorization', 'Bearer ' + token);
 
     // Send a json 
-    res.status(201).json({
+    return res.status(200).json({
         msg: 'User is logged',
         user,
         token

@@ -6,60 +6,107 @@ const { Ticket } = models;
 
 router.get("/", async (req, res) => {
     const { user } = req.user;
-    console.log(user.role);
     if (user.role != 'ADMIN') {
-        return res.status(400).send('Access denied');
+        return res.status(403).send('Access denied');
     }
     try {
-        const ticket = await models.ticket.findAll({ limit: 10 });
+        const tickets = await models.ticket.findAll();
         res.status(200).json({
             msg: 'All tickets',
-            ticket
+            tickets
         });
     } catch (error) {
-        return res.status(400).send('Server Error');
+        return res.status(500).send('Server Error');
     }
 });
 
-router.patch("/:ticketNumber", async (req, res) => {
+router.put("/:ticketNumber", async (req, res) => {
     const { user } = req.user;
     const { ticketNumber } = req.params;
+    const ticketParams = req.body;
+    if (user.role === 'CLIENT') {
+        return res.status(403).send('Access denied');
+    }
     try {
         const ticket = await models.ticket.findOne({ where: { ticketNumber: ticketNumber} })
         if (!ticket) {
-            return res.status(400).send(`Ce ticket n'existe pas`);
+            return res.status(404).send(`Ticket not found`);
         }
         if (ticket.state == 'UNATTRIBUTED')  {
-            // update ticket : state ATTRIBUTED, idUSer = user.idUser
-            ticket.update({
-                idUser: user.idUser,
-                state: 'ATTRIBUTED'
-            });
+            ticket.update(ticketParams, {where: {
+                ticketNumber: ticketNumber
+            }});
             return res.status(200).json({
                 msg: 'Ticket updated',
                 ticket
             })
         } else {
-            // err msg ticket not available 
-            return res.status(400).send(`Ce ticket est invalide`);
+            return res.status(422).send(`Invalid ticket`);
         }
     } catch (err) {
-        return res.status(400).send(err);
+        return res.status(500).send(err);
     }
 
 });
 
 
 router.get('/:ticketNumber', async (req, res) => {
-    
+    const { user } = req.user;
+    const { ticketNumber } = req.params;
+    if (user.role === 'CLIENT') {
+        return res.status(403).send('Access denied');
+    }
+    try {
+        const ticket = await models.ticket.findOne({ where: { ticketNumber: ticketNumber } });
+        if (!ticket) {
+            return res.status(404).send(`Ticket not found`);
+        }
+        res.status(200).json({
+            ticket
+        });
+    } catch (error) {
+        return res.status(500).send('Server Error');
+    }
 });
 
 router.delete('/:ticketNumber', async (req, res) => {
-    
+    const { user } = req.user;
+    const { ticketNumber } = req.params;
+    if (user.role != 'ADMIN') {
+        return res.status(403).send('Access Denied');
+    }
+    try{
+        const ticket = await models.ticket.findOne({ where: { ticketNumber: ticketNumber }});
+        if(!ticket) return res.status(404).send("Ticket not Found");
+        await models.ticket
+        .destroy({
+            where: {ticketNumber: ticketNumber}
+        })
+        .then(() => res.status(200).send("Ticket successfully Deleted"))
+        .catch(err => res.status(500).send(err));
+    } catch(error){
+        res.status(500).send('Server Error');
+    }
 });
 
 router.get('/:ticketNumber/gain', async (req, res) => {
-    
+    const { user } = req.user;
+    const { ticketNumber } = req.params;
+    if (user.role === 'CLIENT') {
+        return res.status(403).send('Access Denied');
+    }
+    try{
+        const ticket = await models.ticket.findOne({ where: { ticketNumber: ticketNumber }});
+        if(!ticket) return res.status(404).send("Ticket not Found");
+        const gain = await models.gain.findOne({
+            where: {idGain: ticket.idGain}
+        })
+        res.status(200).json({
+            gain
+        });
+    } catch(error){
+        res.status(500).send('Server Error');
+    }
 });
 
 

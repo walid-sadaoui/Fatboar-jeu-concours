@@ -18,6 +18,7 @@ services:
       - fatboar-dev
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres-db:5432/${POSTGRES_DB}
+      - TEST_DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres-db:5432/fatboar-test
     command: nodemon -L ./bin/www
     restart: always
   postgres-db:
