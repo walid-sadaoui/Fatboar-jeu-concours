@@ -5,24 +5,24 @@ import {NavLink} from 'react-router-dom';
 class NavClient extends React.Component {
     render() {
         return (
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark wow fadeInUp">
-            <a class="navbar-brand" href="#"><img style={{width: '60px'}} className="NavLogo hvr-grow rounded-circle" src={logo} alt="logo" /></a><span style={{color: '#fff', fontWeight:'bold'}}>Hello Charles, bienvenue !</span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a className="navbar-brand" href="#"><img style={{width: '60px'}} className="NavLogo hvr-grow rounded-circle" src={logo} alt="logo" /></a><span style={{color: '#fff', fontWeight:'bold'}}>Hello Charles, bienvenue !</span>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#"><b>Ma liste de gains <span class="sr-only">(current)</span></b></a>
+            <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/ajout-ticket"><b>Ajouter un ticket</b></NavLink>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Gérer mon compte</a>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/client"><b>Afficher mes gains</b></NavLink>
                 </li>
-                <li class="nav-item">
-                  <NavLink class="nav-link" to="/connexion">Déconnexion</NavLink>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/connexion"><b>Déconnexion</b></NavLink>
                 </li>
-                {/* <li class="nav-item">
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                {/* <li className="nav-item">
+                  <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li> */}
               </ul>
             </div>
