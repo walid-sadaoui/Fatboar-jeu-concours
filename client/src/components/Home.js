@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
+// import Navbar from './Navbar';
 import Navbar from './Navbar';
 // import HomeConcours from './HomeConcours';
 
