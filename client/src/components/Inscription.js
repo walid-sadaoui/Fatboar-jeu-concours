@@ -8,8 +8,7 @@ render() {
       return(
         <React.Fragment>
         <Navbar/>
-        <div className="FormBody">
-        <br/>
+        <div className="FormBody" style={{paddingBottom: "180px", paddingTop: "120px"}}>
         <div className="container">
           <img className="LogoConnexion wow fadeInUp" src={logo} alt="" width="15%"/>    
               <form className="formulaire wow fadeInUp" data-wow-delay="0.1s">
@@ -39,10 +38,17 @@ render() {
                     </div>
                   </div>
                   <br/>
-                  <div className="centre"><button type="button" className="btn facebook hvr-grow">S'inscrire</button></div>
-                  <p className="centre">ou</p>
-                  <div className="centre"><button type="button" className="btn facebook hvr-grow">f | S'inscrire avec Facebook</button></div><p></p>
-                  <div className="centre"><button type="button" className="btn google hvr-grow">G | S'inscrire avec Google</button></div>
+                  <div className="centre"><button type="submit" className="btn btn-primary btn-block">login in</button></div>
+                  <p className="centre">- OU -</p>
+                  <div className="centre">
+                    <a href="#" className="btn btn-block btn-primary">
+                    <i className="fab fa-facebook mr-2"></i> Inscription par Facebook
+                    </a>
+                    <a href="#" className="btn btn-block btn-danger">
+                    <i className="fab fa-google mr-2"></i> Inscription par Google
+                    </a>
+                  </div>
+                 
                 </form>
               </div>           
               </div>

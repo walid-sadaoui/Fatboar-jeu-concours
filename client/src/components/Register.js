@@ -1,24 +1,21 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
-
+import logo from '../../public/img/logofatboar.png';
+import TitreInscription from '../../public/img/titres/inscription.png';
 
 
 export default class Dashboard extends Component {
     render(){
         return (
 
-            <div className="register-page" style={{minheight: 586.391}}>
-
-
+            <div className="register-page" style={{minheight: 5}}>
                 <div className="register-box">
                     <div className="register-logo">
-                        <a href="../../index2.html"><b>FAT</b>BOAR</a>
+                    <img className="LogoConnexion wow fadeInUp" src={logo} alt="" width="45%"/>  
                     </div>
-
                     <div className="card">
                         <div className="card-body register-card-body">
                             <p className="login-box-msg">S'enregistrer</p>
-
                             <form action="../../index.html" method="post">
                                 <div className="input-group mb-3">
                                     <input type="text" className="form-control" placeholder="Nom" />

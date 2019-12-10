@@ -18,9 +18,11 @@
 }
 
 .FormBody {
-	background: url("https://image.freepik.com/photos-gratuite/modele-souple-carte-rapport-papier_1258-167.jpg") center top no-repeat fixed;
-	background-size: cover;
-	padding: 60px 0 40px 0;
+	background:rgb(202,54,49) url("../img/bg-filtre.svg") repeat 0 0;
+  	background-size: cover;
+  	-webkit-animation: slide 20s linear infinite;
+  	animation: slide 20s linear infinite;
+  	box-sizing: border-box;
 	position: relative;
 }
 

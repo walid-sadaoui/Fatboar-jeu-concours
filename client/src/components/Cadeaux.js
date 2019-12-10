@@ -2,16 +2,15 @@ import React from 'react';
 import TitreModalites from '../../public/img/titres/modalites.png';
 import RangeRover from '../../public/img/2020-rangeOver.jpg';
 import Navbar from './Navbar';
-
+import Footer from './Footer';
 class Cadeaux extends React.Component{
     render(){
         return(
             <React.Fragment>
             <Navbar/>
-            <section id="Cadeaux" style={{marginBottom: "100px"}}>
-                <br/><br/><br/><br/><br/>
+            <section id="Cadeaux">
                 <div className="container">
-                <div className="section-header">
+                <div className="section-header" style={{paddingBottom: "180px", paddingTop: "180px"}}>
                 <img src={TitreModalites} alt="" width="350px" class="img-fluid wow fadeInUp"/>
                     <br/>
                     <div className="row">
@@ -69,7 +68,7 @@ class Cadeaux extends React.Component{
                             </div>
                         </div>
                 </div>
-                </div>                              
+                </div>                       
             </section>
             </React.Fragment>
         )
