@@ -418,7 +418,7 @@ h6 {
   margin: 10px;
   color: #fff;
   background: rgba(52,51,54,0.8);
-  box-shadow: 2px 2px 3px 1px rgba(255, 255, 255, .2);
+  box-shadow: 1px 1px 3px 1px rgba(255, 255, 255, .2);
 }
 
 #intro .btn-get-started:hover {

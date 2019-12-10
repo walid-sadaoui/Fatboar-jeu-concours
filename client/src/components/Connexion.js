@@ -1,47 +1,67 @@
-import React from 'react';
-import logo from '../../public/img/logofatboar.png';
-import TitreConnexion from '../../public/img/titres/connexion.png';
+import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import Navbar from './Navbar';
+import TitreConnexion from '../../public/img/titres/connexion.png';
 
-class Connexion extends React.Component{
+class Connexion extends Component {
     render(){
-    	return(
-        <React.Fragment>
-        <Navbar/>
-		    <div className="FormBody">
-          <div className="container">
-            <div className="App">
-            <img className="LogoConnexion wow fadeInUp" src={logo} width="15%" alt="#"/>
-            <br/>
-            <form className="formulaire wow fadeInUp" data-wow-delay="0.1s">
-            <img src={TitreConnexion} alt="" width="400px" class="img-fluid"/>
-            <br/>       
-                <div className="form-row widthForm">
-                  <div id="label-connexion" className="form-group col-md-12">
-                  <label htmlFor="inputEmail3">VOTRE ADRESSE E-MAIL</label>
-                    <input type="email" className="form-control" id="inputEmail3" placeholder="Adresse e-mail"/>
-                  </div>
-                </div>
-                <div className="form-row widthForm">
-                <div className="form-group col-md-12">
-                  <label htmlFor="inputPassword3">MOT DE PASSE</label>
-                    <input type="password" className="form-control" id="inputPassword3" placeholder="Mot de passe"/>
-                </div>
-                </div>  
-                <br/>                             
-              <div className="centre"><NavLink to="/ajout-ticket"><button type="submit" className="btn facebook hvr-grow">Se connecter</button></NavLink></div>
-               <p className="centre">ou</p> 
-               <div className="centre"><button type="button" className="btn facebook hvr-grow">f | Se connecter avec Facebook</button></div><p></p>
-              <div className="centre"><button type="button" className="btn google hvr-grow">G | Se connecter avec Google</button></div> 
-            </form>
-        </div>   
-       </div>
-    </div>
-    </React.Fragment>
+        return (
+            <React.Fragment>
+            <div className="login-page" style={{paddingBottom: "100px"}}>
+                <div className="login-box">
+                    <div className="login-logo">
+                    <img className="wow fadeInUp" src={TitreConnexion} width="100%" alt="connexion-fatboar"/>
+                    </div>
+                    <div className="card habillage-form wow fadeInUp">
+                        <div className="card-body login-card-body">
+                            <form action="#" method="post">
+                                <div className="input-group mb-3">
+                                    <input type="email" className="form-control" placeholder="E-mail" />
+                                        <div className="input-group-append">
+                                            <div className="input-group-text">
+                                                <span className="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div className="input-group mb-3">
+                                    <input type="password" className="form-control" placeholder="Mot de passe" />
+                                        <div className="input-group-append">
+                                            <div className="input-group-text">
+                                                <span className="fas fa-lock"></span>
+                                            </div>          
+                                        </div>
+                                </div>
+                                    <span className="centre">
+                                    <NavLink to="/dashboard"><button type="submit" className="btn btn-primary btn-block">Se connecter</button></NavLink>
+                                    </span>
+                            </form>
 
-		);
-}
+                            <div className="social-auth-links text-center mb-3">
+                                <p className="centre">- OU -</p>
+                                <a href="#" className="btn btn-block btn-primary">
+                                    <i className="fab fa-facebook mr-2"></i> Connection par Facebook
+                                </a>
+                                <a href="#" className="btn btn-block btn-danger">
+                                    <i className="fab fa-google mr-2"></i> Connection par Google
+                                </a>
+                            </div>
+                            <h6 className="centre">
+                                <a href="forgot-password.html">Mot de passe oublié ?</a>
+                            </h6>
+                            <h6 className="centre">
+                                <NavLink to="/inscription" className="text-center">Je souhaite créer un compte</NavLink>
+                            </h6>
+                        </div>
 
+                    </div>
+                    <NavLink to="/" className="btn btn-block btn-default wow fadeInUp" data-wow-delay="0.3s">
+                        <i className="fas fa-home mr-2"></i> Retour à l'accueil
+                    </NavLink>
+                </div>
+
+            </div>
+            </React.Fragment>
+
+        )
+    }
 }
-export default Connexion;
+export default Connexion

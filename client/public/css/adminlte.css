@@ -19537,7 +19537,7 @@ html.maximized-card {
 
 .habillage-form {
   padding:20px!important;
-  border-radius:10px!important;
+  border-radius:8px!important;
 }
 
 @media (max-width: 576px) {

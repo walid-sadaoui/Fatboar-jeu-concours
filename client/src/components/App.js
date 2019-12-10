@@ -7,11 +7,10 @@ import Modalites from './Modalites';
 import ShowEarning from './ShowEarning';
 import EditAccount from './EditAccount';
 import ShowUsers from './ShowUsers';
-import Register from './Register';
+import Register from './Inscription';
 import Dashboard from './Dashboard';
 import Cadeaux from './Cadeaux';
 import Connexion from './Connexion';
-import Login from './Login';
 import Inscription from './Inscription';
 import Client from '../backoffice/Client/AdminClient';
 import AddTicket from '../backoffice/Client/AddTicket';
@@ -32,11 +31,9 @@ class App extends React.Component{
                         <Route path="/modalites" component={Modalites}/>
                         <Route path="/cadeaux" component={Cadeaux}/>
                         <Route path="/dashboard" component={Dashboard}/>
-                        <Route path="/login" component={Login}/>
                         <Route path="/show-earning" component={ShowEarning}/>
                         <Route path="/edit-account" component={EditAccount}/>
                         <Route path="/show-users" component={ShowUsers}/>
-                        <Route path="/login" component={Login}/>
                         <Route path="/register" component={Register}/>
                         <Route path="/" component={Home}/>
                     </Switch>

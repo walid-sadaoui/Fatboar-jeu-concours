@@ -9,7 +9,6 @@ import Dashboard from './Components/Dashboard';
 import Footer from './Components/Footer';
 import EditAccount from "./Components/EditAccount";
 import ShowUsers from "./Components/ShowUsers";
-import Login from "./Components/Login";
 import Register from "./Components/Register";
 
 class App extends React.Component{
@@ -24,7 +23,6 @@ class App extends React.Component{
                         <Route path="/show-earning" component={ShowEarning}/>
                         <Route path="/edit-account" component={EditAccount}/>
                         <Route path="/show-users" component={ShowUsers}/>
-                        <Route path="/login" component={Login}/>
                         <Route path="/register" component={Register}/>
                     </Switch>
                 </div>
