@@ -26,7 +26,9 @@ class Banner extends React.Component{
                     </div>
                     </div>
                 </div>
+                <Footer/>
             </section>
+            
         )
     }
 }

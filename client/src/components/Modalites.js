@@ -34,6 +34,7 @@ class Modalites extends React.Component{
                 </p> */}
                 </div>
                 </div>
+                <Footer/>
             </section>
             </React.Fragment>
         )

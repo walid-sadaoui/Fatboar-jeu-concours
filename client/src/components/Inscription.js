@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import TitreInscription from '../../public/img/titres/inscription.png';
-
+import Footer from './Footer';
 
 export default class Dashboard extends Component {
     render(){
         return (
-
+            <React.Fragment>
             <div className="register-page" style={{paddingBottom: "100px"}}>
                 <div className="register-box">
                     <div className="register-logo">
@@ -77,10 +77,9 @@ export default class Dashboard extends Component {
                         <i className="fas fa-home mr-2"></i> Retour à l'accueil
                     </NavLink>
                 </div>
-
             </div>
-
-
+            <Footer/>
+            </React.Fragment>
         )
     }
 }

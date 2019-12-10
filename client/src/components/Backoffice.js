@@ -1,27 +1,24 @@
 import React, {Component} from 'react';
+import Sidebar from './SideBar';
+import {NavLink} from 'react-router-dom';
+import AdminBar from './AdminBar';
 
-
-
-export default class Dashboard extends Component {
+class Backoffice extends Component {
     render(){
         return (
-
-            <div className="content-wrapper">
-
+            <React.Fragment>
+            <AdminBar/>
+            <Sidebar/>
+            <div className="content-wrapper backoffice">
                 <div className="content-header">
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
                                 <h1 className="m-0 text-dark">Espace personnel</h1>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
-
 
                 <div className="content">
                     <div className="container-fluid">
@@ -29,16 +26,15 @@ export default class Dashboard extends Component {
                             <div className="col-lg-6">
                                 <div className="small-box bg-primary">
                                     <div className="inner">
-                                        <h3>150</h3>
-
-                                        <p>Gain gagner</p>
+                                        <h1 style={{fontWeight: "bold"}}>150</h1>
+                                        <h5>Total des gains</h5>
                                     </div>
                                     <div className="icon">
                                         <i className="fas fa-shopping-cart"></i>
                                     </div>
-                                    <a href="#" className="small-box-footer">
+                                    <NavLink to="/gains" className="small-box-footer">
                                         Voir plus <i className="fas fa-arrow-circle-right"></i>
-                                    </a>
+                                    </NavLink>
                                 </div>
 
                                 <div className="card card-primary card-outline">
@@ -54,7 +50,6 @@ export default class Dashboard extends Component {
                                         <a href="#" className="card-link">Another link</a>
                                     </div>
                                 </div>
-
                             </div>
 
                             <div className="col-lg-6">
@@ -67,21 +62,19 @@ export default class Dashboard extends Component {
                                         <div className="card-body">
                                             <div className="form-group row">
                                                 <label htmlFor="inputEmail3"
-                                                       className="col-sm-2 col-form-label">Numéro</label>
+                                                       className="col-sm-2 col-form-label" style={{color: "#333333"}}>Numéro</label>
                                                 <div className="col-sm-10">
                                                     <input type="number" className="form-control" id="inputEmail3"
                                                            placeholder="Ex: 1056" />
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div className="card-footer">
-                                            <button type="submit" className="btn btn-info">Ajouter</button>
+                                            <button type="submit" className="btn btn-primary">Ajouter</button>
                                             <button type="submit" className="btn btn-default float-right">Effacer
                                             </button>
                                         </div>
-
                                     </form>
                                 </div>
 
@@ -91,22 +84,20 @@ export default class Dashboard extends Component {
                                     </div>
                                     <div className="card-body">
                                         <h6 className="card-title">Special title treatment</h6>
-
                                         <p className="card-text">With supporting text below as a natural lead-in to
                                             additional content.</p>
                                         <a href="#" className="btn btn-primary">Go somewhere</a>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
+            </React.Fragment>
 
     )
     }
 }
+
+export default Backoffice

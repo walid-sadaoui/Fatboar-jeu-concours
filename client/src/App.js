@@ -5,8 +5,7 @@ import Header from './Components/Header';
 import Sidebar from './Components/SideBar';
 import ShowEarning from './Components/ShowEarning';
 import Connexion from './Components/Connexion';
-import Dashboard from './Components/Dashboard';
-import Footer from './Components/Footer';
+import Backoffice from './Components/Backoffice';
 import EditAccount from "./Components/EditAccount";
 import ShowUsers from "./Components/ShowUsers";
 import Register from "./Components/Register";
@@ -18,16 +17,15 @@ class App extends React.Component{
                 <Sidebar/>
                 <div>
                     <Switch>
-                        <Route path="/dashboard" component={Dashboard}/>
+                        <Route path="/backoffice" component={Backoffice}/>
                         <Route path="/connexion" component={Connexion}/>
-                        <Route path="/show-earning" component={ShowEarning}/>
-                        <Route path="/edit-account" component={EditAccount}/>
-                        <Route path="/show-users" component={ShowUsers}/>
+                        <Route path="/gains" component={ShowEarning}/>
+                        <Route path="/mon-compte" component={EditAccount}/>
+                        <Route path="/utilisateurs" component={ShowUsers}/>
                         <Route path="/register" component={Register}/>
                     </Switch>
                 </div>
                 <div>
-                <Footer/>
             </div>
         </BrowserRouter>
         )

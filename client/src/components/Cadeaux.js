@@ -70,6 +70,7 @@ class Cadeaux extends React.Component{
                 </div>
                 </div>                       
             </section>
+            <Footer/>
             </React.Fragment>
         )
     }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import TitreConnexion from '../../public/img/titres/connexion.png';
+import Footer from "./Footer";
 
 class Connexion extends Component {
     render(){
@@ -31,7 +32,7 @@ class Connexion extends Component {
                                         </div>
                                 </div>
                                     <span className="centre">
-                                    <NavLink to="/dashboard"><button type="submit" className="btn btn-primary btn-block">Se connecter</button></NavLink>
+                                    <NavLink to="/backoffice"><button type="submit" className="btn btn-primary btn-block">Se connecter</button></NavLink>
                                     </span>
                             </form>
 
@@ -45,7 +46,7 @@ class Connexion extends Component {
                                 </a>
                             </div>
                             <h6 className="centre">
-                                <a href="forgot-password.html">Mot de passe oublié ?</a>
+                                <a href="#">Mot de passe oublié ?</a>
                             </h6>
                             <h6 className="centre">
                                 <NavLink to="/inscription" className="text-center">Je souhaite créer un compte</NavLink>
@@ -57,8 +58,8 @@ class Connexion extends Component {
                         <i className="fas fa-home mr-2"></i> Retour à l'accueil
                     </NavLink>
                 </div>
-
             </div>
+            <Footer/>
             </React.Fragment>
 
         )

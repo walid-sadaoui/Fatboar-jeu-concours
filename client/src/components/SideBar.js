@@ -6,7 +6,7 @@ export default class SideBar extends Component {
     render(){
         return (
             <aside class="main-sidebar sidebar-dark-primary elevation-4 ">
-                <NavLink to="/dashboard" class="brand-link">
+                <NavLink to="/backoffice" class="brand-link">
                     <img src="dist/img/logofatboar.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                          style={{opacity: '.9'}} />
                         <span class="brand-text font-weight-light">FATBOAR</span>
@@ -18,7 +18,7 @@ export default class SideBar extends Component {
                             <img src="dist/img/charles.jpg" class="img-circle elevation-2" alt="User" />
                         </div>
                         <div class="info">
-                            <NavLink to="/dashboard" href="#" class="d-block">Charles Atangui</NavLink>
+                            <NavLink to="/backoffice" href="#" class="d-block" style={{color:"#fff", fontWeight:"bold"}}>Charles Atangui</NavLink>
                         </div>
                     </div>
 
@@ -36,13 +36,13 @@ export default class SideBar extends Component {
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <NavLink to="/show-earning" activeClassName="nav-link active">
+                                        <NavLink to="/gains" activeClassName="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Mes gains</p>
                                         </NavLink>
                                     </li>
                                     <li class="nav-item">
-                                        <NavLink to="/edit-account" class="nav-link" activeClassName="nav-link active">
+                                        <NavLink to="/mon-compte" class="nav-link" activeClassName="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Mon compte</p>
                                         </NavLink>
@@ -50,21 +50,27 @@ export default class SideBar extends Component {
                                 </ul>
                             </li> */}
                             <li class="nav-item">
-                                        <NavLink to="/show-earning" class="nav-link" activeClassName="nav-link active">
+                                        <NavLink to="/backoffice" class="nav-link" activeClassName="nav-link active">
                                             <i class="fas fa-money-bill nav-icon"></i>
-                                            <p>Mes gains</p>
-                                        </NavLink>
-                                    </li>
-                                    <li class="nav-item">
-                                        <NavLink to="/edit-account" class="nav-link" activeClassName="nav-link active">
-                                            <i class="fas fa-user-tie nav-icon"></i>
-                                            <p>Mon compte</p>
+                                            <p style={{color:"#C2C7D0", fontWeight:"bold"}}>Vue d'ensemble</p>
                                         </NavLink>
                                     </li>
                             <li class="nav-item">
-                                <NavLink to="/show-users" class="nav-link" activeClassName="nav-link active">
+                                        <NavLink to="/gains" class="nav-link" activeClassName="nav-link active">
+                                            <i class="fas fa-money-bill nav-icon"></i>
+                                            <p style={{color:"#C2C7D0", fontWeight:"bold"}}>Mes gains</p>
+                                        </NavLink>
+                                    </li>
+                                    <li class="nav-item">
+                                        <NavLink to="/mon-compte" class="nav-link" activeClassName="nav-link active">
+                                            <i class="fas fa-user-tie nav-icon"></i>
+                                            <p style={{color:"#C2C7D0", fontWeight:"bold"}}>Mon compte</p>
+                                        </NavLink>
+                                    </li>
+                            <li class="nav-item">
+                                <NavLink to="/utilisateurs" class="nav-link" activeClassName="nav-link active">
                                     <i class="nav-icon fas fa-users"></i>
-                                    <p>
+                                    <p style={{color:"#C2C7D0", fontWeight:"bold"}}>
                                         Utilisateurs
                                         <span class="right badge badge-danger"></span>
                                     </p>

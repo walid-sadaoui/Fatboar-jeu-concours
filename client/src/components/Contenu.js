@@ -1,24 +1,25 @@
 import React, {Component} from 'react';
-import Sidebar from './SideBar';
-import {NavLink} from 'react-router-dom';
 
 
-export default class Dashboard extends Component {
+
+class MonCompte extends Component {
     render(){
         return (
-            <React.Fragment>
-            <Sidebar/>
+
             <div className="content-wrapper">
+
                 <div className="content-header">
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
                                 <h1 className="m-0 text-dark">Espace personnel</h1>
                             </div>
-                        </div>
-                    </div>
-                </div>
 
+                        </div>
+
+                    </div>
+
+                </div>
                 <div className="content">
                     <div className="container-fluid">
                         <div className="row">
@@ -26,14 +27,15 @@ export default class Dashboard extends Component {
                                 <div className="small-box bg-primary">
                                     <div className="inner">
                                         <h3>150</h3>
-                                        <p>Total de gains</p>
+
+                                        <p>Gain gagner</p>
                                     </div>
                                     <div className="icon">
                                         <i className="fas fa-shopping-cart"></i>
                                     </div>
-                                    <NavLink to="/show-earning" className="small-box-footer">
+                                    <a href="#" className="small-box-footer">
                                         Voir plus <i className="fas fa-arrow-circle-right"></i>
-                                    </NavLink>
+                                    </a>
                                 </div>
 
                                 <div className="card card-primary card-outline">
@@ -76,6 +78,7 @@ export default class Dashboard extends Component {
                                             <button type="submit" className="btn btn-default float-right">Effacer
                                             </button>
                                         </div>
+
                                     </form>
                                 </div>
 
@@ -100,10 +103,9 @@ export default class Dashboard extends Component {
                 </div>
 
             </div>
-            </React.Fragment>
-
-
 
     )
     }
 }
+
+export default MonCompte

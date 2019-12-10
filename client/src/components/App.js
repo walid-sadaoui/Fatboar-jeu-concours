@@ -1,19 +1,16 @@
 import React from 'react';
 // import Navbar from './Navbar';
 import Home from './Home';
-import Footer from './Footer';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Modalites from './Modalites';
-import ShowEarning from './ShowEarning';
-import EditAccount from './EditAccount';
-import ShowUsers from './ShowUsers';
+import Gains from './Gains';
+import Utilisateurs from './ListeUtilisateurs';
 import Register from './Inscription';
-import Dashboard from './Dashboard';
+import Backoffice from './Backoffice';
 import Cadeaux from './Cadeaux';
 import Connexion from './Connexion';
 import Inscription from './Inscription';
-import Client from '../backoffice/Client/AdminClient';
-import AddTicket from '../backoffice/Client/AddTicket';
+import MonCompte from './Compte';
 
 class App extends React.Component{
     render(){
@@ -24,22 +21,17 @@ class App extends React.Component{
                 </div> */}
                 <div style={{height: "90%"}}>
                     <Switch>
-                        <Route path="/client" component={Client}/>
-                        <Route path="/ajout-ticket" component={AddTicket}/>
                         <Route path="/connexion" component={Connexion}/>
                         <Route path="/inscription" component={Inscription}/>
                         <Route path="/modalites" component={Modalites}/>
                         <Route path="/cadeaux" component={Cadeaux}/>
-                        <Route path="/dashboard" component={Dashboard}/>
-                        <Route path="/show-earning" component={ShowEarning}/>
-                        <Route path="/edit-account" component={EditAccount}/>
-                        <Route path="/show-users" component={ShowUsers}/>
+                        <Route path="/backoffice" component={Backoffice}/>
+                        <Route path="/gains" component={Gains}/>
+                        <Route path="/mon-compte" component={MonCompte}/>
+                        <Route path="/utilisateurs" component={Utilisateurs}/>
                         <Route path="/register" component={Register}/>
                         <Route path="/" component={Home}/>
                     </Switch>
-                </div>
-                <div>
-                    <Footer/>
                 </div>
             </BrowserRouter>
         )
