@@ -42,7 +42,11 @@ module.exports = {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false
-    }
+    },
+    idUser: {
+      type: Sequelize.INTEGER,
+      allowNull: true
+    },  
    });
    const tickets = generateTickets(1000);
    return queryInterface.bulkInsert('tickets', tickets, {});

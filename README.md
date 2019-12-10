@@ -77,3 +77,26 @@ Api :
     - npm install
     - export NODE_ENV=dev-local
     - npm start:dev
+
+## Installer les dependances
+
+Api:
+    - cd api 
+    - npm install
+
+Client:
+    - cd client
+    - npm install
+
+## Modifier Les configurations de la base de données locale
+Config:
+    dans config modifier le fichier db/config/config.json et remplacer les paramètres par les tiens.
+
+## Lancer les programmes
+Api:
+    - cd api
+    - nodemon app.js
+
+Client:
+    - cd client
+    - npm start

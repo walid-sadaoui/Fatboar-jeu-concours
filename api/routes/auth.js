@@ -12,7 +12,10 @@ router.post('/register', async(req, res) => {
     // console.log(User);
     // Checking if email exists in db
     const emailExist = await models.user.findOne({ where: { email: email }});
-    if (emailExist) return res.status(409).send('Email already exists');
+    if (emailExist) return res.status(409).json({
+        status: 409,
+        msg: 'Email already exists'
+    });
 
     // Hash password
     const salt = await bcrypt.genSalt(10);
@@ -24,14 +27,20 @@ router.post('/register', async(req, res) => {
         lastName: lastName,
         password: hashedPassword,
         email: email,
-        phone: phone
+        phone: phone,
     };
 
     try {
         const userSaved = await models.user.create(userData);
-        return res.status(200).send(userSaved);
+        return res.status(200).json({
+            status: 200,
+            userSaved
+        });
     } catch (err) {
-        return res.status(500).send(err);
+        return res.status(500).json({
+            status: 500,
+            err
+        });
     }
 })
 
@@ -41,11 +50,14 @@ router.post('/login', async (req, res) => {
 
     // Checking if user exists in db
     const user = await models.user.findOne({ where: { email: email }});
-    if (!user) return res.status(422).send('Email is wrong');
+    if (!user) return res.json({
+        status: 400,
+        msg: 'Email is wrong'  
+    });
 
     // Checking if password is correct
     const validPass = await bcrypt.compare(password, user.password);
-    if (!validPass) return res.status(422).send('Password is wrong');
+    if (!validPass) return res.status(404).send('Password is wrong');
 
     // Set token for user
     const token = jwt.sign({ 
@@ -58,6 +70,7 @@ router.post('/login', async (req, res) => {
 
     // Send a json 
     return res.status(200).json({
+        status: 200,
         msg: 'User is logged',
         user,
         token
