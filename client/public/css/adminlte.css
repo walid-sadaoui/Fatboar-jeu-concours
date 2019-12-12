@@ -11,15 +11,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
 /* :root {
-=======
-:root {
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
-:root {
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -48,15 +40,7 @@
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-<<<<<<< HEAD
-<<<<<<< HEAD
 } */
-=======
-}
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
-}
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
 
 *,
 *::before,
@@ -12463,13 +12447,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .user-panel > .info {
     display: block !important;
     -webkit-transform: translateZ(0);
-<<<<<<< HEAD
-<<<<<<< HEAD
     transform: translateZ(0);
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
   }
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-sidebar > .nav-item > .nav-link > span, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .nav-sidebar > .nav-item > .nav-link > span {
     display: inline-block !important;
@@ -12577,13 +12555,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .user-panel > .info {
     display: block !important;
     -webkit-transform: translateZ(0);
-<<<<<<< HEAD
-<<<<<<< HEAD
     transform: translateZ(0);
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
   }
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .nav-sidebar > .nav-item > .nav-link > span, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .nav-sidebar > .nav-item > .nav-link > span {
     display: inline-block !important;
@@ -19550,36 +19522,22 @@ html.maximized-card {
   height: 100vh;
   -ms-flex-pack: center;
   justify-content: center;
-<<<<<<< HEAD
-<<<<<<< HEAD
   /*Effets background*/
   background:rgb(202,54,49) url("../img/bg-filtre.svg") repeat 0 0;
   background-size: cover;
   -webkit-animation: slide 20s linear infinite;
   animation: slide 20s linear infinite;
   box-sizing: border-box;
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
 }
 
 .login-box,
 .register-box {
-<<<<<<< HEAD
-<<<<<<< HEAD
   width: 460px;
 }
 
 .habillage-form {
   padding:20px!important;
   border-radius:8px!important;
-=======
-  width: 360px;
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
-  width: 360px;
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
 }
 
 @media (max-width: 576px) {
@@ -19797,15 +19755,7 @@ html.maximized-card {
 .projects .table-avatar img {
   border-radius: 50%;
   display: inline;
-<<<<<<< HEAD
-<<<<<<< HEAD
   /* width: 2.5rem; */
-=======
-  width: 2.5rem;
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
-  width: 2.5rem;
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
 }
 
 .projects .project-state {

@@ -12447,13 +12447,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .user-panel > .info {
     display: block !important;
     -webkit-transform: translateZ(0);
-<<<<<<< HEAD
-<<<<<<< HEAD
     transform: translateZ(0);
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
   }
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-sidebar > .nav-item > .nav-link > span, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .nav-sidebar > .nav-item > .nav-link > span {
     display: inline-block !important;
@@ -12561,13 +12555,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .user-panel > .info {
     display: block !important;
     -webkit-transform: translateZ(0);
-<<<<<<< HEAD
-<<<<<<< HEAD
     transform: translateZ(0);
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
   }
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .nav-sidebar > .nav-item > .nav-link > span, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .nav-sidebar > .nav-item > .nav-link > span {
     display: inline-block !important;
@@ -19756,15 +19744,7 @@ html.maximized-card {
 .projects .table-avatar img {
   border-radius: 50%;
   display: inline;
-<<<<<<< HEAD
-<<<<<<< HEAD
   /* width: 2.5rem; */
-=======
-  width: 2.5rem;
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
-=======
-  width: 2.5rem;
->>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
 }
 
 .projects .project-state {

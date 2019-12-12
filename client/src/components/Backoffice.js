@@ -135,7 +135,8 @@ class Backoffice extends Component {
 
                                         <div className="card-footer">
                                             <button type="submit" className="btn btn-primary">Ajouter</button>
-                                            <button type="reset" className="btn btn-default float-right">Effacer></button>                                        </div>
+                                            <button type="reset" className="btn btn-default float-right">Effacer></button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
