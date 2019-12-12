@@ -11845,7 +11845,10 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
     display: block !important;
     -webkit-transform: translateZ(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
     transform: translateZ(0);
+=======
+>>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
 =======
 >>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
   }
@@ -11956,7 +11959,10 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
     display: block !important;
     -webkit-transform: translateZ(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
     transform: translateZ(0);
+=======
+>>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
 =======
 >>>>>>> 3c004d6d6ae07ceb3c9587bfcba5f4dcf8ea30a1
   }

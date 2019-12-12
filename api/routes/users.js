@@ -2,8 +2,6 @@ const express = require('express')
 const users = express.Router()
 const cors = require('cors')
 const bcrypt = require('bcrypt');
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
 
 const models = require('../db/models/index')
 users.use(cors())
