@@ -1,19 +1,41 @@
+
 import React, {Component} from 'react';
 import axios from 'axios';
-const API_URL = "http://localhost:5001";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 
 export default class Dashboard extends Component {
     constructor(props){
         super(props)
-        const total = localStorage.getItem("total");
         this.state = {
             ticketNumber: '',
-            total: total
+            total: ''
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
       }
+
+    componentDidMount(){
+        this.callApi();
+    }
+
+    callApi(){
+        const id = localStorage.getItem('idUser');
+        const token = localStorage.getItem('token');
+        const url = `${API_URL}/users/${id}/tickets`;
+        axios.get(url, {
+            method: 'Get',
+            headers: {
+                'Authorization': 'Bearer '+token
+            }
+        })
+        .then(response => response.data)
+        .then(res => {
+            this.setState({ total: res.numberOfRows})
+        })
+        .catch(err => console.log(err));
+    }
   
       onChange = e => {
         this.setState({ [e.target.id]: e.target.value });

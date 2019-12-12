@@ -2,21 +2,39 @@
 
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default class SideBar extends Component {
-    state = {
-        firstName: '',
-        lastName: ''
-    }
+    constructor(props){
+        super(props)
+        this.state = {
+            firstName: '',
+            lastName: ''
+        };
+      }
 
     componentDidMount(){
         this.callApi();
     }
 
     callApi() {
-        const firstName = localStorage.getItem('firstName');
-        const lastName = localStorage.getItem('lastName');
-        this.setState({ firstName: firstName, lastName: lastName })
+        const id = localStorage.getItem('idUser');
+        const token = localStorage.getItem('token');
+            
+        const url = `${API_URL}/users/${id}`;
+        axios.get(url, {
+            method: 'Get',
+            headers: {
+                'Authorization': 'Bearer '+token
+            }
+        })
+        .then(response => response.data)
+        .then(data => {
+            this.setState({ firstName: data.user.firstName, lastName: data.user.lastName})
+        })
+        .catch(err => console.log(err));
     }
 
     render(){

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import axios from 'axios';
-const API_URL = "http://localhost:5001";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default class Dashboard extends Component {
     constructor(props){
@@ -47,10 +47,10 @@ export default class Dashboard extends Component {
             this.props.history.push('/login');
           }        
         })
-        // .catch(err => {
-        //   console.error(err);
-        //   alert('Error please try again...');
-        // })
+        .catch(err => {
+          console.error(err);
+          alert('Error please try again...');
+        })
       }  
     
     render(){

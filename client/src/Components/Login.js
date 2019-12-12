@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-const API_URL = "http://localhost:5001";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default class Dashboard extends Component {
     constructor(props){
@@ -35,16 +35,11 @@ export default class Dashboard extends Component {
         })
         .then(res => res.data)
         .then(res => {
-          const { token } = res;
-          const { user: { idUser, firstName, lastName, phone, email} } = res;
+          const { user: { idUser}, token} = res;
           localStorage.setItem('token', token);
           localStorage.setItem('idUser', idUser);
-          localStorage.setItem('lastName', lastName);
-          localStorage.setItem('firstName', firstName);
-          localStorage.setItem('email', email);
-          localStorage.setItem('phone', phone);
           if (res.status === 200){
-            this.props.history.push('/show-earning');
+            this.props.history.push('/edit-account');
           }        
         })
         .catch(err => {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-const API_URL = "http://localhost:5001";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default class Content extends Component {
     constructor(props){
@@ -11,32 +12,61 @@ export default class Content extends Component {
           firstName: '',
           lastName: '',
           phone: '',
+          total: '',
+          role:'',
           total: ''
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
       }
   
-      onChange = e => {
+    onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
-      };
+    };
   
 
-      componentDidMount(){
+    componentDidMount(){
+        this.callApi2()
         this.callApi();
-      }
+    }
 
-      callApi() {
-        const firstName = localStorage.getItem('firstName');
-        const lastName = localStorage.getItem('lastName');
-        const email = localStorage.getItem('email');
-        const phone = localStorage.getItem('phone');
+    callApi2(){
+        const id = localStorage.getItem('idUser');
+        const url = `${API_URL}/users/${id}/tickets`;
+        const token = localStorage.getItem('token');
+        axios.get(url, {
+            method: 'Get',
+            headers: {
+                'Authorization': 'Bearer '+token
+            }
+        })
+        .then(response => response.data)
+        .then(res => {
+            this.setState({ total: res.numberOfRows})
+        })
+        .catch(err => console.log(err));
+    }
+
+    callApi() {
+        const id = localStorage.getItem('idUser');
+        const token = localStorage.getItem('token');
         const password = localStorage.getItem('pass');
-        const total = localStorage.getItem('total');
-        this.setState({firstName: firstName, lastName: lastName, email: email, phone: phone, password: password, total: total})
-      }
 
-      onSubmit = e => {
+        const url = `${API_URL}/users/${id}`;
+        axios.get(url, {
+            method: 'Get',
+            headers: {
+                'Authorization': 'Bearer '+token
+            }
+        })
+        .then(response => response.data)
+        .then(data => {
+            this.setState({ password: password, firstName: data.user.firstName, lastName: data.user.lastName, email: data.user.email, phone: data.user.phone, role: data.user.role});
+        })
+        .catch(err => console.log(err));
+    }
+
+    onSubmit = e => {
         e.preventDefault();
         const userData = {
           email: this.state.email,
@@ -103,7 +133,6 @@ export default class Content extends Component {
                                         </div>
 
                                         <h3 className="profile-username text-center">{this.state.firstName} {this.state.lastName}</h3>
-
                                         <p className="text-muted text-center">{this.state.role}</p>
 
                                         <ul className="list-group list-group-unbordered mb-3">
