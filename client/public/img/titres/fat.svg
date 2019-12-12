@@ -11,12 +11,12 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    id="svg2"
-   width="800"
+   width="980"
    height="350"
-   viewBox="0 0 800 350"
+   viewBox="0 0 980 350"
    sodipodi:docname="fat.svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   inkscape:export-filename="/home/charles/Bureau/fatboar-site/client/public/img/titres/modalites.png"
+   inkscape:version="0.91 r13725"
+   inkscape:export-filename="/home/charles/Bureau/fatboar-site/client/public/img/titres/cadeaux.png"
    inkscape:export-xdpi="99"
    inkscape:export-ydpi="99">
   <metadata
@@ -42,30 +42,30 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1853"
-     inkscape:window-height="1025"
+     inkscape:window-width="1861"
+     inkscape:window-height="1056"
      id="namedview4"
      showgrid="false"
      inkscape:showpageshadow="false"
-     inkscape:zoom="0.52444444"
-     inkscape:cx="261.19824"
+     inkscape:zoom="1.0488889"
+     inkscape:cx="376.10764"
      inkscape:cy="73.61669"
-     inkscape:window-x="67"
-     inkscape:window-y="27"
+     inkscape:window-x="59"
+     inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer4" />
   <g
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="BoarIcon"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <g
        style="opacity:0.6;fill:#dcdddf;fill-opacity:0.94117647"
-       transform="matrix(1.1044218,0,0,1.1044218,275.44351,-78.581896)"
+       transform="matrix(1.1044218,0,0,1.1044218,365.44351,-78.581896)"
        id="g894">
       <g
          id="g911"
-         transform="translate(-1.4140848e-6)">
+         transform="translate(-1.4140848e-6,0)">
         <g
            transform="matrix(1.2651868,0,0,1.2651868,-29.90772,-71.325274)"
            id="g854">
@@ -140,13 +140,13 @@
     <text
        id="text849-9-5"
        y="208.177"
-       x="105.63625"
+       x="213.75375"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'URW Gothic L';-inkscape-font-specification:'URW Gothic L';letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:80px;font-family:'URW Gothic L';-inkscape-font-specification:'URW Gothic L Semi-Bold';letter-spacing:5px;fill:#ffffff;fill-opacity:0.94117647"
          y="208.177"
-         x="105.63625"
+         x="213.75375"
          id="tspan847-3-0"
-         sodipodi:role="line">Les modalités</tspan></text>
+         sodipodi:role="line">Les cadeaux</tspan></text>
   </g>
 </svg>

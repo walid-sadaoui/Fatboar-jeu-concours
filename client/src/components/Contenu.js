@@ -14,9 +14,7 @@ class MonCompte extends Component {
                             <div className="col-sm-6">
                                 <h1 className="m-0 text-dark">Espace personnel</h1>
                             </div>
-
                         </div>
-
                     </div>
 
                 </div>

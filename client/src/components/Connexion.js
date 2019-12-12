@@ -1,9 +1,56 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import TitreConnexion from '../../public/img/titres/connexion.png';
+import TitreConnexion from 'public/img/titres/connexion.png';
 import Footer from "./Footer";
+import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 class Connexion extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+          email: '',
+          password: ''
+        };
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this); 
+      }
+  
+      onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+      };
+  
+      onSubmit = e => {
+        e.preventDefault();
+        const userData = {
+          email: this.state.email,
+          password: this.state.password
+        };
+        localStorage.setItem('pass', userData.password);
+        const url = `${API_URL}/auth/login`;
+        axios.post(url, userData, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'content-Type': 'application/json'
+          },
+          body: JSON.stringify(userData)
+        })
+        .then(res => res.data)
+        .then(res => {
+          const { user: { idUser}, token} = res;
+          localStorage.setItem('token', token);
+          localStorage.setItem('idUser', idUser);
+          if (res.status === 200){
+            this.props.history.push('/mon-compte');
+          }        
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Error logging in please try again...')
+        })
+      }
+
     render(){
         return (
             <React.Fragment>
@@ -14,9 +61,9 @@ class Connexion extends Component {
                     </div>
                     <div className="card habillage-form wow fadeInUp">
                         <div className="card-body login-card-body">
-                            <form action="#" method="post">
+                            <form onSubmit={this.onSubmit}>
                                 <div className="input-group mb-3">
-                                    <input type="email" className="form-control" placeholder="E-mail" />
+                                    <input type="email" className="form-control" placeholder="E-mail" id="email" name="email" value={this.state.email} onChange={this.onChange}/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-envelope"></span>
@@ -24,7 +71,7 @@ class Connexion extends Component {
                                         </div>
                                 </div>
                                 <div className="input-group mb-3">
-                                    <input type="password" className="form-control" placeholder="Mot de passe" />
+                                    <input type="password" className="form-control" placeholder="Mot de passe"  id="password" name="password" value={this.state.password} onChange={this.onChange}/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-lock"></span>
@@ -32,7 +79,7 @@ class Connexion extends Component {
                                         </div>
                                 </div>
                                     <span className="centre">
-                                    <NavLink to="/backoffice"><button type="submit" className="btn btn-primary btn-block">Se connecter</button></NavLink>
+                                        <button type="submit" className="btn btn-primary btn-block">Se connecter</button>
                                     </span>
                             </form>
 

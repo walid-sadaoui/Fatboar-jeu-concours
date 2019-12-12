@@ -8,10 +8,9 @@ class Footer extends React.Component{
             <div className="container">
               <div className="copyright">
                 <ul>
-                  <li><a href="#">MENTIONS LÉGALES</a> |</li>
-                  <li><a href="#">DONNÉES PERSONNELLES</a> |</li>
-                  <li><a href="#">MODALITÉS</a> |</li>
-                  <li><a href="#">FAQ</a></li>
+                  <li><a href="/mentions-legales">MENTIONS LÉGALES</a> |</li>
+                  <li><a href="/donnees-personnelles">DONNÉES PERSONNELLES</a> |</li>
+                  <li><a href="/modalites">MODALITÉS</a></li>
                 </ul>
                 RESTAURANT FATBOAR™ & © 2011 - 2020. Tous droits réservés.
               </div>

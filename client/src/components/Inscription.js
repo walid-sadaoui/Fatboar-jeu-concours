@@ -1,9 +1,61 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import TitreInscription from '../../public/img/titres/inscription.png';
+import TitreInscription from 'public/img/titres/inscription.png';
 import Footer from './Footer';
+import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default class Dashboard extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+          firstName: '',
+          lastName: '',
+          password: '',
+          email: '',
+          phone: ''
+        };
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);  
+      }
+    
+      onChange = e => {
+        this.setState({ [e.target.id]: e.target.value});
+      }
+    
+      onSubmit = e => {
+        e.preventDefault();
+        const userData = {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          password: this.state.password,
+          email: this.state.email,
+          phone: this.state.phone
+        };
+    
+        const url = `${API_URL}/auth/register`;
+        console.log(url)
+        axios.post(url, userData, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'content-Type': 'application/json'
+          },
+          body: JSON.stringify(userData)
+        })
+        .then(res => res.data)
+        .then(res => {
+          if (res.status === 200){
+            alert('Inscription réussie !')
+            this.props.history.push('/connexion');
+          }        
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Error please try again...');
+        })
+      } 
+
     render(){
         return (
             <React.Fragment>
@@ -15,17 +67,9 @@ export default class Dashboard extends Component {
                     <div className="card habillage-form wow fadeInUp">
                         <div className="card-body register-card-body">
                             {/* <p className="login-box-msg">S'enregistrer</p> */}
-                            <form action="../../index.html" method="post">
-                            <div className="input-group mb-3">
-                                    <input type="number" className="form-control" placeholder="N° du Ticket (optionnel) " />
-                                        <div className="input-group-append">
-                                            <div className="input-group-text">
-                                                <span className="fas fa-ticket-alt"></span>
-                                            </div>
-                                        </div>
-                                </div>
+                            <form onSubmit={this.onSubmit}>
                                 <div className="input-group mb-3">
-                                    <input type="text" className="form-control" placeholder="Nom" />
+                                    <input type="text" className="form-control" placeholder="Prénom"  name="firstName" value={this.state.firstName} id="firstName" onChange={this.onChange}/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-user"></span>
@@ -33,7 +77,15 @@ export default class Dashboard extends Component {
                                         </div>
                                 </div>
                                 <div className="input-group mb-3">
-                                    <input type="email" className="form-control" placeholder="E-mail" />
+                                    <input type="text" className="form-control" placeholder="Nom"  name="lastName" value={this.state.lastName} id="lastName" onChange={this.onChange} />
+                                        <div className="input-group-append">
+                                            <div className="input-group-text">
+                                                <span className="fas fa-user"></span>
+                                            </div>
+                                        </div>
+                                </div>                                
+                                <div className="input-group mb-3">
+                                    <input type="email" className="form-control" placeholder="E-mail" name="email" value={this.state.email} id="email" onChange={this.onChange} />
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-envelope"></span>
@@ -41,7 +93,7 @@ export default class Dashboard extends Component {
                                         </div>
                                 </div>
                                 <div className="input-group mb-3">
-                                    <input type="password" className="form-control" placeholder="Mot de passe" />
+                                    <input type="password" className="form-control" placeholder="Mot de passe" name="password" value={this.state.password} id="password" onChange={this.onChange}/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-lock"></span>
@@ -49,7 +101,7 @@ export default class Dashboard extends Component {
                                         </div>
                                 </div>
                                 <div className="input-group mb-3">
-                                    <input type="password" className="form-control" placeholder="Confirmer mot de passe" />
+                                    <input type="tel" className="form-control" placeholder="Numéro de téléphone" name="phone" value={this.state.phone} id="phone" onChange={this.onChange}/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-lock"></span>

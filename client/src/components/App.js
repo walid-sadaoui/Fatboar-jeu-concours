@@ -11,6 +11,9 @@ import Cadeaux from './Cadeaux';
 import Connexion from './Connexion';
 import Inscription from './Inscription';
 import MonCompte from './Compte';
+import Donnees from './Donnees';
+import Mentions from './Mentions';
+import EmailsUsers from './EmailsUsers';
 
 class App extends React.Component{
     render(){
@@ -24,8 +27,11 @@ class App extends React.Component{
                         <Route path="/connexion" component={Connexion}/>
                         <Route path="/inscription" component={Inscription}/>
                         <Route path="/modalites" component={Modalites}/>
+                        <Route path="/donnees-personnelles" component={Donnees}/>
+                        <Route path="/mentions-legales" component={Mentions}/>
                         <Route path="/cadeaux" component={Cadeaux}/>
                         <Route path="/backoffice" component={Backoffice}/>
+                        <Route path="/users-mails" component={EmailsUsers}/>
                         <Route path="/gains" component={Gains}/>
                         <Route path="/mon-compte" component={MonCompte}/>
                         <Route path="/utilisateurs" component={Utilisateurs}/>

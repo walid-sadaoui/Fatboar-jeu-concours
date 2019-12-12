@@ -508,9 +508,13 @@ h6 {
   position: relative;
 }
 
+#Cadeaux h3 {
+  font-size: 20px;
+}
+
 /* Modalités */
 #Modalites{
-  background:rgb(202,54,49) url("../img/bg-filtre.svg") repeat 0 0;
+  background:rgb(158, 32, 27) url("../img/bg-filtre.svg") repeat 0 0;
   background-size: cover;
   /* -webkit-animation: slide 20s linear infinite;
   animation: slide 20s linear infinite; */
@@ -519,6 +523,40 @@ h6 {
 }
 
 #Modalites p {
+  color: #fff;
+  text-align: justify;
+}
+
+/* Modalités */
+#Mentions{
+  background: rgb(158, 32, 27) url("../img/bg-filtre.svg") repeat 0 0;
+  background-size: cover;
+  /* -webkit-animation: slide 20s linear infinite;
+  animation: slide 20s linear infinite; */
+  box-sizing: border-box;
+  position: relative;
+}
+
+#Mentions span {
+  color: #fff!important;
+  text-align: justify!important;
+}
+
+#Mentions h2 {
+  color: #fff!important;
+  font-weight: bold;
+}
+
+#Donnees{
+  background: rgb(158, 32, 27) url("../img/bg-filtre.svg") repeat 0 0;
+  background-size: cover;
+  /* -webkit-animation: slide 20s linear infinite;
+  animation: slide 20s linear infinite; */
+  box-sizing: border-box;
+  position: relative;
+}
+
+#Donnees p {
   color: #fff;
   text-align: justify;
 }
@@ -1053,6 +1091,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   bottom: 0;
   position: fixed;
   width: 100%;
+  z-index: 5;
 }
 
 #footer .footer-top {
@@ -1308,7 +1347,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   }
 
   #nav-menu-container {
-    display: none;
+    display: inline-block;
   }
 
   #mobile-nav-toggle {
