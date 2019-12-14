@@ -39,7 +39,7 @@ users.get("/:idUser", async (req, res) => {
                 msg: 'User not found'
             });
         }
-        res.status(200).json({
+        return res.status(200).json({
             status: 200,
             user
         });
@@ -77,9 +77,10 @@ users.get("/:idUser/tickets", async (req, res) => {
 })
 
 users.put("/:idUser/ticket", async (req, res) => {
-    const { user } = req.user;
     const { ticketNumber } = req.body;
-    if (user.role != 'CLIENT') {
+    const { user } = req.user;
+    const { idUser } = req.params;
+    if (user.role === 'CLIENT' && user.idUser != idUser) {
         return res.status(403).send('Access Denied');
     }
     try {
@@ -87,11 +88,11 @@ users.put("/:idUser/ticket", async (req, res) => {
         if (!ticket) {
             return res.status(404).send(`Ticket not found`);
         }
-        if (ticket.state === 'UNATTRIBUTED')  {
+        if (ticket.state === 'ATTRIBUTED')  {
             ticket.update({
                 idUser: user.idUser,
                 useDate: Date.now(),
-                state: 'ATTRIBUTED'
+                state: 'ASSOCIATED'
             });
             return res.status(200).json({
                 status: 200,
@@ -122,11 +123,13 @@ users.put("/:idUser", async (req, res) => {
         const user = await models.user.findOne({ where: { idUser: idUser }});
         if(!user) return res.status(404).send("User not Found");
 
-        // Hash password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(userUpdated.password, salt);
-        
-        userUpdated.password = hashedPassword
+        if (userUpdated.password) {
+            // Hash password
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(userUpdated.password, salt);
+            
+            userUpdated.password = hashedPassword
+        }
 
         const [numberAffectedRows, updatedUser] = await models.user.update(userUpdated, {
             where: {idUser: idUser},
@@ -182,7 +185,6 @@ users.delete("/:idUser", async (req, res) => {
     }
     try{
         const user = await models.user.findOne({ where: { idUser: idUser }});
-        console.log('DELETED USER : ' + user);
         if(!user) return res.status(404).json({
             status: 404,
             msg: "User not Found"

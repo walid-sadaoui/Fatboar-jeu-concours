@@ -32,7 +32,7 @@ router.put("/:ticketNumber", async (req, res) => {
         if (!ticket) {
             return res.status(404).send(`Ticket not found`);
         }
-        if (ticket.state == 'UNATTRIBUTED')  {
+        if (ticket.state == 'ATTRIBUTED')  {
             ticket.update(ticketParams, {where: {
                 ticketNumber: ticketNumber
             }});

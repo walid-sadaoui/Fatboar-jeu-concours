@@ -37,13 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       values: ['CLIENT', 'EMPLOYEE', 'ADMIN'],
       defaultValue: 'CLIENT',
       allowNull: false
-    },
-    state: {
-      type: DataTypes.ENUM,
-      values: ['ONLINE', 'OFFLINE'],
-      defaultValue: 'OFFLINE',
-      allowNull: false
-    },
+    }
   }, {
     timestamps: false
   });
