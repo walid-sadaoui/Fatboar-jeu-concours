@@ -8,6 +8,7 @@ pipeline {
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
         PROJECT_NAME='fatboar-ci'
+        JWT_SECRET='fatboar-ci'
     }
     stages {
         stage('Build') {
@@ -19,9 +20,17 @@ pipeline {
             }
         }
         stage('Test') {
-            steps {
+            steps {    
                 echo 'Testing..'
-                echo 'Run tests with Docker'
+                sh "docker exec fatboar-back-build npm install"
+                sh "docker exec fatboar-back-build npm run ci-test"
+                sh "docker cp fatboar-back-build:/usr/src/app/test-results.xml ." 
+            }
+            post {
+                always {
+                    echo 'Generating Test Report'
+                    junit 'test-results.xml'
+                }
             }
         }
         stage('Push to registry') {
