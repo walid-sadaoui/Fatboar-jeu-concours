@@ -24,12 +24,19 @@ pipeline {
                 echo 'Testing..'
                 sh "docker exec fatboar-back-build npm install"
                 sh "docker exec fatboar-back-build npm run ci-test"
-                sh "docker cp fatboar-back-build:/usr/src/app/test-results.xml ." 
+                sh "docker cp fatboar-back-build:/usr/src/app/mochawesome-report ." 
             }
             post {
                 always {
                     echo 'Generating Test Report'
-                    junit 'test-results.xml'
+                    publishHTML target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'mochawesome-report',
+                        reportFiles: 'mochawesome.html',
+                        reportName: 'Unit Tests Report'
+                    ]
                 }
             }
         }
