@@ -45,9 +45,7 @@ pipeline {
                     echo 'Push images to private Docker Registry'
                     echo "BRANCHE ${env.BRANCH_NAME}"
                     withDockerRegistry([ credentialsId: "furious-registry", url: "https://registry.fatboar.site" ]) {
-                        echo 'Je suis dans le Docker REGISTRY'
                         if (env.BRANCH_NAME == 'develop') {
-                            echo "BRANCHE ${env.BRANCH_NAME}"
                             sh 'docker container ls -a'
                             sh 'docker tag fatboar-back_build registry.fatboar.site/fatboar-back:latest'
                             sh 'docker push registry.fatboar.site/fatboar-back:latest'
@@ -68,12 +66,7 @@ pipeline {
                 branch 'develop'
             }
             steps {
-                echo 'Deploying....'
-                echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
-                echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
-                echo 'docker pull registry.fatboar.site/node:stage'
-                echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours-stage'
-                echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-stage-db'
+                echo 'Deploying to stage...'
                 sshPublisher(
                    continueOnError: false, failOnError: true,
                    publishers: [
@@ -94,11 +87,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Deploying....'
-                echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
-                echo 'Si branch master : si test pass --> deploy fatboar.site'
-                echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours'
-                echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-db'
+                echo 'Deploying to production....'
                 sshPublisher(
                    continueOnError: false, failOnError: true,
                    publishers: [
