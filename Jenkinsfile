@@ -43,7 +43,7 @@ pipeline {
         stage('Functionnal Tests') {
             steps {    
                 echo 'Performing functionnal tests..'
-                sh 'docker run -t --rm -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/Fatboar"'
+                sh 'docker run -t --rm -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="TestSuites/Fatboar"'
             }
             post {
                 always {
