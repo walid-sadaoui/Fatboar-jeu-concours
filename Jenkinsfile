@@ -16,10 +16,9 @@ pipeline {
                 echo 'Building..'
                 sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} build --no-cache"
                 sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} up -d"
-                // Faire un multistage build pour ne conserver que les fichiers necessaires dans l'image docker
             }
         }
-        stage('Unit Tests') {
+        stage('Tests') {
             steps {    
                 echo 'Performing Unit Tests..'
                 sh "docker exec fatboar-back-build npm install"
@@ -35,20 +34,8 @@ pipeline {
                         keepAll: true,
                         reportDir: 'mochawesome-report',
                         reportFiles: 'mochawesome.html',
-                        reportName: 'Unit Tests Report'
+                        reportName: 'Tests Report'
                     ]
-                }
-            }
-        }
-        stage('Functionnal Tests') {
-            steps {    
-                echo 'Performing functionnal tests..'
-                sh 'docker run -t --rm -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="TestSuites/Fatboar"'
-            }
-            post {
-                always {
-                    archiveArtifacts artifacts: 'report/**/*.*', fingerprint: true
-                    junit 'report/**/JUnit_Report.xml'
                 }
             }
         }
