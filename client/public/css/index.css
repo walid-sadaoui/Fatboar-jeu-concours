@@ -18,10 +18,18 @@
 }
 
 .FormBody {
-	background: url("../img/confetti.jpg") center top no-repeat fixed;
-	background-size: cover;
+	background:rgb(202,54,49) url("../img/bg-filtre.svg") repeat 0 0;
+  	background-size: cover;
+  	-webkit-animation: slide 20s linear infinite;
+  	animation: slide 20s linear infinite;
+  	box-sizing: border-box;
+	position: relative;
+}
+
+.AddTicketBody {
+	background:#A0CCFB;
 	padding: 60px 0 40px 0;
-	position: relative;	  
+	position: relative;
 }
 
 .formulaire {
@@ -30,6 +38,13 @@
 	border:1px solid #fff;
 	border-radius:40px;
 	}
+
+.AddTicketForm {
+	padding:40px;
+	margin:100px 50px;
+	border:1px solid #fff;
+	border-radius:40px;
+}
 
 label {
 	color:#fff;
@@ -41,7 +56,7 @@ form p {
 	font-size: 15px;
 }
 
-.LogoConnexion, .section-header img, .jeu-concours-col img, .FormBody img{
+.LogoConnexion, .section-header img, .jeu-concours-col img, .FormBody img, .AddTicketBody img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto
@@ -95,7 +110,7 @@ h3, label, .centre button {
 	}
 
 
-#inputEmail4{
+#inputEmail4, #inputTicket{
 
 	border-top:none;
 	border-left:none;

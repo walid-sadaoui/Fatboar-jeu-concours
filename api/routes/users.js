@@ -1,13 +1,21 @@
 const express = require('express')
 const users = express.Router()
 const cors = require('cors')
+const bcrypt = require('bcrypt');
 
 const models = require('../db/models/index')
 users.use(cors())
 
 users.get("/", async (req, res) => {
+    const { user } = req.user;
+    if (user.role === 'CLIENT') {
+        return res.status(403).send('Access Denied');
+    }
     try {
-        const userList = await models.user.findAll();
+        const userList = await models.user.findAll({ where: { role: "CLIENT" }});
+        if (!userList) {
+            return res.status(404).send(`No users found`)
+        }
         res.status(200).json({
             msg: "All Users",
             userList
@@ -17,102 +25,187 @@ users.get("/", async (req, res) => {
     }
 })
 
-users.get("/:id/tickets", async (req, res) => {
-    // try {
-    //     const userList = await models.User.findAll();
-    //     res.status(200).json({
-    //         msg: "All Users",
-    //         userList
-    //     });
-    // } catch (error) {
-    //     res.status(500).send('Server Error');
-    // }
+users.get("/:idUser", async (req, res) => {
+    const { user } = req.user;
+    const { idUser } = req.params;
+    if (user.role === 'CLIENT' && user.idUser != idUser) {
+        return res.status(403).send('Access Denied');
+    }
+    try {
+        const user = await models.user.findOne({ where: { idUser: idUser} });
+        if (!user) {
+            return res.status(404).json({
+                status: 404,
+                msg: 'User not found'
+            });
+        }
+        return res.status(200).json({
+            status: 200,
+            user
+        });
+    } catch (err) {
+        return res.status(500).json({
+            status: 500,
+            err
+        });
+    }    
 })
 
-users.put("/:id/tickets/:ticketNumber", async (req, res) => {
+users.get("/:idUser/tickets", async (req, res) => {
     const { user } = req.user;
-    const { ticketNumber } = req.params;
+    const { idUser } = req.params;
+    if (user.role === 'CLIENT' && user.idUser != idUser) {
+        return res.status(403).send('Access Denied');
+    }
+    try {
+        const tickets = await models.ticket.findAll({ where: { idUser: idUser}, include: [ { model: models.gain } ] });
+        const numberOfRows = await models.ticket.count({ where: { idUser: idUser } })
+
+        if (!tickets) {
+            return res.status(404).send(`No tickets found for this client`);
+        }
+        res.status(200).json({
+            status: 200,
+            msg: `Tickets du client ${user.firstName} ${user.lastName}`,
+            tickets,
+            numberOfRows
+        });
+    } catch (err) {
+        return res.status(500).send(err);
+    }
+    
+})
+
+users.put("/:idUser/ticket", async (req, res) => {
+    const { ticketNumber } = req.body;
+    const { user } = req.user;
+    const { idUser } = req.params;
+    if (user.role === 'CLIENT' && user.idUser != idUser) {
+        return res.status(403).send('Access Denied');
+    }
     try {
         const ticket = await models.ticket.findOne({ where: { ticketNumber: ticketNumber} })
         if (!ticket) {
-            return res.status(400).send(`Ce ticket n'existe pas`);
+            return res.status(404).send(`Ticket not found`);
         }
-        if (ticket.state == 'UNATTRIBUTED')  {
-            // update ticket : state ATTRIBUTED, idUSer = user.idUser
+        if (ticket.state === 'ATTRIBUTED')  {
             ticket.update({
                 idUser: user.idUser,
-                state: 'ATTRIBUTED'
+                useDate: Date.now(),
+                state: 'ASSOCIATED'
             });
             return res.status(200).json({
+                status: 200,
                 msg: 'Ticket updated',
                 ticket
             })
         } else {
-            // err msg ticket not available 
-            return res.status(400).send(`Ce ticket est invalide`);
+            return res.status(422).send(`Invalid Ticket`);
         }
     } catch (err) {
-        return res.status(400).send(err);
+        return res.status(500).send(err);
     }
 })
 
 
-users.put("/:id", async (req, res) => {
-    // Get the url param (id)
-    const { id } = req.params;
-    let { firstname, email, lastname, role } = req.body;
+users.put("/:idUser", async (req, res) => {
+    const { user } = req.user;
+    const { idUser } = req.params;
+    const userUpdated = req.body;
 
+    if (user.role === 'CLIENT' && user.idUser != idUser) {
+        return res.status(403).json({
+            status: 403,
+            msg: 'Access Denied'
+        });
+    }
     try {
-        const user = await models.user.findOne({ where: { id: id }});
-        if(!user) return res.status(400).send("User not Found");
-        user
-        .update({
-            firstname: firstname,
-            email: email,
-            lastname: lastname,
-            role: role
+        const user = await models.user.findOne({ where: { idUser: idUser }});
+        if(!user) return res.status(404).send("User not Found");
+
+        if (userUpdated.password) {
+            // Hash password
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(userUpdated.password, salt);
+            
+            userUpdated.password = hashedPassword
+        }
+
+        const [numberAffectedRows, updatedUser] = await models.user.update(userUpdated, {
+            where: {idUser: idUser},
+            returning: true,
+            plain: true
         })
-        .then(user => res.json({
+    
+        return res.status(200).json({
+            status: 200,    
             msg: "User successfully updated",
-            user: user
-        }))
-        .catch(err => res.status(400).send(err));
+            updatedUser
+        });
     } catch (error) {
-        res.status(500).send('Server Error');
+        res.status(500).json({
+            status: 500,
+            msg: 'Server Error'
+        });
     }
 })
 
-users.patch("/:id", async (req, res) => {
-    // Get the url param (id)
-    const { id } = req.params;
-
+users.patch("/:idUser", async (req, res) => {
+    const { user } = req.user;
+    const { idUser } = req.params;
+    const userUpdated = req.body;
+    if (user.role === 'CLIENT' && user.idUser != idUser) {
+        return res.status(403).send('Access Denied');
+    }
     try {
-        const user = await models.user.findOne({ where: { id: id }});
-        if(!user) return res.status(400).send("User not Found");
-        user
-        .update(req.body)
-        .then(user => res.json({
-            msg: "User successfully updated",
-            user: user
-        }))
-        .catch(err => res.status(400).send(err));
+        const user = await models.user.findOne({ where: { idUser: idUser }});
+        if(!user) return res.status(404).send("User not Found");
+        const [numberAffectedRows, updatedUser] = await models.user.update(userUpdated, {
+            where: {idUser: idUser},
+            returning: true,
+            plain: true
+        })
+        return res.status(200).json({
+        msg: "User successfully updated",
+        user: updatedUser
+        })
     } catch (error) {
         res.status(500).send('Server Error');
     }
 })
 
-users.delete("/:id", async (req, res) => {
-    const { id } = req.params;
-
+users.delete("/:idUser", async (req, res) => {
+    const { user } = req.user;
+    const { idUser } = req.params;
+    if ((user.role === 'CLIENT' && user.idUser != idUser) || user.role === 'EMPLOYEE') {
+        return res.status(403).json({
+            status: 403,
+            msg:'Access Denied'
+        });
+    }
     try{
-        const user = await models.user.findOne({ where: { id: id }});
-        if(!user) return res.status(400).send("User not Found");
-        user
-        .destroy()
-        .then(() => res.status(200).send("User successfully Deleted"))
-        .catch(err => res.status(400).send(err));
+        const user = await models.user.findOne({ where: { idUser: idUser }});
+        if(!user) return res.status(404).json({
+            status: 404,
+            msg: "User not Found"
+        });
+        await models.user
+        .destroy({
+            where: {idUser: idUser}
+        })
+        .then(() => res.status(200).json({
+            status: 200,
+            msg: "User successfully Deleted"
+        }))
+        .catch(err => res.status(500).json({
+            status: 500,
+            err
+        }));
     } catch(error){
-        res.status(500).send('Server Error');
+        res.status(500).json({
+            status: 500,
+            err: 'Server Error'
+        });
     }
 })
 

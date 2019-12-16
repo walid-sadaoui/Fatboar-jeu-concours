@@ -15,4 +15,4 @@ RUN npm install --global npm@6.9.0 nodemon
 
 COPY package*.json ./
 
-RUN npm cache clean --force && npm install
+RUN npm cache clean --force && npm install 

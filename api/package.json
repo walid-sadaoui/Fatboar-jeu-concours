@@ -7,6 +7,8 @@
     "bcrypt": "^3.0.6",
     "core-util-is": "^1.0.2",
     "cors": "^2.8.5",
+    "date-format": "^3.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.20.1",
     "jsonwebtoken": "^8.5.1",
@@ -16,10 +18,23 @@
     "sequelize": "^5.19.2",
     "sequelize-cli": "^5.5.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cross-env": "^6.0.3",
+    "faker": "^4.1.0",
+    "mocha": "^6.2.2",
+    "mochawesome": "^4.1.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon -L ./bin/www",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
+    "test": "cross-env NODE_ENV=test mocha",
+    "ci-test": "npm run migrate && mocha --reporter mochawesome",
+    "start:dev": "./node_modules/.bin/sequelize db:migrate && nodemon -L ./bin/www",
     "start": "node ./bin/www"
   },
   "keywords": [],

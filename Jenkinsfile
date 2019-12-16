@@ -8,6 +8,7 @@ pipeline {
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
         PROJECT_NAME='fatboar-ci'
+        JWT_SECRET='fatboar-ci'
     }
     stages {
         stage('Build') {
@@ -15,13 +16,27 @@ pipeline {
                 echo 'Building..'
                 sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} build --no-cache"
                 sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} up -d"
-                // Faire un multistage build pour ne conserver que les fichiers necessaires dans l'image docker
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-                echo 'Run tests with Docker'
+        stage('Tests') {
+            steps {    
+                echo 'Performing Unit Tests..'
+                sh "docker exec fatboar-back-build npm install"
+                sh "docker exec fatboar-back-build npm run ci-test"
+                sh "docker cp fatboar-back-build:/usr/src/app/mochawesome-report ." 
+            }
+            post {
+                always {
+                    echo 'Generating Test Report'
+                    publishHTML target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'mochawesome-report',
+                        reportFiles: 'mochawesome.html',
+                        reportName: 'Tests Report'
+                    ]
+                }
             }
         }
         stage('Push to registry') {
@@ -30,9 +45,7 @@ pipeline {
                     echo 'Push images to private Docker Registry'
                     echo "BRANCHE ${env.BRANCH_NAME}"
                     withDockerRegistry([ credentialsId: "furious-registry", url: "https://registry.fatboar.site" ]) {
-                        echo 'Je suis dans le Docker REGISTRY'
                         if (env.BRANCH_NAME == 'develop') {
-                            echo "BRANCHE ${env.BRANCH_NAME}"
                             sh 'docker container ls -a'
                             sh 'docker tag fatboar-back_build registry.fatboar.site/fatboar-back:latest'
                             sh 'docker push registry.fatboar.site/fatboar-back:latest'
@@ -53,12 +66,7 @@ pipeline {
                 branch 'develop'
             }
             steps {
-                echo 'Deploying....'
-                echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
-                echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
-                echo 'docker pull registry.fatboar.site/node:stage'
-                echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours-stage'
-                echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-stage-db'
+                echo 'Deploying to stage...'
                 sshPublisher(
                    continueOnError: false, failOnError: true,
                    publishers: [
@@ -79,11 +87,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Deploying....'
-                echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
-                echo 'Si branch master : si test pass --> deploy fatboar.site'
-                echo 'on copie le docker-compose vers /opt/web/Fatboar-jeu-concours'
-                echo 'les volumes pour les bdd se trouvent dans /var/lib/Fatboar-jeu-concours-db'
+                echo 'Deploying to production....'
                 sshPublisher(
                    continueOnError: false, failOnError: true,
                    publishers: [

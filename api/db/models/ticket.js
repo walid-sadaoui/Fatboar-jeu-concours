@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     state: {
       type: DataTypes.ENUM,
-      values: ['AVAILABLE', 'UNATTRIBUTED', 'ATTRIBUTED', 'USED'],
+      values: ['AVAILABLE', 'ATTRIBUTED', 'ASSOCIATED', 'USED'],
       defaultValue: 'AVAILABLE'
     },
     idGain: {
