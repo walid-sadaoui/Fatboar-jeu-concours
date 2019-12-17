@@ -27,14 +27,14 @@ export default class Dashboard extends Component {
         .catch(err => console.log(err));
     }
 
+    getgains = e => {
+        localStorage.setItem("idGain", e.target.id);
+        this.props.history.push('/gains');
+    }
+
     getid = e => {
         localStorage.setItem("targetId", e.target.id);
         this.props.history.push('/mon-compte');
-    }
-
-    getGains = e => {
-        localStorage.setItem("gainId", e.target.id);
-        this.props.history.push('/gains')
     }
 
     render(){
@@ -61,18 +61,18 @@ export default class Dashboard extends Component {
 
                                 <div className="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                     <div className="card bg-light">
-                                        <div className="card-header text-muted border-bottom-0">
+                                        <div className="card-header text-muted border-bottom-0" key={user.idUser}>
                                             {user.role}
                                         </div>
                                         <div className="card-body pt-0">
                                             <div className="row">
                                                 <div className="col-7">
-                                                    <h2 className="lead"><b>{user.firstName} {user.lastName}</b></h2>
+                                                    <h2 className="lead" key={user.idUser}><b>{user.firstName} {user.lastName}</b></h2>
                                                     <ul className="ml-4 mb-0 fa-ul text-muted">
-                                                        <li className="small"><span className="fa-li"><i
+                                                        <li className="small"><span className="fa-li" key={user.idUser}><i
                                                             className="fas fa-lg fa-envelope"></i></span> {user.email}
                                                         </li>
-                                                        <li className="small"><span className="fa-li"><i
+                                                        <li className="small"><span className="fa-li" key={user.idUser}><i
                                                             className="fas fa-lg fa-phone"></i></span> {user.phone}
                                                         </li>
                                                     </ul>
@@ -85,8 +85,8 @@ export default class Dashboard extends Component {
                                         </div>
                                         <div className="card-footer">
                                             <div className="text-right">
-                                                <button className="btn btn-sm btn-danger" id={user.idUser} onClick={this.getGains}>
-                                                    <i className="fas fa-money-bill-wave"></i>
+                                                <button className="btn btn-sm btn-danger" id={user.idUser} onClick={this.getgains}>
+                                                    <i className="fas fa-money-bill-wave" id={user.idUser}></i>
                                                 </button>
                                                 <button className="btn btn-sm btn-primary" id={user.idUser} onClick={this.getid}>
                                                     <i className="fas fa-user"></i> Voir le profil

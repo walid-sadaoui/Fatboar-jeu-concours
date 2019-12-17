@@ -39,6 +39,7 @@ export default class Header extends Component {
         localStorage.removeItem('idUser');
         localStorage.removeItem('pass');
         localStorage.removeItem('gainId');
+        localStorage.removeItem('targetId');
     }
 
     render(){

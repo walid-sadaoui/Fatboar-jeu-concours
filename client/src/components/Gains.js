@@ -5,8 +5,11 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default class Content extends Component {
-    state = {
-        tickets: []
+    constructor(props){
+        super(props)
+        this.state = {
+            tickets: []
+        }
     }
 
     componentDidMount(){
@@ -15,8 +18,8 @@ export default class Content extends Component {
 
     callApi() {
         let id;
-        if (localStorage.getItem('gainId')){
-            id = localStorage.getItem('gainId');
+        if (localStorage.getItem("idGain")){
+            id = localStorage.getItem('idGain');
         } else {
             id = localStorage.getItem('idUser');
         }

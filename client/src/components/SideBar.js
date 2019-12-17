@@ -38,12 +38,12 @@ export default class SideBar extends Component {
 
     removeItem() {
         localStorage.removeItem('targetId');
-        localStorage.removeItem('gainId');
+        localStorage.removeItem('idGain');
     }
 
     render(){
         const roleU = this.state.role;
-        let userlist, emailList, gainList, addTicketPage;
+        let userlist, emailList, gainList, addTicketPage, espacePerso, tirage;
         if (roleU == "ADMIN"){
             userlist = <li class="nav-item">
                 <NavLink to="/utilisateurs" class="nav-link" activeClassName="nav-link active" onClick={this.removeItem}>
@@ -54,7 +54,7 @@ export default class SideBar extends Component {
                     </p>
                 </NavLink>
             </li>
-            emailList=<li class="nav-item">
+            emailList = <li class="nav-item">
             <NavLink to="/users-mails" class="nav-link" activeClassName="nav-link active" onClick={this.removeItem}>
                 <i class="nav-icon fas fa-envelope"></i>
                 <p style={{color:"#C2C7D0", fontWeight:"bold"}}>
@@ -63,6 +63,24 @@ export default class SideBar extends Component {
                 </p>
             </NavLink>
             </li>
+            espacePerso = <li class="nav-item">
+            <NavLink to="/stats" class="nav-link" activeClassName="nav-link active" onClick={this.removeItem}>
+                <i class="nav-icon fas fa-line-chart fa-2x"></i>
+                <p style={{color:"#C2C7D0", fontWeight:"bold"}}>
+                    Espace Personnel
+                    <span class="right badge badge-danger"></span>
+                </p>
+            </NavLink>
+            </li>
+            tirage = <li class="nav-item">
+                <NavLink to="/tirage-au-sort" class="nav-link" activeClassName="nav-link active">
+                <i class="nav-icon fas fa-hourglass-end"></i>
+                <p style={{color:"#C2C7D0", fontWeight:"bold"}}>
+                    Tirer au sort
+                    <span class="right badge badge-danger"></span>
+                </p>
+            </NavLink>
+        </li>
         }else{
             gainList = <li class="nav-item">
             <NavLink to="/gains" class="nav-link" activeClassName="nav-link active">
@@ -99,6 +117,8 @@ export default class SideBar extends Component {
 
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                                    {tirage}
+                                    {espacePerso}
                                     {addTicketPage}
                                     {gainList}
                                     <li class="nav-item">
