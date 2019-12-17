@@ -1,90 +1,102 @@
 # Fatboar-jeu-concours
 
-- Pouvoir lancer le projet dans un container
-- initialiser l'api en créeant la BDD POSTGRES avec NODE
+## Prérequis
 
-Je fais le code en local, ensuite je dois le mettre sur le serveur
+    - installer docker
+    - installer docker-compose
+    - installer git
+    - cloner le projet fatboar en local
 
-Le docker-compose va contenir les infos pour l'environnement de dev
-Le Dockerfile contient les informations pour le serveur de production test
+## Mettre en place son environnement de développement
 
-## How To Work in Dev Environment
+    - Créer un fichier .env à remplir avec les variables d'environnement présentes dans le fichier .env-sample
 
-La premiere fois :
+### Commencer une nouvelle feature
 
-- docker network create web
+    - git fetch
+    - git checkout develop
+    - git pull origin develop
+    - Si il y a des modifications en cours sur la branche actuelle, il soit faire le commit soit faire git stash si on ne veut pas garder les modifications en cours
+    - git checkout -b "<nom_nouvelle_branche>"
+    - faire le developpement
+    - git add, git commit, git push origin "<nom_nouvelle_branche>"
 
-fichier .env à remplir avec les informations d'identification
+### Travailler sur une autre branche
 
-docker-compose up #prend en compte le fichier override
-site web localhost:3000
-pg-admin : localhost:8080
+    - Si il y a des modifications en cours sur la branche actuelle, il faut soit faire un commit pour conserver ses modifications soit faire git stash si on ne veut pas garder les modifications en cours
+    - git fetch
+    - git checkout <autre_branche>
+    - git pull origin <autre_branche>
+    - faire le developpement
+    - git add, git commit, git push origin "<autre_branche>"
 
-Si vous vous installer des modules :
+### Mettre à jour la branche develop quand le developpement de la feature est terminé
 
-- docker exec -it <nom_du_container> sh
-- npm install <nom_du_module>
+    - Aller sur gogs, sur le projet Fatboar
+    - Aller dans Pull Request --> New Pull Request
+    - Base: develop, compare: "<nom_nouvelle_branche>"
+    - Assigner la Pull Request à un développeur
+    - Create Pull Request
+    - Ensuite le développeur assigné va vérifier le code et valider ou non le merge (en corrigeant les conflits)
+
+### Lancer l'application en local
+
+    - Remplir le fichier .env
+    - Si un Dockerfile a été modifié --> docker-compose build --no-cache
+    - docker-compose up (-d)
+
+    site web localhost:3000
+    pg-admin : localhost:8080
+
+Si vous voulez installer des modules :
+
+    - cd api/ ou cd client/
+    - npm install --save(-dev) "<nom_du_module>"
 
 Arrêter les containers :
 
-- dcoker-compose down
+    - docker-compose stop
 
-### Installer dépendances Node
+Si on veut tout recommencer (supprimer les containers) :
 
-docker-compose exec api sh
-npm install : quand je le fais dans le container le package.json est MAJ dans le container ET sur le host
-Par contre on ne veut pas le /node_modules qui se remplisse sur le host, pour cela on va utiliser un named volume
+    - docker-compose down (-v pour supprimer les volumes également)
 
-CTRL+P CTRL+Q pour se détacher du container sans l'arrêter
+## Lancer le projet sans DOCKER
 
-## Pour l'environnement de PRODUCTION
+Client :
 
-On ne doit pas avoir un volume qui relie le code local au code dans le container
-exposer un port différent
+    - cd /client
+    - npm install
+    - npm start
 
-$ docker-compose build web
-$ docker-compose up --no-deps -d web
+Api :
 
-npm install --production
+    - cd /api
+    - avoir postgresql installé sur son pc
+    - créer la base de données
+    - npm install
+    - export NODE_ENV=dev-local
+    - npm start:dev
 
-Il doit correspondre au code présent sur master
-Lors du build il faut copier le code de master dans un container lancé sur le serveur.
+## Installer les dependances
 
-- git remote add deploy --> docker stack deploy?
-- pousser sur origin master --> lancer build jenkins qui s'occupe du deploy sur le server en fonction du nom de la branche
+Api:
+    - cd api 
+    - npm install
 
-Il y aura un aussi un code pour la PREPROD
+Client:
+    - cd client
+    - npm install
 
-- code en local
-- Dockerizer l'environnement de dev
-- docker-compose exec api sh
-- npm install
-- CTRL+P CTRL+Q
-- Git Hook post-receive
-- Jenkinsfile lance build sur ma branche
+## Modifier Les configurations de la base de données locale
+Config:
+    dans config modifier le fichier db/config/config.json et remplacer les paramètres par les tiens.
 
-## Fichiers à envoyer sur le serveur
+## Lancer les programmes
+Api:
+    - cd api
+    - nodemon app.js
 
-- /api
-- /client
-Voir tuto git deploy
-
-## Procédure GIT
-
-git checkout <nom_de_la_branche> (-b si c'est une nouvelle branche)
-Si tu travailles sur la même branche que quelqu'un d'autre, avant de commencer à développer fais un git pull
-
-git add .
-git commit -m "message"
-git push origin <nom_de_la_branche>
-
-## Nouvelle organisation
-
-Dev :
-    -  docker-compose -f docker-compose.yml -f docker-compose.dev.yml build
-    -  docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
-CI :
-    - docker-compose build --> il faut le Dockerfile
-    - docker-compose up -d
-
-En CI on va build avec les Dockerfile, donc on garde la config de prod/stage mais on n'a pas besoin de traefik
+Client:
+    - cd client
+    - npm start

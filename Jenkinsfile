@@ -1,52 +1,86 @@
 pipeline {
-    agent docker
+    agent any
 
     environment {
         CI='true'
-        NODE_ENV='CI'
-        PORT=3000
-        VERSION=0.0.1
+        NODE_ENV='test'
         POSTGRES_PASSWORD='postgres'
         POSTGRES_USER='postgres'
         POSTGRES_DB='postgres'
-        // variables d'environnemet pour traefik?
-        //checkout git
-        // 1 - il faut lancer les containers docker (lesquels?)
-        // 2 - lancer les tests 
-        // 3 - taguer les images docker
-        // 4 - pousser les images dans le regstry
-        // 5 - déployer sur le bon environnement
-        // 6 - nettoyer l'environnement
+        PROJECT_NAME='fatboar-ci'
+        JWT_SECRET='fatboar-ci'
     }
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'docker network create web'
-                sh 'docker-compose -f docker-compose.yml -f docker-compose.build.yml up --build -d'
+                sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} build --no-cache"
+                sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} up -d"
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
+        stage('Tests') {
+            steps {    
+                echo 'Performing Unit Tests..'
+                sh 'sleep 10s'
+                sh "docker exec fatboar-back-build npm install"
+                sh "docker exec fatboar-back-build npm run ci-test"
+                sh "docker cp fatboar-back-build:/usr/src/app/mochawesome-report ." 
+            }
+            post {
+                always {
+                    echo 'Generating Test Report'
+                    publishHTML target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'mochawesome-report',
+                        reportFiles: 'mochawesome.html',
+                        reportName: 'Tests Report'
+                    ]
+                }
             }
         }
         stage('Push to registry') {
-            echo 'Push images to Docker Registry'
-            docker tag node registry.fatboar.site/node:latest
-            docker tag node registry.fatboar.site/node:${VERSION}
-            // docker push node registry.fatboar.site/node:${VERSION}
-            // docker push node registry.fatboar.site/node:latest
+            steps {
+                script {
+                    echo 'Push images to private Docker Registry'
+                    echo "BRANCHE ${env.BRANCH_NAME}"
+                    withDockerRegistry([ credentialsId: "furious-registry", url: "https://registry.fatboar.site" ]) {
+                        if (env.BRANCH_NAME == 'develop') {
+                            sh 'docker container ls -a'
+                            sh 'docker tag fatboar-back_build registry.fatboar.site/fatboar-back:latest'
+                            sh 'docker push registry.fatboar.site/fatboar-back:latest'
+                            sh 'docker tag fatboar-front_build registry.fatboar.site/fatboar-front:latest'
+                            sh 'docker push registry.fatboar.site/fatboar-front:latest'
+                        } else if (env.BRANCH_NAME == 'master') {
+                            sh 'docker tag fatboar-back_build registry.fatboar.site/fatboar-back:prod'
+                            sh 'docker push registry.fatboar.site/fatboar-back:prod'
+                            sh 'docker tag fatboar-front_build registry.fatboar.site/fatboar-front:prod'
+                            sh 'docker push registry.fatboar.site/fatboar-front:prod'
+                        }
+                    }
+                }
+            }
         }
         stage('Deploy to Stage') {
             when {
                 branch 'develop'
             }
             steps {
-                echo 'Deploying....'
-                echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
-                echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
-                echo 'Si branch master : si test pass --> deploy fatboar.site'
+                echo 'Deploying to stage...'
+                sshPublisher(
+                   continueOnError: false, failOnError: true,
+                   publishers: [
+                    sshPublisherDesc(
+                     configName: 'fatboar-server',
+                     verbose: true,
+                     transfers: [
+                      sshTransfer(
+                        remoteDirectory: "/fatboar",
+                        execCommand: "cd /srv/fatboar && ./run-stage.sh"
+                        ),
+                    ])
+                ])
             }
         }
         stage('Deploy to Production') {
@@ -54,17 +88,33 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Deploying....'
-                echo 'Si les tests passent, en fonction de la branche on va envoyer vers le bon serveur'
-                echo 'Si branch stage : si test pass --> deploy stage.fatboar.site'
-                echo 'Si branch master : si test pass --> deploy fatboar.site'
+                echo 'Deploying to production....'
+                sshPublisher(
+                   continueOnError: false, failOnError: true,
+                   publishers: [
+                    sshPublisherDesc(
+                     configName: 'fatboar-server',
+                     verbose: true,
+                     transfers: [
+                      sshTransfer(
+                        remoteDirectory: "/fatboar",
+                        execCommand: "cd /srv/fatboar && ./run-prod.sh"
+                        ),
+                    ])
+                ])
             }
         }
     }
 
     post {
         always {
-            sh "docker-compose down -v"
+            sh "docker container ls"
+            sh "docker image ls"
+            sh "docker-compose -f docker-compose.yml -f docker-compose.build.yml -p ${PROJECT_NAME} down"
+            sh "docker container prune"
+            sh "docker image prune -a -f"
+            sh "docker container ls"
+            sh "docker image ls"
         }
     }
 }
