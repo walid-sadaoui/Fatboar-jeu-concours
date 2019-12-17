@@ -7,7 +7,10 @@ const verifyToken = require('./verifyToken.js');
 const app = express()
 const dotenv = require('dotenv');
 
-
+const corsOptions = {
+    origin: /fatboar\.site$/,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 dotenv.config();
 
 const indexRouter = require('./routes/index');
@@ -15,7 +18,7 @@ const indexRouter = require('./routes/index');
 
 app.use(helmet())
 app.use(bodyParser.json())
-app.options('*', cors())
+app.options('*', cors(corsOptions))
 // app.use(cors())
 app.use(
     bodyParser.urlencoded({
