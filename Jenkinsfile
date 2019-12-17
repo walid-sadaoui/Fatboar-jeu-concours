@@ -21,6 +21,7 @@ pipeline {
         stage('Tests') {
             steps {    
                 echo 'Performing Unit Tests..'
+                sh 'sleep 10s'
                 sh "docker exec fatboar-back-build npm install"
                 sh "docker exec fatboar-back-build npm run ci-test"
                 sh "docker cp fatboar-back-build:/usr/src/app/mochawesome-report ." 
