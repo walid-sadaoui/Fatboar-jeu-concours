@@ -14,6 +14,9 @@ import MonCompte from './Compte';
 import Donnees from './Donnees';
 import Mentions from './Mentions';
 import EmailsUsers from './EmailsUsers';
+import VueStatsAdmin from './VueStatsAdmin';
+import Tirage from './Tirage';
+import TirageGagnant from './TirageGagnant';
 
 class App extends React.Component{
     render(){
@@ -31,6 +34,9 @@ class App extends React.Component{
                         <Route path="/mentions-legales" component={Mentions}/>
                         <Route path="/cadeaux" component={Cadeaux}/>
                         <Route path="/backoffice" component={Backoffice}/>
+                        <Route path="/tirage-au-sort" component={Tirage}/>
+                        <Route path="/gagnant-final" component={TirageGagnant}/>
+                        <Route path="/stats" component={VueStatsAdmin}/>
                         <Route path="/users-mails" component={EmailsUsers}/>
                         <Route path="/gains" component={Gains}/>
                         <Route path="/mon-compte" component={MonCompte}/>

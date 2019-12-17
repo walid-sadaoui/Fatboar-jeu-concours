@@ -69,7 +69,7 @@ export default class Dashboard extends Component {
                             {/* <p className="login-box-msg">S'enregistrer</p> */}
                             <form onSubmit={this.onSubmit}>
                                 <div className="input-group mb-3">
-                                    <input type="text" className="form-control" placeholder="Prénom"  name="firstName" value={this.state.firstName} id="firstName" onChange={this.onChange}/>
+                                    <input type="text" className="form-control" placeholder="Prénom"  name="firstName" value={this.state.firstName} id="firstName" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-user"></span>
@@ -77,7 +77,7 @@ export default class Dashboard extends Component {
                                         </div>
                                 </div>
                                 <div className="input-group mb-3">
-                                    <input type="text" className="form-control" placeholder="Nom"  name="lastName" value={this.state.lastName} id="lastName" onChange={this.onChange} />
+                                    <input type="text" className="form-control" placeholder="Nom"  name="lastName" value={this.state.lastName} id="lastName" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-user"></span>
@@ -85,7 +85,7 @@ export default class Dashboard extends Component {
                                         </div>
                                 </div>                                
                                 <div className="input-group mb-3">
-                                    <input type="email" className="form-control" placeholder="E-mail" name="email" value={this.state.email} id="email" onChange={this.onChange} />
+                                    <input type="email" className="form-control" placeholder="E-mail" name="email" value={this.state.email} id="email" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-envelope"></span>
@@ -93,7 +93,7 @@ export default class Dashboard extends Component {
                                         </div>
                                 </div>
                                 <div className="input-group mb-3">
-                                    <input type="password" className="form-control" placeholder="Mot de passe" name="password" value={this.state.password} id="password" onChange={this.onChange}/>
+                                    <input type="password" className="form-control" placeholder="Mot de passe" name="password" value={this.state.password} id="password" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-lock"></span>
@@ -101,7 +101,7 @@ export default class Dashboard extends Component {
                                         </div>
                                 </div>
                                 <div className="input-group mb-3">
-                                    <input type="tel" className="form-control" placeholder="Numéro de téléphone" name="phone" value={this.state.phone} id="phone" onChange={this.onChange}/>
+                                    <input type="tel" className="form-control" placeholder="Numéro de téléphone" name="phone" value={this.state.phone} id="phone" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
                                                 <span className="fas fa-lock"></span>

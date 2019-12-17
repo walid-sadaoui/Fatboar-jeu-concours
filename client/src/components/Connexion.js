@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import TitreConnexion from 'public/img/titres/connexion.png';
-import Footer from "./Footer";
 import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -38,11 +37,11 @@ class Connexion extends Component {
         })
         .then(res => res.data)
         .then(res => {
-          const { user: { idUser}, token} = res;
+          const { user: { idUser, role}, token} = res;
           localStorage.setItem('token', token);
           localStorage.setItem('idUser', idUser);
           if (res.status === 200){
-            this.props.history.push('/mon-compte');
+            role === "ADMIN" ? this.props.history.push('/stats'): this.props.history.push('/backoffice');
           }        
         })
         .catch(err => {
@@ -93,9 +92,6 @@ class Connexion extends Component {
                                 </a>
                             </div>
                             <h6 className="centre">
-                                <a href="#">Mot de passe oublié ?</a>
-                            </h6>
-                            <h6 className="centre">
                                 <NavLink to="/inscription" className="text-center">Je souhaite créer un compte</NavLink>
                             </h6>
                         </div>
@@ -106,7 +102,6 @@ class Connexion extends Component {
                     </NavLink>
                 </div>
             </div>
-            <Footer/>
             </React.Fragment>
 
         )

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Sidebar from './SideBar';
 import AdminBar from './AdminBar';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default class Content extends Component {
@@ -151,7 +152,20 @@ export default class Content extends Component {
         })
       }
 
+      getId = e => {
+        const userId = localStorage.getItem("targetId");
+        localStorage.setItem("idGain", userId);
+        console.log(localStorage.getItem("idGain"));
+      }
+
     render(){
+        const role = this.state.role;
+        let seeGains;
+        if (role === "CLIENT"){
+            seeGains = <li className="list-group-item">
+                <NavLink to="/gains" onClick={this.getId}><b>Nombre de Gains</b> </NavLink><a className="float-right">{this.state.total}</a>
+            </li>                                        
+        }
         return (
             <React.Fragment>
             <AdminBar/>
@@ -180,17 +194,10 @@ export default class Content extends Component {
                                         <h3 className="profile-username text-center">{this.state.user.firstName} {this.state.user.lastName}</h3>
                                         <p className="text-muted text-center">{this.state.role}</p>
                                         <ul className="list-group list-group-unbordered mb-3">
-                                            <li className="list-group-item">
-                                                <b>Nombre de Gains</b> <a className="float-right">{this.state.total}</a>
-                                            </li>
-                                            {/* <li className="list-group-item">
-                                                <b>Tickets</b> <a className="float-right">543</a>
-                                            </li> */}
+                                            {seeGains}
                                         </ul>
                                     </div>
                                 </div>
-
-
 
                                 <div className="card card-blue">
                                     <div className="card-header">
