@@ -1,6 +1,6 @@
 import React from 'react';
 // import bg from '../../public/img/bg-food.png';
-import RangeRover from 'public/img/RangeRover.png'
+import RangeRover from '../assets/img/RangeRover.png'
 // import logofatboar from '../../public/img/logofatboar.png';
 import {NavLink} from 'react-router-dom';
 import Footer from './Footer';

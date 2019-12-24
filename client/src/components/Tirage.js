@@ -3,6 +3,9 @@ import Sidebar from './SideBar';
 import {NavLink} from 'react-router-dom';
 import AdminBar from './AdminBar';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faPhone, faEnvelopeOpenText, faHourglassEnd } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -17,7 +20,7 @@ class Tirage extends Component {
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1 className="m-0 text-dark"><b><i class="nav-icon fas fa-hourglass-end"></i> Tirer au sort le gagnant final</b></h1>
+                                <h1 className="m-0 text-dark"><b><FontAwesomeIcon icon={faHourglassEnd}></FontAwesomeIcon> Tirer au sort le gagnant final</b></h1>
                             </div>
                         </div>
                     </div>

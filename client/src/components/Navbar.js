@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from 'public/img/Logo_header.png';
-import logofb from 'public/img/Facebook-color.png';
-import logoinsta from 'public/img/Insta-color.png';
+import logo from '../assets/img/Logo_header.png';
+import logofb from '../assets/img/Facebook-color.png';
+import logoinsta from '../assets/img/Insta-color.png';
 import {NavLink} from 'react-router-dom';
 
 class Navbar extends React.Component {

@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import Sidebar from './SideBar';
 import {NavLink} from 'react-router-dom';
 import AdminBar from './AdminBar';
-import Dessert from 'public/img/2020-dessert.jpeg';
+import Dessert from '../assets/img/2020-dessert.jpeg';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLock, faHome, faUser, faShoppingCart, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 const API_URL = process.env.REACT_APP_API_URL;
 class Backoffice extends Component {
@@ -98,24 +101,24 @@ class Backoffice extends Component {
                                         <h5>Total des gains</h5>
                                     </div>
                                     <div className="icon">
-                                        <i className="fas fa-shopping-cart"></i>
+                                    <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
                                     </div>
                                     <NavLink to="/gains" className="small-box-footer">
-                                        Voir plus <i className="fas fa-arrow-circle-right"></i>
+                                        Voir plus <FontAwesomeIcon icon={faArrowAltCircleRight}></FontAwesomeIcon>
                                     </NavLink>
                                 </div>                          
                             </div>
                             </div>
 
                             <div className="row">
-                            <div className="col-lg-4">
+                            {/* <div className="col-lg-4">
                             <div class="card">
                                     <img class="card-img-top" src={Dessert} alt="Card image cap"/>
                                     <div class="card-body">
                                         <h5 class="card-text text-center"><i className="fa fa-clock"></i> Gagné il y 4 minutes...</h5>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="col-lg-8">
                                 <div className="card card-primary">
                                     <div className="card-header">

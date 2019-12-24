@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import TitreConnexion from 'public/img/titres/connexion.png';
+import TitreConnexion from '../assets/img/titres/connexion.png';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLock, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 class Connexion extends Component {
@@ -65,7 +69,7 @@ class Connexion extends Component {
                                     <input type="email" className="form-control" placeholder="E-mail" id="email" name="email" value={this.state.email} onChange={this.onChange}/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
-                                                <span className="fas fa-envelope"></span>
+                                                <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
                                             </div>
                                         </div>
                                 </div>
@@ -73,7 +77,7 @@ class Connexion extends Component {
                                     <input type="password" className="form-control" placeholder="Mot de passe"  id="password" name="password" value={this.state.password} onChange={this.onChange}/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
-                                                <span className="fas fa-lock"></span>
+                                                <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
                                             </div>          
                                         </div>
                                 </div>
@@ -85,10 +89,10 @@ class Connexion extends Component {
                             <div className="social-auth-links text-center mb-3">
                                 <p className="centre">- OU -</p>
                                 <a href="#" className="btn btn-block btn-primary">
-                                    <i className="fab fa-facebook mr-2"></i> Connection par Facebook
+                                    <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon> Connection par Facebook
                                 </a>
                                 <a href="#" className="btn btn-block btn-danger">
-                                    <i className="fab fa-google mr-2"></i> Connection par Google
+                                    <FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> Connection par Google
                                 </a>
                             </div>
                             <h6 className="centre">
@@ -98,7 +102,7 @@ class Connexion extends Component {
 
                     </div>
                     <NavLink to="/" className="btn btn-block btn-default wow fadeInUp" data-wow-delay="0.3s">
-                        <i className="fas fa-home mr-2"></i> Retour à l'accueil
+                        <FontAwesomeIcon icon={faHome}></FontAwesomeIcon> Retour à l'accueil
                     </NavLink>
                 </div>
             </div>

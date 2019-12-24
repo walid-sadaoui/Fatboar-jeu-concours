@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import TitreInscription from 'public/img/titres/inscription.png';
+import TitreInscription from '../assets/img/titres/inscription.png';
 import Footer from './Footer';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLock, faHome, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default class Dashboard extends Component {
@@ -72,7 +76,7 @@ export default class Dashboard extends Component {
                                     <input type="text" className="form-control" placeholder="Prénom"  name="firstName" value={this.state.firstName} id="firstName" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
-                                                <span className="fas fa-user"></span>
+                                            <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                                             </div>
                                         </div>
                                 </div>
@@ -80,7 +84,7 @@ export default class Dashboard extends Component {
                                     <input type="text" className="form-control" placeholder="Nom"  name="lastName" value={this.state.lastName} id="lastName" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
-                                                <span className="fas fa-user"></span>
+                                            <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                                             </div>
                                         </div>
                                 </div>                                
@@ -88,7 +92,7 @@ export default class Dashboard extends Component {
                                     <input type="email" className="form-control" placeholder="E-mail" name="email" value={this.state.email} id="email" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
-                                                <span className="fas fa-envelope"></span>
+                                            <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
                                             </div>
                                         </div>
                                 </div>
@@ -96,7 +100,7 @@ export default class Dashboard extends Component {
                                     <input type="password" className="form-control" placeholder="Mot de passe" name="password" value={this.state.password} id="password" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
-                                                <span className="fas fa-lock"></span>
+                                            <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
                                             </div>
                                         </div>
                                 </div>
@@ -104,7 +108,7 @@ export default class Dashboard extends Component {
                                     <input type="tel" className="form-control" placeholder="Numéro de téléphone" name="phone" value={this.state.phone} id="phone" onChange={this.onChange} required/>
                                         <div className="input-group-append">
                                             <div className="input-group-text">
-                                                <span className="fas fa-lock"></span>
+                                            <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
                                             </div>
                                         </div>
                                 </div>
@@ -116,21 +120,20 @@ export default class Dashboard extends Component {
                             <div className="social-auth-links text-center">
                                 <p className="centre">- OU -</p>
                                 <a href="#" className="btn btn-block btn-primary">
-                                <i className="fab fa-facebook mr-2"></i> Inscription par Facebook
+                                <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon> Inscription par Facebook
                                 </a>
                                 <a href="#" className="btn btn-block btn-danger">
-                                <i className="fab fa-google mr-2"></i> Inscription par Google
+                                <FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> Inscription par Google
                                 </a>
                             </div>
                             <NavLink to="/connexion"><h6 className="centre">Je suis déjà un membre</h6></NavLink>
                         </div>
                     </div>
                     <NavLink to="/" className="btn btn-block btn-default wow fadeInUp" data-wow-delay="0.3s">
-                        <i className="fas fa-home mr-2"></i> Retour à l'accueil
+                    <FontAwesomeIcon icon={faHome}></FontAwesomeIcon> Retour à l'accueil
                     </NavLink>
                 </div>
             </div>
-            <Footer/>
             </React.Fragment>
         )
     }

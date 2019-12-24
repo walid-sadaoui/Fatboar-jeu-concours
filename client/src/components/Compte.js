@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import Sidebar from './SideBar';
 import AdminBar from './AdminBar';
+import avatar from '../assets/img/avatar.png'
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faPhone, faEnvelopeOpenText, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default class Content extends Component {
@@ -189,7 +193,7 @@ export default class Content extends Component {
                                     <div className="card-body box-profile">
                                         <div className="text-center">
                                             <img className="profile-user-img img-fluid img-circle"
-                                                 src="../../dist/img/charles.jpg" alt="User profile" />
+                                                 src={avatar} alt="User profile" />
                                         </div>
                                         <h3 className="profile-username text-center">{this.state.user.firstName} {this.state.user.lastName}</h3>
                                         <p className="text-muted text-center">{this.state.role}</p>
@@ -205,10 +209,10 @@ export default class Content extends Component {
                                     </div>
 
                                     <div className="card-body">
-                                            <strong><i className="fas fa-phone mr-1"></i>Téléphone</strong>
+                                            <strong><FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>Téléphone</strong>
                                             <p className="text-muted">{this.state.user.phone}</p>
                                             <hr/>
-                                            <strong><i className="fas fa-envelope-open-text mr-1"></i> Contact</strong>
+                                            <strong><FontAwesomeIcon icon={faEnvelopeOpenText}></FontAwesomeIcon> Contact</strong>
                                             <p className="text-muted">{this.state.user.email}</p>
                                     </div>
 
@@ -293,7 +297,7 @@ export default class Content extends Component {
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <i className="fa fa-exclamation-triangle fa-2x" style={{textAlign:"center!important"}}></i> <h6>Vous êtes sur le point de supprimer définitivement votre compte.
+                                                <FontAwesomeIcon icon={faExclamationTriangle} style={{textAlign:"center!important"}}></FontAwesomeIcon> <h6>Vous êtes sur le point de supprimer définitivement votre compte.
                                                         Confirmez-vous cette opérattion ?
                                                     </h6>
                                                 </div>

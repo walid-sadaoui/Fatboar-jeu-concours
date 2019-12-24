@@ -4,6 +4,9 @@ import {NavLink} from 'react-router-dom';
 import AdminBar from './AdminBar';
 // import Dessert from '../../public/img/2020-dessert.jpeg';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faUserPlus, faArrowCircleRight, faChartPie, faDownload, faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -89,10 +92,10 @@ class VueStatsAdmin extends Component {
                             <h5>Total des participants</h5>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-user-plus"></i>
+                            <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon>
                             </div>
                             <NavLink to="/utilisateurs" class="small-box-footer">
-                                Voir plus <i class="fas fa-arrow-circle-right"></i>
+                                Voir plus <FontAwesomeIcon icon={faArrowCircleRight}></FontAwesomeIcon>
                             </NavLink>
                         </div>
                     </div>
@@ -103,10 +106,10 @@ class VueStatsAdmin extends Component {
                             <h5>Nombre de gains distribués</h5>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-chart-pie"></i>
+                            <FontAwesomeIcon icon={faChartPie}></FontAwesomeIcon>
                             </div>
                             <NavLink to="#" class="small-box-footer">
-                                Voir plus <i class="fas fa-arrow-circle-right"></i>
+                                Voir plus <FontAwesomeIcon icon={faArrowCircleRight}></FontAwesomeIcon>
                             </NavLink>
                         </div>
                     </div>
@@ -118,10 +121,10 @@ class VueStatsAdmin extends Component {
                         <h3 class="card-title">Participants récents</h3>
                         <div class="card-tools">
                         <a href="#" class="btn btn-tool btn-sm">
-                            <i class="fas fa-download"></i>
+                        <FontAwesomeIcon icon={faDownload}></FontAwesomeIcon>
                         </a>
                         <a href="#" class="btn btn-tool btn-sm">
-                            <i class="fas fa-bars"></i>
+                        <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
                         </a>
                         </div>
                     </div>
@@ -152,7 +155,7 @@ class VueStatsAdmin extends Component {
                             </td>
                             <td>
                             <a href="#" class="text-muted" onClick={this.redirect} id={ticket.user.idUser}>
-                                <i class="fas fa-search" id={ticket.user.idUser}></i>
+                                <FontAwesomeIcon icon={faSearch} id={ticket.user.idUser}></FontAwesomeIcon>
                             </a>
                             </td>
                         </tr>

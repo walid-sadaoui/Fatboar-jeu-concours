@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import Sidebar from './SideBar';
-import RangeRover from 'public/img/RangeRover.png';
+import RangeRover from '../assets/img/RangeRover.png';
+import avatar from '../assets/img/avatar.png';
 import AdminBar from './AdminBar';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faPhone, faEnvelopeOpenText, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -47,7 +51,7 @@ class TirageGagnant extends Component {
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6 mx-auto">
-                                <h1 className="m-0 text-dark text-center"><b><i class="nav-icon fas fa-trophy"></i> Gagnant final <i class="nav-icon fas fa-trophy"></i></b></h1>
+                                <h1 className="m-0 text-dark text-center"><b><FontAwesomeIcon icon={faTrophy}></FontAwesomeIcon> Gagnant final <i class="nav-icon fas fa-trophy"></i></b></h1>
                             </div>
                         </div>
                     </div>
@@ -63,7 +67,7 @@ class TirageGagnant extends Component {
                                     <h5 class="widget-user-desc">Client</h5>
                                 </div>
                                 <div class="widget-user-image">
-                                    <img class="img-circle elevation-2" width="100%" src="../dist/img/Mams.png" alt="Avatar gagnant"/>
+                                    <img class="img-circle elevation-2" width="100%" src={avatar} alt="Avatar gagnant"/>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
