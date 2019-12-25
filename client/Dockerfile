@@ -22,5 +22,5 @@ COPY . /app
 ENV PORT 5000
 # Tell Docker about the port we'll run on.
 EXPOSE 5000
-CMD npm run build && serve -s build
+CMD npm run deploy
 
