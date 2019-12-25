@@ -5,7 +5,6 @@ import logofatboar from '../assets/img/logofatboar.png'
 import avatar from '../assets/img/avatar.png'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faUsers, faChartLine, faHourglassEnd, faMoneyBillWave, faUserTie, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = process.env.REACT_APP_API_URL;

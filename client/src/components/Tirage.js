@@ -4,8 +4,7 @@ import {NavLink} from 'react-router-dom';
 import AdminBar from './AdminBar';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { faPhone, faEnvelopeOpenText, faHourglassEnd } from '@fortawesome/free-solid-svg-icons';
+import { faHourglassEnd } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = process.env.REACT_APP_API_URL;
 

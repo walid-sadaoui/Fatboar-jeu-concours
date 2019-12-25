@@ -2,11 +2,9 @@ import React, {Component} from 'react';
 import Sidebar from './SideBar';
 import {NavLink} from 'react-router-dom';
 import AdminBar from './AdminBar';
-import Dessert from '../assets/img/2020-dessert.jpeg';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock, faHome, faUser, faShoppingCart, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faShoppingCart, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = process.env.REACT_APP_API_URL;
 class Backoffice extends Component {

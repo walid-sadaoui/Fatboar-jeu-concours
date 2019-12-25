@@ -5,7 +5,6 @@ import AdminBar from './AdminBar';
 // import Dessert from '../../public/img/2020-dessert.jpeg';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faUserPlus, faArrowCircleRight, faChartPie, faDownload, faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = process.env.REACT_APP_API_URL;

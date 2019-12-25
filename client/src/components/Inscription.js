@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import TitreInscription from '../assets/img/titres/inscription.png';
-import Footer from './Footer';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faHome, faUser } from '@fortawesome/free-solid-svg-icons';

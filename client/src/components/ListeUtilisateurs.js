@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import Sidebar from './SideBar';
 import AdminBar from './AdminBar';
-
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faPhone, faMoneyBillWave, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+
 const API_URL = process.env.REACT_APP_API_URL;
 export default class Dashboard extends Component {
     state = {

@@ -5,7 +5,6 @@ import avatar from '../assets/img/avatar.png'
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faPhone, faEnvelopeOpenText, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 const API_URL = process.env.REACT_APP_API_URL;
 
