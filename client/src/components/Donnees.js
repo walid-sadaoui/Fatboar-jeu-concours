@@ -1,5 +1,5 @@
 import React from 'react';
-import TitreDonnees from 'public/img/titres/donnees.png'
+import TitreDonnees from '../assets/img/titres/donnees.png'
 import Navbar from './Navbar';
 import Footer from './Footer';
 

@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faBars, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 const API_URL = process.env.REACT_APP_API_URL;
 export default class Header extends Component {
@@ -52,7 +54,7 @@ export default class Header extends Component {
                        aria-label="Search"/>
                 <div className="input-group-append">
                     <button className="btn btn-navbar" type="submit">
-                        <i className="fas fa-search"></i>
+                    <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                     </button>
                 </div>
             </div>
@@ -62,7 +64,7 @@ export default class Header extends Component {
             <nav className="main-header navbar navbar-expand navbar-white navbar-light ">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" data-widget="pushmenu" href="#"><i className="fas fa-bars"></i></a>
+                        <a className="nav-link" data-widget="pushmenu" href="#"><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></a>
                     </li>
                 </ul>
 
@@ -72,7 +74,7 @@ export default class Header extends Component {
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
                         <NavLink to="/connexion" class="nav-link" activeClassName="nav-link active" onClick={this.disconnect}>
-                            <i className="fas fa-power-off fa-2x"></i>
+                        <FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon>
                         </NavLink>
                     </li>
                 </ul>

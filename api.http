@@ -2,7 +2,7 @@
 http://localhost:5000
 
 ###
-POST http://localhost:5000/auth/register
+POST api.stage.fatboar.site/auth/register
 content-type: application/json
 
 {

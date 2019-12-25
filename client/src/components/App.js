@@ -1,5 +1,5 @@
 import React from 'react';
-// import Navbar from './Navbar';
+import Navbar from './Navbar';
 import Home from './Home';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Modalites from './Modalites';

@@ -1,5 +1,5 @@
 import React from 'react';
-import TitreModalites from 'public/img/titres/modalites.png'
+import TitreModalites from '../assets/img/titres/modalites.png'
 import Navbar from './Navbar';
 import Footer from './Footer';
 

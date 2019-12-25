@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import Sidebar from './SideBar';
 import AdminBar from './AdminBar';
-
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faMoneyBillWave, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+
 const API_URL = process.env.REACT_APP_API_URL;
 export default class Dashboard extends Component {
     state = {
@@ -69,11 +71,11 @@ export default class Dashboard extends Component {
                                                 <div className="col-7">
                                                     <h2 className="lead" key={user.idUser}><b>{user.firstName} {user.lastName}</b></h2>
                                                     <ul className="ml-4 mb-0 fa-ul text-muted">
-                                                        <li className="small"><span className="fa-li" key={user.idUser}><i
-                                                            className="fas fa-lg fa-envelope"></i></span> {user.email}
+                                                        <li className="small"><span className="fa-li" key={user.idUser}>
+                                                            <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon></span> {user.email}
                                                         </li>
-                                                        <li className="small"><span className="fa-li" key={user.idUser}><i
-                                                            className="fas fa-lg fa-phone"></i></span> {user.phone}
+                                                        <li className="small"><span className="fa-li" key={user.idUser}>
+                                                            <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon></span> {user.phone}
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -86,10 +88,10 @@ export default class Dashboard extends Component {
                                         <div className="card-footer">
                                             <div className="text-right">
                                                 <button className="btn btn-sm btn-danger" id={user.idUser} onClick={this.getgains}>
-                                                    <i className="fas fa-money-bill-wave" id={user.idUser}></i>
+                                                    <FontAwesomeIcon icon={faMoneyBillWave} id={user.idUser}></FontAwesomeIcon>
                                                 </button>
                                                 <button className="btn btn-sm btn-primary" id={user.idUser} onClick={this.getid}>
-                                                    <i className="fas fa-user"></i> Voir le profil
+                                                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon> Voir le profil
                                                 </button>
                                             </div>
                                         </div>

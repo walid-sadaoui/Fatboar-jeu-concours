@@ -1,5 +1,5 @@
 import React from 'react';
-import TitreLegales from 'public/img/titres/legales.png'
+import TitreLegales from '../assets/img/titres/legales.png'
 import Navbar from './Navbar';
 import Footer from './Footer';
 import {NavLink} from 'react-router-dom';
