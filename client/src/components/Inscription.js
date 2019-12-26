@@ -118,12 +118,12 @@ export default class Dashboard extends Component {
 
                             <div className="social-auth-links text-center">
                                 <p className="centre">- OU -</p>
-                                <a href="#" className="btn btn-block btn-primary">
+                                <NavLink to="#" className="btn btn-block btn-primary">
                                 <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon> Inscription par Facebook
-                                </a>
-                                <a href="#" className="btn btn-block btn-danger">
+                                </NavLink>
+                                <NavLink to="#" className="btn btn-block btn-danger">
                                 <FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> Inscription par Google
-                                </a>
+                                </NavLink>
                             </div>
                             <NavLink to="/connexion"><h6 className="centre">Je suis déjà un membre</h6></NavLink>
                         </div>

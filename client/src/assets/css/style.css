@@ -1396,6 +1396,26 @@
     /*--------------------------------------------------------------
     # Responsive Media Queries
     --------------------------------------------------------------*/
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        .carousel-content img {
+          margin-top: 80px;
+          width: 60%;
+        }
+
+        .carousel-content h2 {
+          font-size: 19px!important;
+        }
+
+        .carousel-content h3 {
+          margin-top: -15px;
+          font-size: 21px!important;
+        }
+
+        .btn-get-started {
+          font-size: 15px!important;
+          margin-bottom: 60px!important;
+        }
+      }
 
     @media (min-width: 768px) {
       #contact .contact-address,

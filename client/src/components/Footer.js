@@ -1,4 +1,5 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 class Footer extends React.Component{
     render(){
@@ -18,7 +19,7 @@ class Footer extends React.Component{
               </div>
             </div>
           </footer>
-          <a href="#" className="back-to-top"><i className="fa fa-chevron-up"></i></a>
+          <NavLink to="#" className="back-to-top"><i className="fa fa-chevron-up"></i></NavLink>
           </section>
         )
     }

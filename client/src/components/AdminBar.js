@@ -64,7 +64,7 @@ export default class Header extends Component {
             <nav className="main-header navbar navbar-expand navbar-white navbar-light ">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" data-widget="pushmenu" href="#"><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></a>
+                        <NavLink to="#" className="nav-link" data-widget="pushmenu"><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></NavLink>
                     </li>
                 </ul>
 

@@ -166,7 +166,7 @@ export default class Content extends Component {
         let seeGains;
         if (role === "CLIENT"){
             seeGains = <li className="list-group-item">
-                <NavLink to="/gains" onClick={this.getId}><b>Nombre de Gains</b> </NavLink><a className="float-right">{this.state.total}</a>
+                <NavLink to="/gains" onClick={this.getId}><b>Nombre de Gains</b> </NavLink><NavLink to="#" className="float-right">{this.state.total}</NavLink>
             </li>                                        
         }
         return (
@@ -223,11 +223,11 @@ export default class Content extends Component {
                                 <div className="card">
                                     <div className="card-header p-2">
                                         <ul className="nav nav-pills">
-                                            <li className="nav-item"><a className="nav-link active btn-danger" href="#activity"
-                                            data-toggle="tab">Modifier</a>
+                                            <li className="nav-item"><NavLink to="#activity" className="nav-link active btn-danger"
+                                            data-toggle="tab">Modifier</NavLink>
                                             </li>
-                                            <li className="nav-item"><a className="nav-link" href="#timeline"
-                                            data-toggle="modal" data-target="#exampleModalCenter">Supprimer mon compte</a>
+                                            <li className="nav-item"><NavLink to="#timeline" className="nav-link"
+                                            data-toggle="modal" data-target="#exampleModalCenter">Supprimer mon compte</NavLink>
                                             </li>
                                         </ul>
                                     </div>

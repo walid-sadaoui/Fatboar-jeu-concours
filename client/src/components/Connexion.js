@@ -88,12 +88,12 @@ class Connexion extends Component {
 
                             <div className="social-auth-links text-center mb-3">
                                 <p className="centre">- OU -</p>
-                                <a href="#" className="btn btn-block btn-primary">
+                                <NavLink to="#" className="btn btn-block btn-primary">
                                     <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon> Connection par Facebook
-                                </a>
-                                <a href="#" className="btn btn-block btn-danger">
+                                </NavLink>
+                                <NavLink to="#" className="btn btn-block btn-danger">
                                     <FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> Connection par Google
-                                </a>
+                                </NavLink>
                             </div>
                             <h6 className="centre">
                                 <NavLink to="/inscription" className="text-center">Je souhaite créer un compte</NavLink>

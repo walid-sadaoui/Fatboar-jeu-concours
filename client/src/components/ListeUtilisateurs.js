@@ -101,7 +101,7 @@ export default class Dashboard extends Component {
                             </div>
                         </div>
 
-                        <div className="card-footer">
+                        {/* <div className="card-footer">
                             <nav aria-label="Contacts Page Navigation">
                                 <ul className="pagination justify-content-center m-0">
                                     <li className="page-item active"><a className="page-link" href="#">1</a></li>
@@ -114,7 +114,7 @@ export default class Dashboard extends Component {
                                     <li className="page-item"><a className="page-link" href="#">8</a></li>
                                 </ul>
                             </nav>
-                        </div>
+                        </div> */}
                     </div>
                 </section>
             </div>

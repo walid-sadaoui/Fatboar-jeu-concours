@@ -3,6 +3,9 @@ import logo from '../assets/img/Logo_header.png';
 import logofb from '../assets/img/Facebook-color.png';
 import logoinsta from '../assets/img/Insta-color.png';
 import {NavLink} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars} from '@fortawesome/free-solid-svg-icons';
+
 
 class Navbar extends React.Component {
     render() {
@@ -10,13 +13,14 @@ class Navbar extends React.Component {
           <header id="header">
             <div className="container-fluid">
               <div id="logo" className="pull-left">
-               <NavLink to="/"><img className="NavLogo hvr-grow" src={logo} alt="logo" title="Fatboar logo" /></NavLink> | <a href="#"><img className="hvr-grow" src={logoinsta} alt="logo" title="Fatboar logo" width="40" /></a> <a href="#"><img className="hvr-grow" src={logofb} alt="logo" title="Fatboar logo" width="40" /></a>
+               <NavLink to="/"><img className="NavLogo hvr-grow" src={logo} alt="logo" title="Fatboar logo" /></NavLink> | <NavLink to="#"><img className="hvr-grow" src={logoinsta} alt="logo" title="Fatboar logo" width="40" /></NavLink> <NavLink to="#"><img className="hvr-grow" src={logofb} alt="logo" title="Fatboar logo" width="40" /></NavLink>
               </div>
             </div>
             <nav className="navbar navbar-expand-lg" id="nav-menu-container">
             <button className="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               {/* <span className="navbar-toggler-icon"></span> */}
-              <i class="fa fa-bars" style={{color:"#fff", fontSize:"30px", padding:"5px"}}></i>
+              {/* <i className="fa fa-bars" style={{color:"#fff", fontSize:"30px", padding:"5px"}}></i> */}
+              <FontAwesomeIcon icon={faBars} style={{color:"#fff", fontSize:"40px", padding:"5px"}}></FontAwesomeIcon>
             </button>
             <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
               <ul className="nav-menu">

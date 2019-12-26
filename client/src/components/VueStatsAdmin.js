@@ -119,12 +119,12 @@ class VueStatsAdmin extends Component {
                     <div class="card-header border-0">
                         <h3 class="card-title">Participants récents</h3>
                         <div class="card-tools">
-                        <a href="#" class="btn btn-tool btn-sm">
+                        <NavLink to="#" class="btn btn-tool btn-sm">
                         <FontAwesomeIcon icon={faDownload}></FontAwesomeIcon>
-                        </a>
-                        <a href="#" class="btn btn-tool btn-sm">
+                        </NavLink>
+                        <NavLink to="#" class="btn btn-tool btn-sm">
                         <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
-                        </a>
+                        </NavLink>
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -153,9 +153,9 @@ class VueStatsAdmin extends Component {
                                 {ticket.gain.description}
                             </td>
                             <td>
-                            <a href="#" class="text-muted" onClick={this.redirect} id={ticket.user.idUser}>
+                            <NavLink to="#" class="text-muted" onClick={this.redirect} id={ticket.user.idUser}>
                                 <FontAwesomeIcon icon={faSearch} id={ticket.user.idUser}></FontAwesomeIcon>
-                            </a>
+                            </NavLink>
                             </td>
                         </tr>
                         )}
