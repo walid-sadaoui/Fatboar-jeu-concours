@@ -63,10 +63,10 @@ export default class Content extends Component {
                                         <div className="widget-user-header bg-gradient-blue">
                                             <h3 className="widget-user">{ticket.gain.description}</h3>
                                         </div>
-                                        <div className="widget-user-image">
+                                        {/* <div className="widget-user-image">
                                             <img className="img-circle elevation-2" src="../assets/img/02.png"
                                                 alt="User Avatar" />
-                                        </div>
+                                        </div> */}
                                         <div className="card-footer">
                                             <div className="row">
                                                 <div className="col-sm-6 border-right">

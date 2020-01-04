@@ -142,7 +142,7 @@ class VueStatsAdmin extends Component {
                         {this.state.users.map(ticket=> 
                                     <tr>
                                         <td>
-                                        <img src="../assets/img/avatar.png" alt="user 1" class="img-circle img-size-32 mr-2"/>
+                                        {/* <img src="../assets/img/avatar.png" alt="user 1" class="img-circle img-size-32 mr-2"/> */}
                                             {ticket.user.firstName} {ticket.user.lastName}
                                         </td>
                                         <td>{ticket.ticketNumber}</td>
