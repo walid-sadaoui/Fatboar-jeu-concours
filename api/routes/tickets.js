@@ -10,15 +10,40 @@ router.get("/", async (req, res) => {
         return res.status(403).send('Access denied');
     }
     try {
-        const tickets = await models.ticket.findAll();
+        const tickets = await models.ticket.findAll({where: {idUser: {[Op.ne]: null}, '$user$': {[Op.ne]: null}}, order: [['useDate', 'DESC']], include: [ { model: models.user }, { model: models.gain } ], limit: 10});
+        const allticketsUsed =  await models.ticket.count({where: {idUser: {[Op.ne]: null}, '$user$': {[Op.ne]: null}}, include: [ { model: models.user } ] });
         res.status(200).json({
             msg: 'All tickets',
-            tickets
+            tickets,
+            allticketsUsed
         });
     } catch (error) {
         return res.status(500).send('Server Error');
     }
 });
+
+router.get("/winning", async (req, res) => {
+    const { user } = req.user;
+    
+    if (user.role === "CLIENT") {
+        return res.status(403).send('Access denied');
+    }
+    try {
+        const ticket = await models.ticket.findOne({ where: { winningTicket: true, state: "ATTRIBUTED"}, include: [ { model: models.user}, { model: models.gain } ] });
+        if (!ticket){
+            return res.status(404).send(`Ticket not found`);
+        }
+        res.status(200).json({
+            status: 200,
+            ticket
+        });
+    } catch (err) {
+        return res.status(500).json({
+            status: 500,
+            err
+        });
+    } 
+})
 
 router.put("/:ticketNumber", async (req, res) => {
     const { user } = req.user;

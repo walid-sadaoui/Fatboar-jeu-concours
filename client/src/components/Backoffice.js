@@ -120,7 +120,7 @@ class Backoffice extends Component {
                             <div className="col-lg-8">
                                 <div className="card card-primary">
                                     <div className="card-header">
-                                        <h3 className="card-title">Ajouter votre nouveau tiket ici !</h3>
+                                        <h3 className="card-title">Ajouter votre nouveau ticket ici !</h3>
                                     </div>
 
                                     <form className="form-horizontal" onSubmit={this.onSubmit}>

@@ -66,6 +66,7 @@ class VueStatsAdmin extends Component {
     }
 
     render(){
+        const users = this.state.users;
         return (
             <React.Fragment>
             <AdminBar/>
@@ -138,27 +139,24 @@ class VueStatsAdmin extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {this.state.users.map(ticket=>
-                        <tr>
-                            <td>
-                            <img src="dist/img/Sonia.png" alt="user 1" class="img-circle img-size-32 mr-2"/>
-                                {ticket.user.firstName} {ticket.user.lastName}
-                            </td>
-                            <td>{ticket.ticketNumber}</td>
-                            <td>
-                            <small class="text-success mr-1">
-                                <i class="fas fa-arrow-up"></i>
-                                12%
-                            </small>
-                                {ticket.gain.description}
-                            </td>
-                            <td>
-                            <NavLink to="#" class="text-muted" onClick={this.redirect} id={ticket.user.idUser}>
-                                <FontAwesomeIcon icon={faSearch} id={ticket.user.idUser}></FontAwesomeIcon>
-                            </NavLink>
-                            </td>
-                        </tr>
-                        )}
+                        {this.state.users.map(ticket=> 
+                                    <tr>
+                                        <td>
+                                        <img src="dist/img/Sonia.png" alt="user 1" class="img-circle img-size-32 mr-2"/>
+                                            {ticket.user.firstName} {ticket.user.lastName}
+                                        </td>
+                                        <td>{ticket.ticketNumber}</td>
+                                        <td>
+                                            {ticket.gain.description}
+                                        </td>
+                                        <td>
+                                        <NavLink to="#" class="text-muted" onClick={this.redirect} id={ticket.user.idUser}>
+                                            <FontAwesomeIcon icon={faSearch} id={ticket.user.idUser}></FontAwesomeIcon>
+                                        </NavLink>
+                                        </td>
+                                    </tr>
+                                )
+                            }                        
                         </tbody>
                         </table>
                     </div>
