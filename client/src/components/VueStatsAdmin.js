@@ -150,9 +150,9 @@ class VueStatsAdmin extends Component {
                                             {ticket.gain.description}
                                         </td>
                                         <td>
-                                        <NavLink to="#" class="text-muted" onClick={this.redirect} id={ticket.user.idUser}>
+                                        {/* <NavLink to="#" class="text-muted" onClick={this.redirect} id={ticket.user.idUser}>
                                             <FontAwesomeIcon icon={faSearch} id={ticket.user.idUser}></FontAwesomeIcon>
-                                        </NavLink>
+                                        </NavLink> */}
                                         </td>
                                     </tr>
                                 )
