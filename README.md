@@ -1,5 +1,9 @@
 # Fatboar-jeu-concours
 
+## Tickets pour tester le fonctionnement du site de jeu-concours
+
+    - Aller dans le fichier "/database/tickets-pour-tests.txt" pour récupérer des numéros de tickets à tester
+
 ## Prérequis
 
     - installer docker

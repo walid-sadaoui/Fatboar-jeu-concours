@@ -267,7 +267,7 @@ describe('Tickets Endpoints', () => {
       });
   });
   describe('GET /tickets', () => {
-    it('should return al the tickets ', (done) => {
+    it('should return 403 Access Denied', (done) => {
       chai.request(app)
         .post('/auth/login')
         .send({
@@ -285,15 +285,15 @@ describe('Tickets Endpoints', () => {
             })
         })
     })
-    it('should return 403 Access Denied', (done) => {
-      chai.request(app)
-        .get('/tickets')
-        .set('Authorization', 'Bearer ' + jwt)
-        .end((err,res) => {
-          expect(res).to.have.status(200);
-          done();
-        });
-    });
+    // it('should return all the tickets', (done) => {
+    //   chai.request(app)
+    //     .get('/tickets')
+    //     .set('Authorization', 'Bearer ' + jwt)
+    //     .end((err,res) => {
+    //       expect(res).to.have.status(200);
+    //       done();
+    //     });
+    // });
   });
   
   describe('GET /tickets/:ticketNumber', () => {
