@@ -1,5 +1,10 @@
 # Fatboar-jeu-concours
 
+## Compte Admin
+
+    - email : admin@fatboar.site
+    - mot de passe : fatroot
+
 ## Tickets pour tester le fonctionnement du site de jeu-concours
 
     - Aller dans le fichier "/database/tickets-pour-tests.txt" pour récupérer des numéros de tickets à tester

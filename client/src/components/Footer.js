@@ -1,5 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 class Footer extends React.Component{
     render(){
@@ -19,7 +21,7 @@ class Footer extends React.Component{
               </div>
             </div>
           </footer>
-          <NavLink to="#" className="back-to-top"><i className="fa fa-chevron-up"></i></NavLink>
+          <NavLink to="#" className="back-to-top"><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon></NavLink>
           </section>
         )
     }

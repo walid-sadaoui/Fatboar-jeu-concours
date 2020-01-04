@@ -4,7 +4,7 @@ import logofb from '../assets/img/Facebook-color.png';
 import logoinsta from '../assets/img/Insta-color.png';
 import {NavLink} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 class Navbar extends React.Component {
@@ -37,7 +37,7 @@ class Navbar extends React.Component {
                   <i className="fa fa-pencil"></i><NavLink activeClassName="menu-active" to="/inscription">Je m'inscris</NavLink>
                 </li> */}
                 <li className="nav-item" id="BtnConnexion">
-                  <i className="fa fa-user"></i><NavLink activeClassName="menu-active" to="/connexion">Mon compte</NavLink>
+                  <FontAwesomeIcon icon={ faUser }></FontAwesomeIcon><NavLink activeClassName="menu-active" to="/connexion">Mon compte</NavLink>
                 </li>
                 {/* <li className="nav-item">
                   <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

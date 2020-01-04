@@ -50,7 +50,7 @@ class TirageGagnant extends Component {
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6 mx-auto">
-                                <h1 className="m-0 text-dark text-center"><b><FontAwesomeIcon icon={faTrophy}></FontAwesomeIcon> Gagnant final <i class="nav-icon fas fa-trophy"></i></b></h1>
+                                <h1 className="m-0 text-dark text-center"><b><FontAwesomeIcon icon={faTrophy}></FontAwesomeIcon> Gagnant final <FontAwesomeIcon icon={faTrophy}></FontAwesomeIcon></b></h1>
                             </div>
                         </div>
                     </div>

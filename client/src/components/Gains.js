@@ -64,7 +64,7 @@ export default class Content extends Component {
                                             <h3 className="widget-user">{ticket.gain.description}</h3>
                                         </div>
                                         <div className="widget-user-image">
-                                            <img className="img-circle elevation-2" src="../dist/img/food/02.png"
+                                            <img className="img-circle elevation-2" src="../assets/img/02.png"
                                                 alt="User Avatar" />
                                         </div>
                                         <div className="card-footer">

@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
         return res.status(403).send('Access denied');
     }
     try {
-        const tickets = await models.ticket.findAll({where: {idUser: {[Op.ne]: null}, '$user$': {[Op.ne]: null}}, order: [['useDate', 'DESC']], include: [ { model: models.user }, { model: models.gain } ], limit: 10});
+        const tickets = await models.ticket.findAll({where: {idUser: {[Op.ne]: null}, '$user$': {[Op.ne]: null}}, include: [ { model: models.user }, { model: models.gain } ], limit: 10});
         const allticketsUsed =  await models.ticket.count({where: {idUser: {[Op.ne]: null}, '$user$': {[Op.ne]: null}}, include: [ { model: models.user } ] });
         res.status(200).json({
             msg: 'All tickets',
@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
             allticketsUsed
         });
     } catch (error) {
-        return res.status(500).send('Server Error');
+        return res.status(500).send(error);
     }
 });
 

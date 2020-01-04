@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Sidebar from './SideBar';
 import AdminBar from './AdminBar';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -77,7 +79,7 @@ class EmailsUsers extends Component {
                                     <td>{user.phone}</td>
                                     <td class="align-middle pr-4">
                                         <CopyToClipboard text={[user.idUser, user.lastName, user.firstName, user.email, user.phone]}>
-                                            <button type="button" class="btn btn-primary" onClick={this.copiedAlert} id={user.idUser}><i class="far fa-copy"></i></button>
+                                            <button type="button" class="btn btn-primary" onClick={this.copiedAlert} id={user.idUser}><FontAwesomeIcon icon={faCopy}></FontAwesomeIcon></button>
                                         </CopyToClipboard>  
                                     </td>
                                     <td>{this.state.copied == user.idUser? <span style={{color: 'red'}}>Copied.</span> : null}</td>

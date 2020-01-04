@@ -34,13 +34,13 @@ module.exports = (sequelize, DataTypes) => {
   });
   Ticket.associate = function(models) {
     //associations can be defined here
-    // Ticket.belongsTo(models.user, {
-    //   foreignKey: {
-    //     fieldName: 'idUser',
-    //     allowNull: true
-    //   },
-    //   // targetKey: 'idUser'
-    // })
+    Ticket.belongsTo(models.user, {
+      foreignKey: {
+        fieldName: 'idUser',
+        allowNull: true
+      },
+      // targetKey: 'idUser'
+    })
     
     Ticket.belongsTo(models.gain, {
       foreignKey: {
