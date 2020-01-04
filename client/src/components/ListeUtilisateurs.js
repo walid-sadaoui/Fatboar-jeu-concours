@@ -80,7 +80,7 @@ export default class Dashboard extends Component {
                                                     </ul>
                                                 </div>
                                                 <div className="col-5 text-center">
-                                                    <img src="../../dist/img/charles.jpg" alt=""
+                                                    <img src="../assets/img/avatar.png" alt=""
                                                          className="img-circle img-fluid" />
                                                 </div>
                                             </div>
